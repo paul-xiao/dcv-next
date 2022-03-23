@@ -1,4 +1,4 @@
-# What is My Lib?
+# What is Dcv Next?
 
 This library is a starter to create your own Vue 3 component library in TypeScript.
 

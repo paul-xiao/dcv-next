@@ -1,16 +1,17 @@
 const path = require('path')
 
 module.exports = {
-  title: 'My Lib',
-  description: 'Just playing around.',
+  title: 'Dcv Next',
+  description: 'Dcv base on vue3.x',
   themeConfig: {
-    repo: 'https://github.com/wuruoyun/vue-component-lib-starter',
+    repo: 'http://10.1.191.15:13480/fed/dcv_next',
     sidebar: [
       {
         text: 'Introduction',
         children: [
-          { text: 'What is My Lib?', link: '/' },
+          { text: 'What is Dcv Next?', link: '/' },
           { text: 'Getting Started', link: '/guide/' },
+          { text: '项目配置', link: '/config/' },
         ],
       }, {
         text: 'Components',
@@ -18,7 +19,7 @@ module.exports = {
           { text: 'Component A', link: '/components/component-a' },
           { text: 'Component B', link: '/components/component-b' },
         ],
-      }
+      },
     ],
   },
   vite: {
