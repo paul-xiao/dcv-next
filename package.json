@@ -12,7 +12,9 @@
     "prepare": "husky install",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,examples}/**/*.{vue,ts,tsx}\" --fix",
     "lint:css": "stylelint --cache --fix \"{src,examples}/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
-    "lint:all": "npm run lint:eslint && npn run lint:css",
+    "lint:all": "pnpm run lint:eslint && pnpm run lint:css",
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+    "lint:pretty": "pretty-quick --staged",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
@@ -33,9 +35,11 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
     "husky": "^7.0.0",
+    "lint-staged": "^12.3.7",
     "postcss": "^8.4.12",
     "postcss-html": "^1.3.0",
     "prettier": "^2.6.0",
+    "pretty-quick": "^3.1.3",
     "primeflex": "^3.1.2",
     "primeicons": "^5.0.0",
     "primevue": "^3.11.1",

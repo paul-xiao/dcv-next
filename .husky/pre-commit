@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm test
+# lint staged files
+npm run lint:lint-staged
+# Runs Prettier on your staged files.
+npm run lint:pretty
+

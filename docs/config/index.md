@@ -1,6 +1,5 @@
 # 项目配置
 
-
 ## tailwindcss
 
 ### init
@@ -17,12 +16,10 @@ npx tailwindcss init -p
 ```ts
 // main.ts
 
-import 'tailwindcss/tailwind.css'
-
+import "tailwindcss/tailwind.css";
 ```
 
-## commitlint 
-
+## commitlint
 
 ```
 pnpm add -D @commitlint/cli @commitlint/config-conventional
@@ -41,33 +38,32 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 
 ```js
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
+  extends: ["@commitlint/config-conventional"],
   rules: {
-    'type-enum': [
+    "type-enum": [
       2,
-      'always',
+      "always",
       [
-        'init',
-        'build',
-        'ci',
-        'docs',
-        'fix',
-        'perf',
-        'feat',
-        'style',
-        'refactor',
-        'test',
-        'revert',
-        'chore',
-        'wip'
-      ]
+        "init",
+        "build",
+        "ci",
+        "docs",
+        "fix",
+        "perf",
+        "feat",
+        "style",
+        "refactor",
+        "test",
+        "revert",
+        "chore",
+        "wip",
+      ],
     ],
-    'subject-full-stop': [0, 'never'],
-    'subject-case': [0, 'never']
-  }
-}
+    "subject-full-stop": [0, "never"],
+    "subject-case": [0, "never"],
+  },
+};
 ```
-
 
 ## eslint
 
@@ -98,16 +94,18 @@ Successfully created .eslintrc.js file in /Users/paul/Workspace/lab/@dcv/dcv_nex
 
 
 ```
+
 依赖
 
 ```sh
 pnpm add -D eslint-plugin-vue@latest prettier eslint-config-prettier eslint-plugin-prettier @typescript-eslint/parser eslint-define-config
 ```
+
 .eslintrc.js
 
 ```js
 // @ts-check
-const { defineConfig } = require('eslint-define-config');
+const { defineConfig } = require("eslint-define-config");
 module.exports = defineConfig({
   root: true,
   env: {
@@ -115,77 +113,76 @@ module.exports = defineConfig({
     node: true,
     es6: true,
   },
-  parser: 'vue-eslint-parser',
+  parser: "vue-eslint-parser",
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: "@typescript-eslint/parser",
     ecmaVersion: 2020,
-    sourceType: 'module',
-    jsxPragma: 'React',
+    sourceType: "module",
+    jsxPragma: "React",
     ecmaFeatures: {
       jsx: true,
     },
   },
   extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'plugin:prettier/recommended'
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
   ],
   rules: {
-    'vue/script-setup-uses-vars': 'error',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
+    "vue/script-setup-uses-vars": "error",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "vue/custom-event-name-casing": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
       {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
       },
     ],
-    'no-unused-vars': [
-      'error',
+    "no-unused-vars": [
+      "error",
       {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
       },
     ],
-    'space-before-function-paren': 'off',
+    "space-before-function-paren": "off",
 
-    'vue/attributes-order': 'off',
-    'vue/v-on-event-hyphenation': 'off',
-    'vue/multi-word-component-names': 'off',
-    'vue/one-component-per-file': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'vue/max-attributes-per-line': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/attribute-hyphenation': 'off',
-    'vue/require-default-prop': 'off',
-    'vue/html-self-closing': [
-      'error',
+    "vue/attributes-order": "off",
+    "vue/v-on-event-hyphenation": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/one-component-per-file": "off",
+    "vue/html-closing-bracket-newline": "off",
+    "vue/max-attributes-per-line": "off",
+    "vue/multiline-html-element-content-newline": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/attribute-hyphenation": "off",
+    "vue/require-default-prop": "off",
+    "vue/html-self-closing": [
+      "error",
       {
         html: {
-          void: 'always',
-          normal: 'never',
-          component: 'always',
+          void: "always",
+          normal: "never",
+          component: "always",
         },
-        svg: 'always',
-        math: 'always',
+        svg: "always",
+        math: "always",
       },
     ],
   },
 });
-
 ```
 
 add script
@@ -196,7 +193,6 @@ add script
 
 ## changelog
 
-
 ```sh
 pnpm add -D conventional-changelog-cli
 ```
@@ -205,9 +201,7 @@ pnpm add -D conventional-changelog-cli
  "version": "conventional-changelog -p angular -i CHANGELOG.md -s"
 ```
 
-
 ## stylelint
-
 
 ```
 pnpm add -D stylelint stylelint-config-standard stylelint-order postcss-html
@@ -218,103 +212,116 @@ touch stylelint.config.js
 ```
 
 ```js
-
 module.exports = {
   root: true,
-  plugins: ['stylelint-order'],
-  customSyntax: 'postcss-html',
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  plugins: ["stylelint-order"],
+  customSyntax: "postcss-html",
+  extends: ["stylelint-config-standard", "stylelint-config-prettier"],
   rules: {
-    'selector-class-pattern': null,
-    'selector-pseudo-class-no-unknown': [
+    "selector-class-pattern": null,
+    "selector-pseudo-class-no-unknown": [
       true,
       {
-        ignorePseudoClasses: ['global'],
+        ignorePseudoClasses: ["global"],
       },
     ],
-    'selector-pseudo-element-no-unknown': [
+    "selector-pseudo-element-no-unknown": [
       true,
       {
-        ignorePseudoElements: ['v-deep'],
+        ignorePseudoElements: ["v-deep"],
       },
     ],
-    'at-rule-no-unknown': [
+    "at-rule-no-unknown": [
       true,
       {
         ignoreAtRules: [
-          'tailwind',
-          'apply',
-          'variants',
-          'responsive',
-          'screen',
-          'function',
-          'if',
-          'each',
-          'include',
-          'mixin',
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen",
+          "function",
+          "if",
+          "each",
+          "include",
+          "mixin",
         ],
       },
     ],
-    'no-empty-source': null,
-    'named-grid-areas-no-invalid': null,
-    'unicode-bom': 'never',
-    'no-descending-specificity': null,
-    'font-family-no-missing-generic-family-keyword': null,
-    'declaration-colon-space-after': 'always-single-line',
-    'declaration-colon-space-before': 'never',
+    "no-empty-source": null,
+    "named-grid-areas-no-invalid": null,
+    "unicode-bom": "never",
+    "no-descending-specificity": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "declaration-colon-space-after": "always-single-line",
+    "declaration-colon-space-before": "never",
     // 'declaration-block-trailing-semicolon': 'always',
-    'rule-empty-line-before': [
-      'always',
+    "rule-empty-line-before": [
+      "always",
       {
-        ignore: ['after-comment', 'first-nested'],
+        ignore: ["after-comment", "first-nested"],
       },
     ],
-    'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
-    'order/order': [
+    "unit-no-unknown": [true, { ignoreUnits: ["rpx"] }],
+    "order/order": [
       [
-        'dollar-variables',
-        'custom-properties',
-        'at-rules',
-        'declarations',
+        "dollar-variables",
+        "custom-properties",
+        "at-rules",
+        "declarations",
         {
-          type: 'at-rule',
-          name: 'supports',
+          type: "at-rule",
+          name: "supports",
         },
         {
-          type: 'at-rule',
-          name: 'media',
+          type: "at-rule",
+          name: "media",
         },
-        'rules',
+        "rules",
       ],
-      { severity: 'warning' },
+      { severity: "warning" },
     ],
   },
-  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts'],
+  ignoreFiles: ["**/*.js", "**/*.jsx", "**/*.tsx", "**/*.ts"],
   overrides: [
     {
-      files: ['*.vue', '**/*.vue'],
-      extends: ['stylelint-config-recommended', 'stylelint-config-html'],
+      files: ["*.vue", "**/*.vue"],
+      extends: ["stylelint-config-recommended", "stylelint-config-html"],
       rules: {
-        'selector-pseudo-class-no-unknown': [
+        "selector-pseudo-class-no-unknown": [
           true,
           {
-            ignorePseudoClasses: ['deep', 'global'],
+            ignorePseudoClasses: ["deep", "global"],
           },
         ],
-        'selector-pseudo-element-no-unknown': [
+        "selector-pseudo-element-no-unknown": [
           true,
           {
-            ignorePseudoElements: ['v-deep', 'v-global', 'v-slotted'],
+            ignorePseudoElements: ["v-deep", "v-global", "v-slotted"],
           },
         ],
       },
     },
   ],
 };
-
-
 ```
 
 ```json
 "lint:css":"stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
+```
+
+## pretty-quick
+
+> Runs Prettier on your changed files.
+
+```
+pnpm add -D pretty-quick
+```
+
+## lint-staged
+
+> lint staged file
+
+```
+npx mrm@2 lint-staged
 ```
