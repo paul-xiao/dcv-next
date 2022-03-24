@@ -1,5 +1,3 @@
-import ComponentA from './ComponentA.vue'
+import ComponentA from "./ComponentA.vue";
 
-export {
-  ComponentA
-}
+export { ComponentA };
