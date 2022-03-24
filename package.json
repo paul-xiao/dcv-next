@@ -15,6 +15,7 @@
     "lint:all": "pnpm run lint:eslint && pnpm run lint:css",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "lint:pretty": "pretty-quick --staged",
+    "lint:prettier": "prettier --write  \"{src,examples}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {

@@ -318,10 +318,37 @@ module.exports = {
 pnpm add -D pretty-quick
 ```
 
+```json
+
+  "lint:pretty": "pretty-quick --staged",
+
+```
+
 ## lint-staged
 
 > lint staged file
 
 ```
-npx mrm@2 lint-staged
+pnpm add -D lint-staged
+```
+
+```json
+
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+
+```
+
+自定义 lintstagedrc 配置
+
+```js
+module.exports = {
+  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
+    "prettier --write--parser json",
+  ],
+  "package.json": ["prettier --write"],
+  "*.vue": ["eslint --fix", "prettier --write", "stylelint --fix"],
+  "*.{scss,less,styl}": ["stylelint --fix", "prettier --write"],
+  "*.md": ["prettier --write"],
+};
 ```
