@@ -1,0 +1,15 @@
+<template>
+  <div
+    class="flex items-center justify-center w-full h-12 bg-slate-50"
+    :class="{ 'bg-slate-100': !value }"
+  >
+    <img src="@/assets/logo.png" class="w-5" />
+    <span class="mx-2 font-extralight">DCV</span>
+  </div>
+</template>
+<script setup lang="ts">
+defineProps({
+  value: { type: Boolean },
+  asideExpanded: { type: Boolean },
+});
+</script>

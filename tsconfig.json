@@ -15,6 +15,15 @@
     "declarationDir": "./dist/types",
     "isolatedModules": true,
     "skipLibCheck": true,
+    "types": ["element-plus/global"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts","examples/**/*.ts", "examples/**/*.d.ts", "examples/**/*.tsx", "examples/**/*.vue", "examples/index.js"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "examples/**/*.ts",
+    "examples/**/*.d.ts",
+    "examples/**/*.tsx",
+    "examples/**/*.vue",
+    "examples/index.js"
+  ]
 }

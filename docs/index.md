@@ -1,8 +1,17 @@
-# What is Dcv Next?
-
-This library is a starter to create your own Vue 3 component library in TypeScript.
-
-There are two example components included for you to get started with creating your own components:
-
-- [ComponentA](/components/component-a) is a simple Hello World component with icon from bundled font file.
-- [ComponentB](/components/component-b) is a counter component using button from [PrimeVue](https://www.primefaces.org/primevue/), icons from [PrimeIcons](https://www.primefaces.org/showcase/icons.xhtml) and styling from [PrimeFlex](https://www.primefaces.org/primeflex/).
+---
+home: true
+// heroImage: /favicon.ico
+heroAlt: Logo image
+heroText: Dcv Next
+tagline: vue3.x UI framework based on element-plus
+actionText: Get Started
+actionLink: /guide/
+features:
+  - title: Easy Setup
+    details: Minimal setup with markdown-centered project structure helps you focus on writing.
+  - title: Vue-Powered
+    details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
+  - title: Performant
+    details: VitePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+footer: MIT Licensed | Copyright © 2022-present DCV
+---
