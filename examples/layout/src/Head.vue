@@ -11,6 +11,8 @@
         </div>
       </div>
       <div class="opt">
+        <el-icon><bell /></el-icon>
+        <el-icon><collection /></el-icon>
         <el-icon @click="$emit('toggleConfig')"><operation /></el-icon>
       </div>
     </div>

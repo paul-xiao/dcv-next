@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-screen min-h-full">
+  <div class="flex w-full h-screen min-h-full" v-loading="loading">
     <div class="flex-1">
       <Head
         @toggleConfig="isPanelShow = !isPanelShow"
@@ -25,7 +25,9 @@
             :asideExpanded="asideExpanded"
             v-if="!value"
           />
-          <div class="p-5">content</div>
+          <div class="p-5">
+            <router-view />
+          </div>
         </div>
       </div>
     </div>
@@ -50,14 +52,21 @@
 import Logo from "./src/Logo.vue";
 import Head from "./src/Head.vue";
 import Aside from "./src/Aside.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useStore } from "vuex";
+const store = useStore();
 const value = ref(false);
 const asideExpanded = ref(true);
 const isPanelShow = ref(false);
+const loading = ref(true);
 function toggleAside() {
-  console.log(111);
-
   asideExpanded.value = !asideExpanded.value;
 }
+onMounted(async () => {
+  await store.dispatch("initMenu");
+  console.log(store);
+
+  loading.value = false;
+});
 </script>
 <style lang="scss" scoped></style>
