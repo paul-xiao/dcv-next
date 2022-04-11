@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-100">
+  <div class="bg-white">
     <div class="h-12 leading-10 text-center" v-if="value">
       <el-icon @click="$emit('toggleAside')" v-if="asideExpanded"
         ><expand
@@ -10,7 +10,9 @@
       <div v-for="menu of getters.menuList" :key="menu.id">
         <div>{{ menu.menu_name }}</div>
         <div v-for="child of menu.children" class="font-light" :key="child.id">
-          <div>{{ child.menu_name }}</div>
+          <div class="pl-2 cursor-pointer hover:bg-gray-200">
+            {{ child.menu_name }}
+          </div>
         </div>
       </div>
     </div>

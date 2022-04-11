@@ -25,7 +25,7 @@
             :asideExpanded="asideExpanded"
             v-if="!value"
           />
-          <div class="p-5">
+          <div class="p-5 bg-gray-50">
             <router-view />
           </div>
         </div>

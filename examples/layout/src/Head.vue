@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-12 bg-slate-50">
+  <div class="flex h-12 bg-white">
     <div class="w-60" v-if="value"><Logo :value="value" /></div>
     <div class="flex items-center justify-between flex-1 px-5">
       <div class="flex-1">
