@@ -1,7 +1,7 @@
 {
   "name": "dcv_next",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
