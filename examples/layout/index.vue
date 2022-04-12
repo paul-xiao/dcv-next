@@ -53,8 +53,8 @@ import Logo from "./src/Logo.vue";
 import Head from "./src/Head.vue";
 import Aside from "./src/Aside.vue";
 import { ref, onMounted } from "vue";
-import { useStore } from "vuex";
-const store = useStore();
+import { useAppStore } from "@/store/modules/app";
+const appStore = useAppStore();
 const value = ref(false);
 const asideExpanded = ref(true);
 const isPanelShow = ref(false);
@@ -62,10 +62,8 @@ const loading = ref(true);
 function toggleAside() {
   asideExpanded.value = !asideExpanded.value;
 }
-onMounted(async () => {
-  await store.dispatch("initMenu");
-  console.log(store);
-
+onMounted(() => {
+  appStore.loadMenu();
   loading.value = false;
 });
 </script>

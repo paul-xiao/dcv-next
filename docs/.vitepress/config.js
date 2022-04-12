@@ -11,6 +11,7 @@ module.exports = {
       { text: "介绍", link: "/guide/" },
       { text: "组件", link: "/components/" },
       { text: "项目配置", link: "/config/" },
+      { text: "迁移指南", link: "/migrate/" },
       { text: "Todo List", link: "/todo/" },
     ],
     sidebar: {

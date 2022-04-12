@@ -1,3 +1,9 @@
+## [0.0.2](http://10.1.192.34/fed/dcv_next/compare/v0.0.1...v0.0.2) (2022-04-11)
+
+### Features
+
+- add md2json vite plugin ([58f024e](http://10.1.192.34/fed/dcv_next/commits/58f024e8f726272cde064e436caa870a659aa1ca))
+
 ## 0.0.1 (2022-04-11)
 
 ### Features
