@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-screen min-h-full" v-loading="loading">
+  <div class="flex w-full h-screen min-h-full">
     <div class="flex-1">
       <Head
         @toggleConfig="isPanelShow = !isPanelShow"
@@ -52,19 +52,12 @@
 import Logo from "./src/Logo.vue";
 import Head from "./src/Head.vue";
 import Aside from "./src/Aside.vue";
-import { ref, onMounted } from "vue";
-import { useAppStore } from "@/store/modules/app";
-const appStore = useAppStore();
+import { ref } from "vue";
 const value = ref(false);
 const asideExpanded = ref(true);
 const isPanelShow = ref(false);
-const loading = ref(true);
 function toggleAside() {
   asideExpanded.value = !asideExpanded.value;
 }
-onMounted(() => {
-  appStore.loadMenu();
-  loading.value = false;
-});
 </script>
 <style lang="scss" scoped></style>

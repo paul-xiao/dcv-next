@@ -1,8 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Layout from "@/layout/index.vue";
-import basicRoutes from "./routes";
+import { components } from "./helpers";
 
-console.log(basicRoutes);
+console.log(components);
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -11,7 +10,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Layout,
+    component: components["Layout"],
     redirect: "dashboard",
     children: [
       {

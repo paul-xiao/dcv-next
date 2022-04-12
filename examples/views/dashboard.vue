@@ -97,7 +97,7 @@ interface Activity {
   children?: Activity[];
 }
 
-const md2Tl = (ast: any) => {
+const md2Json = (ast: any) => {
   let result = [];
   let row: Activity = {};
   const conf = {
@@ -137,8 +137,7 @@ const md2Tl = (ast: any) => {
   }
   return result;
 };
-console.log(md2Tl(ChangeLog));
-const activities = md2Tl(ChangeLog);
+const activities = md2Json(ChangeLog);
 const todos: Todo[] = [
   {
     name: "基础框架",

@@ -4,8 +4,10 @@ import "tailwindcss/tailwind.css";
 import ElementPlus from "element-plus";
 import * as ElIcons from "@element-plus/icons-vue";
 import "element-plus/dist/index.css";
+import "nprogress/nprogress.css";
 import router from "./router";
 import store from "./store";
+import { setPermissionGurads } from "./router/gurads";
 
 const app = createApp(App);
 
@@ -15,5 +17,6 @@ for (const name in ElIcons) {
 }
 
 app.use(router);
+setPermissionGurads(router);
 app.use(store);
 app.mount("#app");

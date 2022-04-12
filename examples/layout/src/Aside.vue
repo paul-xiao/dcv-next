@@ -8,12 +8,20 @@
     </div>
     <div class="p-5">
       <div v-for="menu of menus" :key="menu.id">
-        <div>{{ menu.menu_name }}</div>
-        <div v-for="child of menu.children" class="font-light" :key="child.id">
-          <div class="pl-2 cursor-pointer hover:bg-gray-200">
-            {{ child.menu_name }}
+        <template v-if="menu.meta && !menu.meta.hidden">
+          <router-link :to="menu.path">{{ menu.name }}</router-link>
+          <div
+            v-for="child of menu.children"
+            class="font-light"
+            :key="child.id"
+          >
+            <template v-if="child.meta && !child.meta.hidden">
+              <div class="pl-2 cursor-pointer hover:bg-gray-200">
+                <router-link :to="child.path">{{ child.name }}</router-link>
+              </div>
+            </template>
           </div>
-        </div>
+        </template>
       </div>
     </div>
   </div>
@@ -22,7 +30,7 @@
 import { useAppStore } from "@/store/modules/app";
 import { computed } from "vue";
 const appStore = useAppStore();
-const menus = computed(() => appStore.getMenu);
+const menus = computed(() => appStore.getMenu.menuList);
 defineProps({
   value: { type: Boolean },
   asideExpanded: { type: Boolean },

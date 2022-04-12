@@ -1,22 +1,30 @@
-import http from "@/utils/http";
+import { getMenuList } from "@/api/app";
+import { generatorDynamicRouter } from "@/router/helpers";
 import { defineStore } from "pinia";
 interface AppState {
-  menu: any[];
+  aside: {
+    menuList: [];
+  };
 }
 export const useAppStore = defineStore("app", {
   state: (): AppState => ({
-    menu: [],
+    aside: {
+      menuList: [],
+    },
   }),
   getters: {
-    getMenu: (state) => state.menu,
+    getMenu(): any {
+      return this.aside;
+    },
   },
   actions: {
-    async loadMenu() {
-      const res = await http.get("/getMenu");
-      this.setMenu(res.data);
-    },
     setMenu(menu: any) {
-      this.menu = menu;
+      console.log(menu);
+      this.aside.menuList = menu;
+    },
+    async generateRoutes() {
+      const res = await getMenuList();
+      generatorDynamicRouter(res.data);
     },
   },
 });
