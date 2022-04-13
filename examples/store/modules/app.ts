@@ -1,9 +1,10 @@
 import { getMenuList } from "@/api/app";
+import { allowRoutes } from "@/router";
 import { generatorDynamicRouter } from "@/router/helpers";
 import { defineStore } from "pinia";
 interface AppState {
   aside: {
-    menuList: [];
+    menuList: any[];
   };
 }
 export const useAppStore = defineStore("app", {
@@ -25,6 +26,9 @@ export const useAppStore = defineStore("app", {
     async generateRoutes() {
       const res = await getMenuList();
       generatorDynamicRouter(res.data);
+    },
+    concatAllowRoutes(): void {
+      allowRoutes.reverse().forEach((v) => this.aside.menuList.unshift(v));
     },
   },
 });

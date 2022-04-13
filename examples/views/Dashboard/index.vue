@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-import ChangeLog from "../../CHANGELOG.md";
+import ChangeLog from "../../../CHANGELOG.md";
 interface Todo {
   name: string;
   children?: Todo[];

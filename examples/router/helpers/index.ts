@@ -17,7 +17,7 @@ Object.keys(modules).forEach((key) => {
   // 如果页面以Index命名，则使用父文件夹作为name
   const indexMatch = nameMatch[1].match(/(.*)\/index$/i);
   let name = indexMatch ? indexMatch[1] : nameMatch[1];
-  [name] = name.split("/").splice(-1);
+  name = name.replace("/", "_");
   components[name] = modules[key] as () => Promise<typeof import("*.vue")>;
 });
 
