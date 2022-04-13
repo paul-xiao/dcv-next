@@ -4,6 +4,7 @@ import Inspect from "vite-plugin-inspect";
 import { viteMockServe } from "vite-plugin-mock";
 import md2json from "./examples/plugins/md2json";
 import Vue from "@vitejs/plugin-vue";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 const localEnabled: boolean = process.env.NODE_ENV === "development";
 
 module.exports = defineConfig({
@@ -19,6 +20,12 @@ module.exports = defineConfig({
       // prodEnabled: !localEnabled, // 生产打包开关
       supportTs: true, // 打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件。
       watchFiles: true, // 监视文件更改
+    }),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
+      // 指定symbolId格式
+      symbolId: "icon-[dir]-[name]",
     }),
   ], // to process SFC
   resolve: {

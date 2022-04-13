@@ -24,6 +24,11 @@ export const allowRoutes = [
     ],
   },
   {
+    path: "/404",
+    name: "404",
+    component: components["ErrorPage_404"],
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("@/views/User/login.vue"),

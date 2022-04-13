@@ -9,6 +9,14 @@ export default [
   },
   {
     id: 2,
+    name: "icon",
+    path: "/components/icon",
+    parentId: 1,
+    component: "Components_Icon",
+    meta: { title: "图标", icon: "icon" },
+  },
+  {
+    id: 2,
     name: "表单",
     path: "/components/form",
     parentId: 1,

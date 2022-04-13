@@ -1,3 +1,10 @@
+## [0.0.4](http://10.1.192.34/fed/dcv_next/compare/v0.0.3...v0.0.4) (2022-04-13)
+
+### Features
+
+- add dynamic route ([26c0568](http://10.1.192.34/fed/dcv_next/commits/26c0568a5670d12853124032fc7e8aca09cd2f8e))
+- dynamic route optimiztion ([86a382e](http://10.1.192.34/fed/dcv_next/commits/86a382ef52cd5e6aefa38884078c4d77b23720f3))
+
 ## [0.0.3](http://10.1.192.34/fed/dcv_next/compare/v0.0.2...v0.0.3) (2022-04-12)
 
 ### Features

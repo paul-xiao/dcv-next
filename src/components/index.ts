@@ -1,3 +1,2 @@
-import ComponentA from "./ComponentA.vue";
-
-export { ComponentA };
+import { Icon, SvgIcon } from "./Icon";
+export { Icon, SvgIcon };

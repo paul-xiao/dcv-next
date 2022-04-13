@@ -11,7 +11,7 @@ export function setPermissionGurads(router: Router) {
       await generateRoutes();
       console.log(getMenu.menuList.length);
 
-      // 添加路由
+      // 动态添加路由
       for (let i = 0; i < getMenu.menuList.length; i++) {
         console.log(getMenu.menuList[i]);
 
@@ -25,8 +25,9 @@ export function setPermissionGurads(router: Router) {
           router.addRoute("home", getMenu.menuList[i] as RouteRecordRaw);
         }
       }
+      // 添加静态路由到菜单
       concatAllowRoutes();
-      // 刷新 返回当前路由
+      // 刷新页面 返回当前路由
       return to.fullPath;
     } else {
       // console.log(getMenu)

@@ -25,7 +25,7 @@ const asyncRouter: any[] = [
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    component: components["404"],
+    //component: components["ErrorPage_404"],
     meta: {
       title: "NotFound",
       icon: "",
