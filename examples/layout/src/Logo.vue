@@ -4,7 +4,7 @@
     :class="{ 'bg-slate-100': !value }"
   >
     <img src="@/assets/logo.png" class="w-5" />
-    <span class="mx-2 font-extralight">DCV</span>
+    <span class="mx-2 font-extralight" v-if="asideExpanded">DCV</span>
   </div>
 </template>
 <script setup lang="ts">

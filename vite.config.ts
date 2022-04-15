@@ -5,6 +5,7 @@ import { viteMockServe } from "vite-plugin-mock";
 import md2json from "./examples/plugins/md2json";
 import Vue from "@vitejs/plugin-vue";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
+import PurgeIcons from "vite-plugin-purge-icons";
 const localEnabled: boolean = process.env.NODE_ENV === "development";
 
 module.exports = defineConfig({
@@ -26,6 +27,9 @@ module.exports = defineConfig({
       iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
       // 指定symbolId格式
       symbolId: "icon-[dir]-[name]",
+    }),
+    PurgeIcons({
+      content: ["**/*.html", "**/*.ts", "**/*.js", "**/*.vue"],
     }),
   ], // to process SFC
   resolve: {
@@ -59,6 +63,7 @@ module.exports = defineConfig({
   },
   server: {
     port: 3002,
+    hmr: true,
     fs: {
       allow: [".."],
     },

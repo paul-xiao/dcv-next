@@ -15,7 +15,7 @@ export default [
   {
     url: "/api/getMenu",
     method: "get",
-    timeout: 5000,
+    timeout: 0,
     response: () => {
       return {
         code: 0,

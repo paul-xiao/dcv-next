@@ -5,7 +5,7 @@ export default [
     path: "/components",
     parentId: 0,
     component: "Layout",
-    meta: { title: "基础组件", icon: "el-icon-phone" },
+    meta: { title: "基础组件", icon: "mdi-light:home" },
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export default [
     path: "/components/icon",
     parentId: 1,
     component: "Components_Icon",
-    meta: { title: "图标", icon: "icon" },
+    meta: { title: "图标", icon: "mdi-light:icon" },
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export default [
     path: "/components/form",
     parentId: 1,
     component: "Components_Form",
-    meta: { title: "表单", icon: "el-icon-phone" },
+    meta: { title: "表单", icon: "ep:xx" },
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export default [
     path: "/components/table",
     component: "Components_Table",
     parentId: 1,
-    meta: { title: "表格", icon: "el-icon-phone" },
+    meta: { title: "表格", icon: "ep:xx" },
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export default [
     path: "/visualization",
     component: "Visualization",
     parentId: 0,
-    meta: { title: "可视化", icon: "el-icon-phone" },
+    meta: { title: "可视化", icon: "ep:user" },
   },
   {
     id: 4,
@@ -45,6 +45,6 @@ export default [
     path: "/dashboard",
     component: "Dashboard",
     parentId: 0,
-    meta: { title: "仪表盘", icon: "el-icon-phone" },
+    meta: { title: "仪表盘", icon: "ep:user" },
   },
 ];

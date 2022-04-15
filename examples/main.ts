@@ -10,7 +10,7 @@ import store from "./store";
 import { setPermissionGurads } from "./router/gurads";
 import dcv from "../src";
 import "virtual:svg-icons-register";
-
+import "@purge-icons/generated"; // 添加进来
 const app = createApp(App);
 
 app.use(ElementPlus);

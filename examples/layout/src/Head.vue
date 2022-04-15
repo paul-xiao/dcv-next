@@ -2,13 +2,15 @@
   <div class="flex h-12 bg-white">
     <div class="w-60" v-if="value"><Logo :value="value" /></div>
     <div class="flex items-center justify-between flex-1 px-5">
-      <div class="flex-1">
-        <div v-if="!value">
-          <el-icon @click="$emit('toggleAside')" v-if="asideExpanded"
-            ><expand
-          /></el-icon>
-          <el-icon @click="$emit('toggleAside')" v-else><fold /></el-icon>
-        </div>
+      <div class="flex items-center flex-1">
+        <template v-if="!value">
+          <dc-icon
+            @click="$emit('toggleAside')"
+            :class="{ 'rotate-180 ': !asideExpanded }"
+            icon="ep:expand"
+          />
+        </template>
+        <dc-breadcrumb />
       </div>
       <div class="opt">
         <el-icon><bell /></el-icon>

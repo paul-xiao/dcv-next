@@ -10,7 +10,7 @@
       />
       <div class="flex">
         <div class="w-20" :class="{ 'w-60': asideExpanded }">
-          <Logo v-if="!value" :value="value" />
+          <Logo v-if="!value" :value="value" :asideExpanded="asideExpanded" />
           <Aside
             @toggleAside="toggleAside"
             :value="value"
@@ -57,6 +57,8 @@ const value = ref(false);
 const asideExpanded = ref(true);
 const isPanelShow = ref(false);
 function toggleAside() {
+  console.log(1);
+
   asideExpanded.value = !asideExpanded.value;
 }
 </script>

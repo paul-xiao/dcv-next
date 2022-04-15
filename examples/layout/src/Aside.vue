@@ -1,26 +1,45 @@
 <template>
   <div class="bg-white">
     <div class="h-12 leading-10 text-center" v-if="value">
-      <el-icon @click="$emit('toggleAside')" v-if="asideExpanded"
-        ><expand
-      /></el-icon>
-      <el-icon @click="$emit('toggleAside')" v-else><fold /></el-icon>
+      <dc-icon @click="$emit('toggleAside')" icon="ep:expand" />
     </div>
     <div class="p-5">
       <div v-for="menu of menus" :key="menu.id">
         <template v-if="menu.meta && !menu.meta.hidden">
-          <router-link :to="menu.path">{{ menu.name }}</router-link>
-          <div
-            v-for="child of menu.children"
-            class="font-light"
-            :key="child.id"
-          >
-            <template v-if="child.meta && !child.meta.hidden">
-              <div class="pl-2 cursor-pointer hover:bg-gray-200">
-                <router-link :to="child.path">{{ child.name }}</router-link>
-              </div>
-            </template>
-          </div>
+          <template v-if="menu.children.length">
+            <div @click="toggleChild(menu)" class="flex items-center">
+              <dc-icon :icon="menu.meta.icon" /><span v-if="asideExpanded">
+                {{ menu.name }}</span
+              >
+            </div>
+          </template>
+          <template v-else>
+            <router-link
+              :to="menu.path"
+              @click="toggleChild(menu)"
+              class="flex items-center"
+            >
+              <dc-icon :icon="menu.meta.icon" /><span v-if="asideExpanded">
+                {{ menu.name }}</span
+              ></router-link
+            >
+          </template>
+          <template v-if="asideExpanded && menu.isExpand">
+            <div
+              v-for="child of menu.children"
+              class="font-light"
+              :key="child.id"
+            >
+              <template v-if="child.meta && !child.meta.hidden">
+                <div class="pl-2 cursor-pointer hover:bg-gray-200">
+                  <router-link :to="child.path" class="flex items-center"
+                    ><dc-icon :icon="child.meta.icon" />
+                    <span>{{ child.name }}</span></router-link
+                  >
+                </div>
+              </template>
+            </div>
+          </template>
         </template>
       </div>
     </div>
@@ -36,4 +55,7 @@ defineProps({
   asideExpanded: { type: Boolean },
 });
 defineEmits(["toggleAside"]);
+const toggleChild = (menu: any) => {
+  menu.isExpand = !menu.isExpand;
+};
 </script>
