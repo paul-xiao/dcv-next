@@ -1,2 +1,3 @@
 import { Icon, SvgIcon } from "./Icon";
-export { Icon, SvgIcon };
+import Breadcrumb from "./Breadcrumb";
+export { Icon, SvgIcon, Breadcrumb };

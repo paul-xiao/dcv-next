@@ -4,10 +4,10 @@
       <dc-icon @click="$emit('toggleAside')" icon="ep:expand" />
     </div>
     <div class="p-5">
-      <div v-for="menu of menus" :key="menu.id">
+      <template v-for="menu of menus" :key="menu.id">
         <template v-if="menu.meta && !menu.meta.hidden">
           <template v-if="menu.children.length">
-            <div @click="toggleChild(menu)" class="flex items-center">
+            <div @click="toggleChild(menu)" class="flex items-center leading-8">
               <dc-icon :icon="menu.meta.icon" /><span v-if="asideExpanded">
                 {{ menu.name }}</span
               >
@@ -17,7 +17,8 @@
             <router-link
               :to="menu.path"
               @click="toggleChild(menu)"
-              class="flex items-center"
+              class="flex items-center leading-8"
+              :class="{ 'bg-slate-100': $route.name === menu.name }"
             >
               <dc-icon :icon="menu.meta.icon" /><span v-if="asideExpanded">
                 {{ menu.name }}</span
@@ -25,37 +26,28 @@
             >
           </template>
           <template v-if="asideExpanded && menu.isExpand">
-            <div
-              v-for="child of menu.children"
-              class="font-light"
-              :key="child.id"
-            >
-              <template v-if="child.meta && !child.meta.hidden">
-                <div class="pl-2 cursor-pointer hover:bg-gray-200">
-                  <router-link :to="child.path" class="flex items-center"
-                    ><dc-icon :icon="child.meta.icon" />
-                    <span>{{ child.name }}</span></router-link
-                  >
-                </div>
-              </template>
-            </div>
+            <menu-item :menu="menu.children" />
           </template>
         </template>
-      </div>
+      </template>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { useAppStore } from "@/store/modules/app";
+import MenuItem from "./MenuItem.vue";
 import { computed } from "vue";
-const appStore = useAppStore();
-const menus = computed(() => appStore.getMenu.menuList);
+const { setMenuItem, getMenu } = useAppStore();
+const menus = computed(() => getMenu.menuList);
 defineProps({
   value: { type: Boolean },
   asideExpanded: { type: Boolean },
 });
 defineEmits(["toggleAside"]);
 const toggleChild = (menu: any) => {
+  console.log(menus.value.some((d: any) => d.isExpand));
+
   menu.isExpand = !menu.isExpand;
+  setMenuItem(menu);
 };
 </script>

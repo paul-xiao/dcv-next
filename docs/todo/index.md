@@ -2,5 +2,9 @@
 
 ## step one
 
-- [ ] layout
-- [ ] router
+- [x] layout
+- [x] router
+- [ ] tab
+- [ ] breadcrumb
+- [ ] components
+- [ ] hooks

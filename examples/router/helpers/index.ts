@@ -53,6 +53,8 @@ const generatorDynamicRouter = (data: any[]): void => {
             : [];
       }
       if (v.children && v.children.length > 0) {
+        // 默认跳转到第一个子菜单
+        v.redirect = v.children[0].path;
         foo(v.children, v);
       }
     }

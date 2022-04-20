@@ -10,7 +10,7 @@
             icon="ep:expand"
           />
         </template>
-        <dc-breadcrumb />
+        <dc-breadcrumb :paths="currentPath" />
       </div>
       <div class="opt">
         <el-icon><bell /></el-icon>
@@ -21,10 +21,14 @@
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
+import { useAppStore } from "@/store/modules/app";
 import Logo from "./Logo.vue";
 defineProps({
   value: { type: Boolean },
   asideExpanded: { type: Boolean },
 });
 defineEmits(["toggleAside", "toggleConfig"]);
+const appStore = useAppStore();
+const currentPath = computed(() => appStore.getCurrentPath);
 </script>
