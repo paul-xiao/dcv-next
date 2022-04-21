@@ -6,13 +6,20 @@ interface AppState {
   aside: {
     menuList: any[];
     currentPath: any[];
+    asideExpanded: boolean;
   };
+  tab: any;
 }
 export const useAppStore = defineStore("app", {
   state: (): AppState => ({
     aside: {
       menuList: [],
       currentPath: [],
+      asideExpanded: true,
+    },
+    tab: {
+      tabList: [],
+      curTab: {},
     },
   }),
   getters: {
@@ -21,6 +28,9 @@ export const useAppStore = defineStore("app", {
     },
     getCurrentPath(): any {
       return this.aside.currentPath.filter((p) => p.path !== "/");
+    },
+    getTab(): any {
+      return this.tab;
     },
   },
   actions: {
@@ -33,8 +43,25 @@ export const useAppStore = defineStore("app", {
         return d;
       });
     },
+    toggleMenu() {
+      this.aside.asideExpanded = !this.aside.asideExpanded;
+    },
     setCurrentPath(menu: any) {
       this.aside.currentPath = menu;
+    },
+    setTab(tab: IPath) {
+      const isTabExsit = this.tab.tabList.find((t: any) => t.name === tab.name);
+      const menu = this.aside.menuList.find(
+        (m) => m.name === tab.matched[0].name
+      );
+      this.setMenuItem({ ...menu, isExpand: true });
+      if (isTabExsit) return;
+      this.tab.tabList.push(tab);
+    },
+    removeTab(tab: IPath) {
+      this.tab.tabList = this.tab.tabList.filter(
+        (d: any) => d.name !== tab.name
+      );
     },
     async generateRoutes() {
       const res = await getMenuList();

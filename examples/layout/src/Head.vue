@@ -1,6 +1,8 @@
 <template>
   <div class="flex h-12 bg-white">
-    <div class="w-60" v-if="value"><Logo :value="value" /></div>
+    <div class="w-60" v-if="value">
+      <Logo :value="value" :asideExpanded="asideExpanded" />
+    </div>
     <div class="flex items-center justify-between flex-1 px-5">
       <div class="flex items-center flex-1">
         <template v-if="!value">
@@ -21,14 +23,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
-import { useAppStore } from "@/store/modules/app";
 import Logo from "./Logo.vue";
-defineProps({
-  value: { type: Boolean },
-  asideExpanded: { type: Boolean },
-});
+interface Props {
+  value: boolean;
+  asideExpanded: boolean;
+  currentPath: any;
+}
+const _props = defineProps<Props>();
 defineEmits(["toggleAside", "toggleConfig"]);
-const appStore = useAppStore();
-const currentPath = computed(() => appStore.getCurrentPath);
 </script>

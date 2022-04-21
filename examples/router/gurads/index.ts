@@ -6,8 +6,13 @@ configure({ showSpinner: false });
 export function setPermissionGurads(router: Router) {
   router.beforeEach(async (to) => {
     start();
-    const { getMenu, generateRoutes, concatAllowRoutes, setCurrentPath } =
-      useAppStore();
+    const {
+      getMenu,
+      setTab,
+      generateRoutes,
+      concatAllowRoutes,
+      setCurrentPath,
+    } = useAppStore();
     setCurrentPath(to.matched);
     if (getMenu.menuList.length === 0) {
       await generateRoutes();
@@ -28,8 +33,10 @@ export function setPermissionGurads(router: Router) {
       // 刷新页面 返回当前路由
       return to.fullPath;
     } else {
-      console.log(getMenu);
+      // console.log(getMenu)
     }
+
+    setTab(to);
   });
 
   router.afterEach(() => {

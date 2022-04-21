@@ -1,30 +1,41 @@
 <template>
-  <div class="flex w-full h-screen min-h-full">
+  <div class="flex w-full">
     <div class="flex-1">
       <Head
         @toggleConfig="isPanelShow = !isPanelShow"
-        @toggleAside="toggleAside"
+        @toggleAside="toggleMenu"
         :value="value"
-        :asideExpanded="asideExpanded"
+        :asideExpanded="menus.asideExpanded"
+        :currentPath="menus.currentPath"
         v-if="value"
       />
-      <div class="flex">
-        <div class="w-20" :class="{ 'w-60': asideExpanded }">
-          <Logo v-if="!value" :value="value" :asideExpanded="asideExpanded" />
-          <Aside
-            @toggleAside="toggleAside"
+      <div class="flex h-screen">
+        <div
+          class="flex flex-col"
+          :class="menus.asideExpanded ? 'w-60' : ' w-10'"
+        >
+          <Logo
+            v-if="!value"
             :value="value"
-            :asideExpanded="asideExpanded"
+            :asideExpanded="menus.asideExpanded"
+          />
+          <aside-menu
+            :menus="menus"
+            @toggle-aside="toggleMenu"
+            @toggle-child="toggleChild"
+            :value="value"
           />
         </div>
         <div class="flex-1">
           <Head
             @toggleConfig="isPanelShow = !isPanelShow"
-            @toggleAside="toggleAside"
+            @toggleAside="toggleMenu"
             :value="value"
-            :asideExpanded="asideExpanded"
+            :asideExpanded="menus.asideExpanded"
+            :currentPath="menus.currentPath"
             v-if="!value"
           />
+          <Tab :tab="tab" @tab-click="onTabClick" @tab-close="removeTab" />
           <div class="p-5 bg-gray-50">
             <router-view />
           </div>
@@ -51,15 +62,26 @@
 <script setup lang="ts">
 import Logo from "./src/Logo.vue";
 import Head from "./src/Head.vue";
-import Aside from "./src/Aside.vue";
-import { ref } from "vue";
-const value = ref(false);
-const asideExpanded = ref(true);
-const isPanelShow = ref(false);
-function toggleAside() {
-  console.log(1);
+import AsideMenu from "./src/Aside.vue";
+import Tab from "./src/Tab.vue";
+import { computed, ref } from "vue";
+import { useAppStore } from "@/store/modules/app";
+import { useRouter } from "vue-router";
 
-  asideExpanded.value = !asideExpanded.value;
-}
+const value = ref(false);
+const isPanelShow = ref(false);
+const { toggleMenu, removeTab, setMenuItem, getMenu, getTab } = useAppStore();
+const router = useRouter();
+const tab = computed(() => getTab);
+
+const onTabClick = (item: IPath) => {
+  router.push({ name: item.name });
+};
+const menus: any = computed(() => getMenu);
+
+const toggleChild = (menu: any) => {
+  menu.isExpand = !menu.isExpand;
+  setMenuItem(menu);
+};
 </script>
 <style lang="scss" scoped></style>

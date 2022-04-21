@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-center w-full h-12 bg-white"
+    class="flex items-center justify-center w-full h-12 text-white bg-gray-800"
     :class="{ 'bg-slate-100': !value }"
   >
     <img src="@/assets/logo.png" class="w-5" />
@@ -8,8 +8,9 @@
   </div>
 </template>
 <script setup lang="ts">
-defineProps({
-  value: { type: Boolean },
-  asideExpanded: { type: Boolean },
-});
+interface Props {
+  value: boolean;
+  asideExpanded?: boolean;
+}
+const _props = defineProps<Props>();
 </script>
