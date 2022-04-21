@@ -126,3 +126,45 @@ const attrs = useAttrs();
 ```
 
 useSlots 和 useAttrs 是真实的运行时函数，它会返回与 setupContext.slots 和 setupContext.attrs 等价的值，同样也能在普通的组合式 API 中使用。
+
+## v-model
+
+Usage with v-model#
+Custom events can also be used to create custom inputs that work with v-model. Remember that:
+
+<input v-model="searchText" />
+does the same thing as:
+
+<input
+:value="searchText"
+@input="searchText = $event.target.value"
+/>
+When used on a component, v-model instead does this:
+
+<CustomInput
+:modelValue="searchText"
+@update:modelValue="newValue => searchText = newValue"
+/>
+For this to actually work though, the <input> inside the component must:
+
+Bind the value attribute to the modelValue prop
+On input, emit an update:modelValue event with the new value
+Here's that in action:
+
+<!-- CustomInput.vue -->
+<script>
+export default {
+  props: ['modelValue'],
+  emits: ['update:modelValue']
+}
+</script>
+
+<template>
+  <input
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template>
+Now v-model should work perfectly with this component:
+
+<CustomInput v-model="searchText" />

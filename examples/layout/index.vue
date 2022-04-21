@@ -77,7 +77,7 @@ const tab = computed(() => getTab);
 const onTabClick = (item: IPath) => {
   router.push({ name: item.name });
 };
-const menus: any = computed(() => getMenu);
+const menus = computed(() => getMenu);
 
 const toggleChild = (menu: any) => {
   menu.isExpand = !menu.isExpand;
