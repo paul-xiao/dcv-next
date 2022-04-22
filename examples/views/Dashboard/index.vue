@@ -9,13 +9,13 @@
               {{ todo.name }}
               <ul>
                 <li v-for="child in todo.children" :key="child.name">
-                  <el-checkbox v-model:value="child.state">{{
+                  <el-checkbox v-model="child.state" size="small">{{
                     child.name
                   }}</el-checkbox>
                 </li>
               </ul>
             </template>
-            <el-checkbox v-else v-model:value="todo.state">{{
+            <el-checkbox v-else v-model="todo.state" size="small">{{
               todo.name
             }}</el-checkbox>
           </li>
@@ -144,15 +144,19 @@ const todos: Todo[] = [
     children: [
       {
         name: "动态路由",
+        state: true,
       },
       {
         name: "Layout",
+        state: true,
       },
       {
         name: "Tab",
+        state: true,
       },
       {
         name: "Breadcrumb",
+        state: true,
       },
       {
         name: "权限管理",
@@ -164,12 +168,17 @@ const todos: Todo[] = [
     children: [
       {
         name: "图标",
+        state: true,
       },
       {
         name: "表单",
+        state: true,
       },
       {
         name: "表格",
+      },
+      {
+        name: "Tree",
       },
     ],
   },

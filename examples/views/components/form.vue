@@ -1,20 +1,12 @@
 <template>
   <h1>{{ $route.name }}</h1>
   <dc-form v-model="ruleForm" :schema="schema" />
+  {{ ruleForm }}
 </template>
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 
-const ruleForm = reactive({
-  name: "",
-  region: "",
-  date1: "",
-  date2: "",
-  delivery: false,
-  type: [],
-  resource: "",
-  desc: "",
-});
+const ruleForm = reactive({});
 const schema = [
   {
     prop: "name",
@@ -38,4 +30,11 @@ const schema = [
     type: "switch",
   },
 ];
+
+watch(
+  () => ruleForm,
+  (val) => {
+    console.log(val);
+  }
+);
 </script>

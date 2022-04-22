@@ -13,6 +13,7 @@ specifiers:
   "@typescript-eslint/eslint-plugin": ^5.16.0
   "@typescript-eslint/parser": ^5.16.0
   "@vitejs/plugin-vue": ^2.0.0
+  "@vueuse/core": ^8.3.1
   autoprefixer: ^10.4.4
   axios: ^0.26.1
   conventional-changelog-cli: ^2.2.2
@@ -72,6 +73,7 @@ devDependencies:
   "@typescript-eslint/eslint-plugin": 5.16.0_3fed250b11519414a4c7d52468dd6bf5
   "@typescript-eslint/parser": 5.16.0_eslint@8.11.0+typescript@4.6.2
   "@vitejs/plugin-vue": 2.2.4_vite@2.8.6+vue@3.2.31
+  "@vueuse/core": 8.3.1_vue@3.2.31
   autoprefixer: 10.4.4_postcss@8.4.12
   axios: 0.26.1
   conventional-changelog-cli: 2.2.2
@@ -1347,10 +1349,10 @@ packages:
         integrity: sha512-ymN2pj6zEjiKJZbrf98UM2pfDd6F2H7ksKw7NDt/ZZ1fh5Ei39X5tABugtT03ZRlWd9imccoK0hE8hpjpU7irQ==,
       }
 
-  /@vueuse/core/8.1.2_vue@3.2.31:
+  /@vueuse/core/8.3.1_vue@3.2.31:
     resolution:
       {
-        integrity: sha512-prI2GzigBUtJNTcwRjJPzUPLFoRZM1RZFR464DFdwgU8TxRFf7dRvuvWFDNbCATzLExHFnGI3zTp9GkXTTZxgQ==,
+        integrity: sha512-WiXUgVyPG9elGx3G8UV8g+zqbEJ2hYacrPICogAxDdW6hnxxcUFdF7FtvDroJ/DxWmo2pg8XNNz07ybfnZyJbw==,
       }
     peerDependencies:
       "@vue/composition-api": ^1.1.0
@@ -1361,23 +1363,23 @@ packages:
       vue:
         optional: true
     dependencies:
-      "@vueuse/metadata": 8.1.2
-      "@vueuse/shared": 8.1.2_vue@3.2.31
+      "@vueuse/metadata": 8.3.1
+      "@vueuse/shared": 8.3.1_vue@3.2.31
       vue: 3.2.31
       vue-demi: 0.12.4_vue@3.2.31
     dev: true
 
-  /@vueuse/metadata/8.1.2:
+  /@vueuse/metadata/8.3.1:
     resolution:
       {
-        integrity: sha512-LrPtdiYMleygnGmz8mEmYI9h4Eyo+/igxZWNrwuPnqvL9pIO+8eUpBgPLH5GowKv3Nu0LPZSXSIuaWVJBSU1Cg==,
+        integrity: sha512-1aZaFL44HzXXkfN6Q7KMDOXBFKTHDClHlOJBxtN8rTBXIIScoGOrJCpxWiQ4kuVg95MzG/pHrd3P4wd8poL9XQ==,
       }
     dev: true
 
-  /@vueuse/shared/8.1.2_vue@3.2.31:
+  /@vueuse/shared/8.3.1_vue@3.2.31:
     resolution:
       {
-        integrity: sha512-4Hb9iPUhAz7ghO4hgvB2GV2FOy12qQGdhmQ+9HC6QN/J66DELhmxAvkZAtK5FBqZOSwzKszPqNqoyhRKQrrWGQ==,
+        integrity: sha512-7HKLCcxp4dtONq6QSSoavblo9riYgqzw7jhqiC0/VUYMXKzqj1G/GznOzTmY8Wi8uKKT197JqjKQ1DKt2j/0+A==,
       }
     peerDependencies:
       "@vue/composition-api": ^1.1.0
@@ -2886,7 +2888,7 @@ packages:
       "@ctrl/tinycolor": 3.4.0
       "@element-plus/icons-vue": 1.1.4_vue@3.2.31
       "@popperjs/core": 2.11.4
-      "@vueuse/core": 8.1.2_vue@3.2.31
+      "@vueuse/core": 8.3.1_vue@3.2.31
       async-validator: 4.0.7
       dayjs: 1.11.0
       escape-html: 1.0.3

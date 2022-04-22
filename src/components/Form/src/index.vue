@@ -12,9 +12,7 @@
           v-if="!item.hide"
           :key="item.prop"
           type="flex"
-          align="center"
           class="el-form-item el-form-item--mini"
-          style="margin-bottom: 0"
           :class="{ 'is-required': !detailed && isRequired(item) }"
         >
           <label
@@ -83,7 +81,7 @@
     </template>
     <el-form-item>
       <slot name="footer"></slot>
-      <template v-if="!slotFoot">
+      <template v-if="!slotFoot && foot">
         <dc-button type="primary" @click="submitForm(ruleFormRef)"
           >保存</dc-button
         >
@@ -94,19 +92,31 @@
 </template>
 <script setup lang="ts">
 import { FormInstance } from "element-plus";
-import { computed, reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import { useSlots } from "vue";
 
 interface Props {
   modelValue: object;
   schema: any[];
-  rules: Element;
-  modelSize: Element;
-  detailed: boolean;
+  rules?: Element;
+  modelSize?: string;
+  detailed?: boolean;
+  foot?: boolean;
 }
-const _props = defineProps<Props>();
+const _props = withDefaults(defineProps<Props>(), {
+  foot: true,
+  modelSize: "small",
+});
 const _emits = defineEmits(["update:modelValue"]);
-const model = reactive(_props.modelValue);
+
+const model = computed({
+  get() {
+    return _props.modelValue;
+  },
+  set(value) {
+    _emits("update:modelValue", value);
+  },
+});
 const isRequired = computed(() => {
   return function (row) {
     return row.rules && row.rules.some((r) => r.required);
@@ -119,15 +129,21 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!", model);
+      console.log("submit!", model.value);
     } else {
       console.log("error submit!", fields);
     }
   });
 };
 
+const validate = (cb) => ruleFormRef.value.validate(cb);
+
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
 };
+
+defineExpose({
+  validate,
+});
 </script>

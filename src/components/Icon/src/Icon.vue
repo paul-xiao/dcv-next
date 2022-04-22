@@ -1,13 +1,10 @@
 <script setup lang="ts">
-const props = defineProps({
-  icon: {
-    type: String,
-    default: () => "",
-  },
-  size: {
-    type: String,
-    default: () => "20",
-  },
+interface Props {
+  icon?: string;
+  size?: string;
+}
+const props = withDefaults(defineProps<Props>(), {
+  size: "20",
 });
 </script>
 

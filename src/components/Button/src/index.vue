@@ -18,13 +18,13 @@
 import { computed, useSlots } from "vue";
 interface Props {
   type: string;
-  size: string;
-  block: boolean;
-  plain: boolean;
-  rounded: boolean;
-  icon: string;
-  disabled: boolean;
-  loading: boolean;
+  size?: string;
+  block?: boolean;
+  plain?: boolean;
+  rounded?: boolean;
+  icon?: string;
+  disabled?: boolean;
+  loading?: boolean;
 }
 const _props = defineProps<Props>();
 
@@ -50,7 +50,7 @@ const classes = computed(() => {
 </script>
 <style lang="scss">
 .dc-btn {
-  @apply font-medium tracking-wide capitalize transition-colors duration-200 transform disabled:opacity-50  outline-none;
+  @apply font-normal rounded-xl tracking-wide capitalize transition-colors duration-200 transform disabled:opacity-50  outline-none;
   &.dc-btn-lg {
     @apply px-8 py-4 text-lg;
   }
@@ -58,7 +58,7 @@ const classes = computed(() => {
     @apply px-6 py-3 text-base;
   }
   &.dc-btn-sm {
-    @apply px-4 py-2 text-sm;
+    @apply px-3 py-1 text-sm;
   }
   &.dc-btn-xs {
     @apply px-3 py-1 text-xs;
@@ -70,7 +70,7 @@ const classes = computed(() => {
     @apply p-2;
   }
   &-default {
-    @apply bg-gray-600 hover:bg-gray-400 text-white;
+    @apply bg-gray-400 hover:bg-gray-200 text-white;
     &.plain {
       @apply bg-gray-100 text-gray-400;
     }
