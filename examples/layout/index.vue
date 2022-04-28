@@ -26,7 +26,7 @@
             :value="value"
           />
         </div>
-        <div class="flex-1">
+        <div class="flex flex-col flex-1 h-screen overflow-hidden">
           <Head
             @toggleConfig="isPanelShow = !isPanelShow"
             @toggleAside="toggleMenu"
@@ -36,7 +36,7 @@
             v-if="!value"
           />
           <Tab :tab="tab" @tab-click="onTabClick" @tab-close="removeTab" />
-          <div class="p-5 bg-gray-50">
+          <div class="flex-1 p-5 overflow-auto bg-gray-50">
             <router-view />
           </div>
         </div>

@@ -36,6 +36,14 @@ export default [
     meta: { title: "表格", icon: "ep:xx" },
   },
   {
+    id: 8,
+    name: "editor",
+    path: "/components/editor",
+    component: "Components_MdEditor",
+    parentId: 1,
+    meta: { title: "编辑器", icon: "ep:xx" },
+  },
+  {
     id: 4,
     name: "可视化",
     path: "/visualization",

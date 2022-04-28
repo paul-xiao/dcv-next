@@ -24,11 +24,11 @@
 </template>
 <script setup lang="ts">
 import Logo from "./Logo.vue";
-interface Props {
+
+const _props = defineProps<{
   value: boolean;
   asideExpanded: boolean;
   currentPath: any;
-}
-const _props = defineProps<Props>();
+}>();
 defineEmits(["toggleAside", "toggleConfig"]);
 </script>

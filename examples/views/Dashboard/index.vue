@@ -2,8 +2,13 @@
   <div class="flex p-5">
     <div class="flex-1">
       <el-card>
-        <h1 class="mb-2">Todos</h1>
-        <ul class="font-light">
+        <template #header>
+          <div class="card-header">
+            <span>Todos</span>
+            <!-- <el-button class="button" type="text">Operation button</el-button> -->
+          </div>
+        </template>
+        <ul class="font-light h-96">
           <li v-for="todo in todos" :key="todo.name">
             <template v-if="todo.children && Array.isArray(todo.children)">
               {{ todo.name }}
@@ -24,47 +29,54 @@
     </div>
     <div class="flex-1 ml-5">
       <el-card>
-        <h1 class="mb-2">CHANGELOG</h1>
-        <el-timeline>
-          <el-timeline-item
-            v-for="(activity, index) in activities"
-            center
-            placement="top"
-            :key="index"
-            :icon="activity.icon"
-            :type="activity.type"
-            :color="activity.color"
-            :size="activity.size"
-            :hollow="activity.hollow"
-            :timestamp="activity.timestamp"
-          >
-            <el-card>
-              <h1 class="text-2xl font-bold">
-                <a
-                  :href="activity.link"
-                  class="text-blue-400"
-                  v-if="activity.link"
-                  target="blank"
-                  >{{ activity.title }}</a
+        <template #header>
+          <div class="card-header">
+            <span>CHANGELOG</span>
+            <!-- <el-button class="button" type="text">Operation button</el-button> -->
+          </div>
+        </template>
+        <div class="overflow-auto h-96">
+          <el-timeline class="p-5">
+            <el-timeline-item
+              v-for="(activity, index) in activities"
+              center
+              placement="top"
+              :key="index"
+              :icon="activity.icon"
+              :type="activity.type"
+              :color="activity.color"
+              :size="activity.size"
+              :hollow="activity.hollow"
+              :timestamp="activity.timestamp"
+            >
+              <el-card>
+                <h1 class="text-2xl font-bold">
+                  <a
+                    :href="activity.link"
+                    class="text-blue-400"
+                    v-if="activity.link"
+                    target="blank"
+                    >{{ activity.title }}</a
+                  >
+                  <span v-else>{{ activity.title }}</span>
+                </h1>
+                <h4 class="text-xl font-light text-gray-600">
+                  {{ activity.subtitle }}
+                </h4>
+                <p
+                  class="font-thin text-gray-600"
+                  v-for="c in activity.content"
+                  :key="c.commitId"
                 >
-                <span v-else>{{ activity.title }}</span>
-              </h1>
-              <h4 class="text-xl font-light text-gray-600">
-                {{ activity.subtitle }}
-              </h4>
-              <p
-                class="font-thin text-gray-600"
-                v-for="c in activity.content"
-                :key="c.commitId"
-              >
-                <span>{{ c.text }}</span>
-                <a :href="c.commitLink" class="text-blue-400" target="blank"
-                  >[{{ c.commitId }}]</a
-                >
-              </p>
-            </el-card>
-          </el-timeline-item>
-        </el-timeline>
+                  <span>{{ c.text }}</span>
+                  <a :href="c.commitLink" class="text-blue-400" target="blank"
+                    >[{{ c.commitId }}]</a
+                  >
+                </p>
+              </el-card>
+            </el-timeline-item>
+          </el-timeline>
+        </div>
         <!-- <ChangeLog /> -->
       </el-card>
     </div>

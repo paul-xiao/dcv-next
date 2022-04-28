@@ -20,9 +20,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-interface Props {
+const _props = defineProps<{
   menu: any[];
   expanded: boolean;
-}
-const _props = defineProps<Props>();
+}>();
 </script>

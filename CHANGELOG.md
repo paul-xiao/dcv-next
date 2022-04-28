@@ -1,3 +1,14 @@
+## [0.0.5](http://10.1.192.34/fed/dcv_next/compare/v0.0.4...v0.0.5) (2022-04-22)
+
+### Features
+
+- add breadcrumb ([9663c2a](http://10.1.192.34/fed/dcv_next/commits/9663c2ae41ec24f707d20eae53ad40d9739f39a8))
+- add form component ([f9c3ed6](http://10.1.192.34/fed/dcv_next/commits/f9c3ed6b8096779c1effa4ee76752a8b8eb1b721))
+- add icon component ([f28bb97](http://10.1.192.34/fed/dcv_next/commits/f28bb97832da29591f939bc2d1951ad17366fe2e))
+- add svg icons ([f3a79a2](http://10.1.192.34/fed/dcv_next/commits/f3a79a28be0ec1b812a30d698bbc164adb98f692))
+- add tab and update aside menu ([a4ac8c7](http://10.1.192.34/fed/dcv_next/commits/a4ac8c73290173e489f95e44d481df77f6bfeeb1))
+- update table component ([0608f9e](http://10.1.192.34/fed/dcv_next/commits/0608f9eb0ecbbdcdc81314612ecd518187160f6a))
+
 ## [0.0.4](http://10.1.192.34/fed/dcv_next/compare/v0.0.3...v0.0.4) (2022-04-13)
 
 ### Features

@@ -41,10 +41,9 @@
 </template>
 <script setup lang="ts">
 import MenuItem from "./MenuItem.vue";
-interface Props {
+const _props = defineProps<{
   value: boolean;
   menus: any;
-}
-const _props = defineProps<Props>();
+}>();
 defineEmits(["toggleAside", "toggleChild"]);
 </script>

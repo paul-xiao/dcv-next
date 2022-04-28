@@ -1,5 +1,5 @@
 <template>
-  <div class="h-10">
+  <div class="h-10 shadow">
     <div
       v-for="item of tab.tabList"
       class="relative inline-block px-8 font-light leading-10 cursor-pointer group hover:shadow-md hover:bg-slate-100"
@@ -17,9 +17,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-interface Props {
+const _props = defineProps<{
   tab: any;
-}
-const _props = defineProps<Props>();
+}>();
 defineEmits(["tabClick", "tabClose"]);
 </script>
