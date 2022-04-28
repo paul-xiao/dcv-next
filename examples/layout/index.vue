@@ -10,10 +10,7 @@
         v-if="value"
       />
       <div class="flex h-screen">
-        <div
-          class="flex flex-col"
-          :class="menus.asideExpanded ? 'w-60' : ' w-10'"
-        >
+        <div class="flex flex-col" :class="{ 'w-64': menus.asideExpanded }">
           <Logo
             v-if="!value"
             :value="value"
@@ -64,7 +61,7 @@ import Logo from "./src/Logo.vue";
 import Head from "./src/Head.vue";
 import AsideMenu from "./src/Aside.vue";
 import Tab from "./src/Tab.vue";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useAppStore } from "@/store/modules/app";
 import { useRouter } from "vue-router";
 
@@ -73,15 +70,21 @@ const isPanelShow = ref(false);
 const { toggleMenu, removeTab, setMenuItem, getMenu, getTab } = useAppStore();
 const router = useRouter();
 const tab = computed(() => getTab);
-
 const onTabClick = (item: IPath) => {
   router.push({ name: item.name });
 };
 const menus = computed(() => getMenu);
 
 const toggleChild = (menu: any) => {
-  menu.isExpand = !menu.isExpand;
+  menu.expanded = !menu.expanded;
   setMenuItem(menu);
 };
+
+// watch(
+//   () => router.currentRoute.value,
+//   () => {
+//     console.log('route changed')
+//   }
+// )
 </script>
 <style lang="scss" scoped></style>

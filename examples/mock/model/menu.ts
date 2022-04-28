@@ -79,4 +79,22 @@ export default [
     order: 1,
     meta: { title: "仪表盘", icon: "ep:user" },
   },
+  {
+    id: 10,
+    name: "test",
+    path: "/visualization/test",
+    component: "Visualization_Topo",
+    parentId: 4,
+    order: 4,
+    meta: { title: "测试", icon: "ep:user" },
+  },
+  {
+    id: 11,
+    name: "test1",
+    path: "/visualization/test1",
+    component: "Visualization_Chart",
+    parentId: 10,
+    order: 1,
+    meta: { title: "测试1", icon: "ep:user" },
+  },
 ];

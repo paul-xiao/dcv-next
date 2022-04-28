@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <span class="inline-block">
+  <div class="inline-block">
     <span
       class="iconify"
       :data-icon="props.icon"
@@ -17,5 +17,5 @@ const props = withDefaults(defineProps<Props>(), {
       :data-height="props.size"
       v-bind="$attrs"
     ></span>
-  </span>
+  </div>
 </template>

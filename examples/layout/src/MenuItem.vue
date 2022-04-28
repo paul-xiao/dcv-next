@@ -1,27 +1,32 @@
 <template>
-  <div
-    :class="{ 'h-0': !expanded }"
-    class="overflow-hidden transition-all duration-150 ease-in-out delay-150"
-  >
-    <div v-for="item of menu" class="px-2 font-light" :key="item.id">
-      <template v-if="item.meta && !item.meta.hidden">
-        <div
-          class="pl-2 cursor-pointer hover:bg-gray-600"
-          :class="{ 'bg-gray-600': $route.name === item.name }"
-        >
-          <router-link :to="item.path" class="flex items-center"
-            ><dc-icon :icon="item.meta.icon" />
-            <span>{{ item.meta.title }}</span></router-link
-          >
-        </div>
-      </template>
-      <slot></slot>
-    </div>
-  </div>
+  <template v-for="(item, index) of menu" :key="menu.id">
+    <template v-if="item.meta && !item.meta.hidden">
+      <el-sub-menu
+        :index="item.path"
+        v-if="item.children && item.children.length > 0"
+      >
+        <template #title>
+          <dc-icon :icon="item.meta.icon" />
+          <span>{{ item.name }}</span>
+        </template>
+        <el-menu-item-group>
+          <menu-item :menu="item.children" />
+        </el-menu-item-group>
+      </el-sub-menu>
+      <el-menu-item :index="item.path" v-else>
+        <dc-icon :icon="item.meta.icon" />
+        <template #title>{{ item.name }}</template>
+      </el-menu-item>
+    </template>
+  </template>
 </template>
 <script lang="ts" setup>
 const _props = defineProps<{
   menu: any[];
-  expanded: boolean;
 }>();
 </script>
+<style lang="scss" scoped>
+.-offset-top-20 {
+  transform: translateY(-20px);
+}
+</style>

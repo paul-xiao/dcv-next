@@ -38,8 +38,9 @@ export const useAppStore = defineStore("app", {
       this.aside.menuList = menu;
     },
     setMenuItem(menu: any) {
+      // 关闭其他
       this.aside.menuList = this.aside.menuList.map((d) => {
-        d = d.name === menu.name ? menu : { ...d, isExpand: false };
+        d = d.name === menu.name ? menu : { ...d, expanded: false };
         return d;
       });
     },
@@ -54,7 +55,7 @@ export const useAppStore = defineStore("app", {
       const menu = this.aside.menuList.find(
         (m) => m.name === tab.matched[0].name
       );
-      this.setMenuItem({ ...menu, isExpand: true });
+      this.setMenuItem({ ...menu, expanded: true });
       if (isTabExsit) return;
       this.tab.tabList.push(tab);
     },
