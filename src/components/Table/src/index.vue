@@ -156,7 +156,7 @@ const state = reactive({
 });
 
 const dialogTitle = computed(() => {
-  const map = {
+  const map: any = {
     add: "新增",
     view: "查看",
     edit: "编辑",
@@ -174,10 +174,10 @@ function handleAdd() {
   dialogVisible.value = true;
   state.flag = "add";
 }
-async function handleSubmit(formRef) {
+async function handleSubmit(formRef: any) {
   if (!formRef) return;
 
-  await formRef.validate((valid, fields) => {
+  await formRef.validate((valid: any, fields: any) => {
     console.log(valid);
 
     if (valid) {
@@ -205,24 +205,24 @@ function handleEdit() {
 //   dialogVisible.value = true;
 //   state.flag = "add";
 // }
-function handleDelete(row) {
+function handleDelete(row: any) {
   emit("row-del", row);
 }
 
 function handleBatchDelete() {
   emit("batch-del", state.multipleSelection);
 }
-function handleSelectionChange(val) {
+function handleSelectionChange(val: any) {
   state.multipleSelection = val;
 }
 function onRefeshTable() {
-  this.onLoad();
+  onLoad();
 }
-function handleSizeChange(val) {
+function handleSizeChange(val: any) {
   console.log(val);
   emit("size-change", val);
 }
-function handleCurrentChange(val) {
+function handleCurrentChange(val: any) {
   console.log(val);
   emit("current-change", val);
 }

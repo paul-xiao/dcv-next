@@ -7,7 +7,7 @@ declare interface ITableOptionProps {
   batchDel?: boolean;
   stripe?: boolean;
   border?: boolean;
-  height?: boolean;
+  height?: string | number | undefined;
   fixed?: boolean;
   size?: "small";
   optWidth?: string;

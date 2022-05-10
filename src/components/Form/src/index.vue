@@ -99,7 +99,7 @@ interface Props {
   modelValue: object;
   schema: any[];
   rules?: Element;
-  modelSize?: string;
+  modelSize?: "" | "small" | "default" | "large";
   detailed?: boolean;
   foot?: boolean;
 }
@@ -109,7 +109,7 @@ const _props = withDefaults(defineProps<Props>(), {
 });
 const _emits = defineEmits(["update:modelValue"]);
 
-const model = computed({
+const model: any = computed({
   get() {
     return _props.modelValue;
   },
@@ -118,8 +118,8 @@ const model = computed({
   },
 });
 const isRequired = computed(() => {
-  return function (row) {
-    return row.rules && row.rules.some((r) => r.required);
+  return function (row: any) {
+    return row.rules && row.rules.some((r: any) => r.required);
   };
 });
 const slotFoot = !!useSlots().footer;
@@ -136,7 +136,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   });
 };
 
-const validate = (cb) => ruleFormRef.value.validate(cb);
+const validate = (cb: any) =>
+  ruleFormRef.value && ruleFormRef.value.validate(cb);
 
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
