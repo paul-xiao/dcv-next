@@ -3,3 +3,7 @@ interface IPath {
   path: string;
   matched: any[];
 }
+
+interface Window {
+  ActiveXObject?: Class;
+}

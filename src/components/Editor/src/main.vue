@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <textarea
     ref="textareaRef"
@@ -29,12 +28,11 @@ const props = defineProps({
 // const ischecked = ref(false);
 const textareaRef = ref<null | HTMLElement>(null);
 const emit = defineEmits(["update:modelValue"]);
-const text = computed({
+const text: any = computed({
   get() {
-    return props.modelValue || "";
+    return props.modelValue;
   },
   set(val) {
-    console.log("===>", val.trim());
     emit("update:modelValue", val);
   },
 });

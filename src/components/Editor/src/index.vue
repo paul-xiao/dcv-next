@@ -92,10 +92,10 @@ watch(
   }
 );
 
-const onSetType = (type, url) => {
+const onSetType = (type: string, url: string) => {
   editorRef?.value?.setCurType(type, url);
 };
-const setScrollTop = (scrollTop) => {
+const setScrollTop = (scrollTop: any) => {
   if (edipreviewerRef?.value) {
     edipreviewerRef.value.scrollTop = scrollTop;
   }
@@ -109,13 +109,9 @@ const setFullScreen = () => {
 
   element && requestFullScreen(element);
 };
-const requestFullScreen = (element) => {
+const requestFullScreen = (element: HTMLElement) => {
   // 兼容谷歌、火狐、IE
-  const requestMethod =
-    element.requestFullScreen ||
-    element.webkitRequestFullScreen ||
-    element.mozRequestFullScreen ||
-    element.msRequestFullScreen;
+  const requestMethod = element.requestFullscreen;
   if (requestMethod) {
     requestMethod.call(element);
   } else if (window.ActiveXObject) {

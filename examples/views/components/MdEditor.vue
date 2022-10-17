@@ -1,10 +1,6 @@
 <template>
-  <div>
-    <h1>md editor</h1>
-    <div class="btn btn-indigo">测试</div>
-  </div>
   <div class="p-5">
-    <dc-editor v-model="content" />
+    <dc-editor v-model="content" :conf="state.conf" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,8 +9,13 @@
  * 2、替换当前dom内容
  */
 
-import { ref, watch } from "vue";
+import { ref, watch, reactive } from "vue";
 const content = ref("test");
+const state = reactive({
+  conf: {
+    preview: true,
+  },
+});
 watch(
   () => content,
   (val) => {

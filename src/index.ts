@@ -3,8 +3,6 @@ import * as components from "./components";
 import "./assets/font/iconfont.css";
 function install(app: App) {
   for (const key in components) {
-    // @ts-expect-error
-
     app.component(`Dc${key}`, components[key]);
   }
 }

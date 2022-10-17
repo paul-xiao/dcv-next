@@ -6,7 +6,7 @@
 import MarkdownIt from "markdown-it";
 import markdownItTocAndAnchor from "markdown-it-toc-and-anchor";
 import hljs from "highlight.js";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 // // 引入默认样式
 import "highlight.js/scss/default.scss";
 // // 引入个性化的vs2015样式
@@ -20,6 +20,9 @@ const props = defineProps({
 const emits = defineEmits(["update:toc"]);
 const result = ref("");
 
+onMounted(() => {
+  render();
+});
 watch(
   () => props.value,
   () => {

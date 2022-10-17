@@ -110,7 +110,7 @@ interface Activity {
 }
 
 const md2Json = (ast: any) => {
-  let result = [];
+  let result: Activity[] = [];
   let row: Activity = {};
   const conf = {
     icon: "",
@@ -149,7 +149,7 @@ const md2Json = (ast: any) => {
   }
   return result;
 };
-const activities = md2Json(ChangeLog);
+const activities: any[] = md2Json(ChangeLog);
 const todos: Todo[] = [
   {
     name: "基础框架",

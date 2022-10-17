@@ -1,3 +1,12 @@
+## [0.0.6](http://10.1.192.34/fed/dcv_next/compare/v0.0.5...v0.0.6) (2022-10-17)
+
+### Features
+
+- add editor ([9177bf0](http://10.1.192.34/fed/dcv_next/commits/9177bf06cf3a10122553989b0bf9084580392deb))
+- fix build errors ([e5671fe](http://10.1.192.34/fed/dcv_next/commits/e5671feaef14e3df4e68937beb73cfad0919edcc))
+- update menu ([d138cdc](http://10.1.192.34/fed/dcv_next/commits/d138cdca93a914fcfe4503d3e52da01db7290e23))
+- update props ([13ad4fd](http://10.1.192.34/fed/dcv_next/commits/13ad4fd3ce75e5e4ff107fc3abf96de590503966))
+
 ## [0.0.5](http://10.1.192.34/fed/dcv_next/compare/v0.0.4...v0.0.5) (2022-04-22)
 
 ### Features

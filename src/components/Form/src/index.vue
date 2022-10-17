@@ -99,13 +99,12 @@ interface Props {
   modelValue: object;
   schema: any[];
   rules?: Element;
-  modelSize?: "" | "small" | "default" | "large";
+  modelSize?: "small" | "default" | "large";
   detailed?: boolean;
   foot?: boolean;
 }
 const _props = withDefaults(defineProps<Props>(), {
   foot: true,
-  modelSize: "small",
 });
 const _emits = defineEmits(["update:modelValue"]);
 
