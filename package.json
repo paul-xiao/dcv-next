@@ -22,6 +22,11 @@
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
     "@iconify/iconify": "^2.2.1",
+    "@pxfed/dcui": "^1.0.1",
+    "@tailwindcss/typography": "^0.5.7",
+    "highlight.js": "^11.6.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-toc-and-anchor": "^4.2.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
@@ -49,6 +54,7 @@
     "husky": "^7.0.0",
     "lint-staged": "^12.3.7",
     "marked": "^4.0.14",
+    "mavon-editor": "3.0.0-beta",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.13",

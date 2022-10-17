@@ -65,8 +65,12 @@ export const useAppStore = defineStore("app", {
       );
     },
     async generateRoutes() {
-      const res = await getMenuList();
-      generatorDynamicRouter(res.data);
+      try {
+        const res = await getMenuList();
+        generatorDynamicRouter(res.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
     concatAllowRoutes(): void {
       allowRoutes.reverse().forEach((v) => this.aside.menuList.unshift(v));

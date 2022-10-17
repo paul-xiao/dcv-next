@@ -1,5 +1,4 @@
 module.exports = {
-  important: true,
   content: ["./examples/**/*.{vue,js}", "./src/**/*.{vue,js}"],
   theme: {
     extend: {
@@ -9,5 +8,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography"), require("@pxfed/dcui")],
 };

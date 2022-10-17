@@ -1,29 +1,9 @@
-## install
+# dcv-next
 
-```
-pnpm install
+> vue3 based component lib
 
-```
+## get started
 
-## preview
-
-```
-pnpm run dev
-
-```
-
-
-## build lib
-
-```
-pnpm run build
-
-```
-
-
-## docs
-
-```
-pnpm run dcos:dev
-
+```bash
+pnpm add dcv-next
 ```

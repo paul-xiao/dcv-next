@@ -1,6 +1,5 @@
 const path = require("path");
 const { defineConfig } = require("vite");
-import Inspect from "vite-plugin-inspect";
 import { viteMockServe } from "vite-plugin-mock";
 import md2json from "./examples/plugins/md2json";
 import Vue from "@vitejs/plugin-vue";
@@ -13,7 +12,6 @@ module.exports = defineConfig({
     // md2json(vuePlugin),
     md2json(),
     Vue(),
-    Inspect(),
     viteMockServe({
       // ↓解析根目录下的mock文件夹
       mockPath: "/examples/mock",
@@ -69,11 +67,11 @@ module.exports = defineConfig({
     },
     proxy: {
       // 选项写法
-      "/api": {
-        target: "http://localhost:3001",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
+      // "/api": {
+      //   target: "http://localhost:3002",
+      //   changeOrigin: true,
+      //   rewrite: (path) => path.replace(/^\/api/, ""),
+      // },
     },
   },
 });

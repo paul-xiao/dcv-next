@@ -5,13 +5,16 @@ import ElementPlus from "element-plus";
 import * as ElIcons from "@element-plus/icons-vue";
 import "element-plus/dist/index.css";
 import "nprogress/nprogress.css";
-import "./theme/index.scss";
+// import "./theme/index.scss";
 import router from "./router";
 import store from "./store";
 import { setPermissionGurads } from "./router/gurads";
 import dcv from "../src";
 import "virtual:svg-icons-register";
 import "@purge-icons/generated"; // 添加进来
+
+import "../src";
+
 const app = createApp(App);
 
 app.use(ElementPlus);

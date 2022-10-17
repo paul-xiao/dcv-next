@@ -28,6 +28,8 @@ export function setPermissionGurads(router: Router) {
           router.addRoute("home", getMenu.menuList[i] as RouteRecordRaw);
         }
       }
+      console.log(router.getRoutes());
+
       // 添加静态路由到菜单
       concatAllowRoutes();
       // 刷新页面 返回当前路由
