@@ -35,6 +35,8 @@ export const useAppStore = defineStore("app", {
   },
   actions: {
     setMenu(menu: any) {
+      console.log(menu);
+
       this.aside.menuList = menu;
     },
     setMenuItem(menu: any) {
@@ -64,10 +66,10 @@ export const useAppStore = defineStore("app", {
         (d: any) => d.name !== tab.name
       );
     },
-    async generateRoutes() {
+    async generateRoutes(router) {
       try {
         const res = await getMenuList();
-        generatorDynamicRouter(res.data);
+        generatorDynamicRouter(res.data, router);
       } catch (error) {
         console.log(error);
       }

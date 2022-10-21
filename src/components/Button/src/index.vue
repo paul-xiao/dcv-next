@@ -50,7 +50,7 @@ const classes = computed(() => {
 </script>
 <style lang="scss">
 .dc-btn {
-  @apply font-normal rounded-xl tracking-wide capitalize transition-colors duration-200 transform disabled:opacity-50  outline-none;
+  @apply font-normal rounded-sm tracking-wide capitalize transition-colors duration-200 transform disabled:opacity-50  outline-none;
   &.dc-btn-lg {
     @apply px-8 py-4 text-lg;
   }

@@ -5,7 +5,11 @@ import { listToTree } from "@/utils";
 const modules = import.meta.glob("../../views/**/**.vue");
 
 const components: any = {
-  Layout: (() => import("@/layout/index.vue")) as unknown as () => Promise<
+  Layout: (() => import("@/layout/main/index.vue")) as unknown as () => Promise<
+    typeof import("*.vue")
+  >,
+  Pageview: (() =>
+    import("@/layout/pageview/index.vue")) as unknown as () => Promise<
     typeof import("*.vue")
   >,
 };

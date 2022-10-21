@@ -1,3 +1,9 @@
+## [0.0.7](http://10.1.192.34/fed/dcv_next/compare/v0.0.6...v0.0.7) (2022-10-17)
+
+### Bug Fixes
+
+- fix type errors ([56833be](http://10.1.192.34/fed/dcv_next/commits/56833becca1c8bb7a0aa4a5f4e5db3a82564a06f))
+
 ## [0.0.6](http://10.1.192.34/fed/dcv_next/compare/v0.0.5...v0.0.6) (2022-10-17)
 
 ### Features

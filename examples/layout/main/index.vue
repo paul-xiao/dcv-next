@@ -33,7 +33,7 @@
             v-if="!value"
           />
           <Tab :tab="tab" @tab-click="onTabClick" @tab-close="removeTab" />
-          <div class="flex-1 p-5 overflow-auto bg-gray-50">
+          <div class="flex-1 p-5 overflow-auto bg-gray-100">
             <router-view />
           </div>
         </div>
@@ -61,7 +61,7 @@ import Logo from "./src/Logo.vue";
 import Head from "./src/Head.vue";
 import AsideMenu from "./src/Aside.vue";
 import Tab from "./src/Tab.vue";
-import { computed, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import { useAppStore } from "@/store/modules/app";
 import { useRouter } from "vue-router";
 

@@ -1,21 +1,23 @@
 <template>
-  <h1>{{ $route.name }}</h1>
-  <dc-table
-    v-model="state.form"
-    :data="state.tableData"
-    :option="state.tableOption"
-  >
-    <template #imgForm>
-      <div>
-        <h1>111</h1>
-      </div>
-    </template>
-    <template #img>
-      <div>
-        <h1>2222</h1>
-      </div>
-    </template>
-  </dc-table>
+  <dc-page-wrapper>
+    <h1>{{ $route.name }}</h1>
+    <dc-table
+      v-model="state.form"
+      :data="state.tableData"
+      :option="state.tableOption"
+    >
+      <template #imgForm>
+        <div>
+          <h1>111</h1>
+        </div>
+      </template>
+      <template #img>
+        <div>
+          <h1>2222</h1>
+        </div>
+      </template>
+    </dc-table>
+  </dc-page-wrapper>
 </template>
 <script lang="ts" setup>
 import { reactive } from "vue";

@@ -1,5 +1,5 @@
 <template>
-  <template v-for="(item, index) of menu" :key="menu.id">
+  <template v-for="item of menu" :key="item.id">
     <template v-if="item.meta && !item.meta.hidden">
       <el-sub-menu
         :index="item.path"
@@ -7,7 +7,7 @@
       >
         <template #title>
           <dc-icon :icon="item.meta.icon" />
-          <span>{{ item.name }}</span>
+          <span>{{ item.meta.title || item.name }}</span>
         </template>
         <el-menu-item-group>
           <menu-item :menu="item.children" />
@@ -15,7 +15,7 @@
       </el-sub-menu>
       <el-menu-item :index="item.path" v-else>
         <dc-icon :icon="item.meta.icon" />
-        <template #title>{{ item.name }}</template>
+        <template #title>{{ item.meta.title || item.name }}</template>
       </el-menu-item>
     </template>
   </template>

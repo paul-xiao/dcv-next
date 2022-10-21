@@ -8,6 +8,7 @@
         <template v-if="!value">
           <dc-icon
             @click="$emit('toggleAside')"
+            class="mr-2"
             :class="{ 'rotate-180 ': !asideExpanded }"
             icon="ep:expand"
           />

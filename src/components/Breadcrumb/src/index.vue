@@ -1,12 +1,17 @@
 <template>
-  <div class="mx-2">
-    <template v-for="(item, index) of paths" :key="item.name">
-      <template v-if="index < paths.length - 1">
-        <router-link :to="item.path">{{ item.name }}</router-link>
-        <span class="mx-1">/</span>
-      </template>
-      <span v-else class="font-light">{{ item.name }}</span>
-    </template>
+  <div class="text-sm breadcrumbs">
+    <ul>
+      <li v-for="(item, index) of paths" :key="item.name">
+        <template v-if="index < paths.length - 1">
+          <router-link :to="item.path">{{
+            item?.meta?.title || item.name
+          }}</router-link>
+        </template>
+        <span v-else class="font-light">{{
+          item?.meta?.title || item.name
+        }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 <script lang="ts" setup>

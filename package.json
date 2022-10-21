@@ -25,6 +25,7 @@
     "@pxfed/dcui": "^1.0.1",
     "@tailwindcss/typography": "^0.5.7",
     "highlight.js": "^11.6.0",
+    "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "markdown-it-toc-and-anchor": "^4.2.0",
     "vue": "^3.2.25"

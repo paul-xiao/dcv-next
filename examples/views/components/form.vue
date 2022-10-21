@@ -1,11 +1,10 @@
 <template>
-  <h1>{{ $route.name }}</h1>
-  <dc-form v-model="ruleForm" :schema="schema" />
-  {{ ruleForm }}
+  <dc-page-wrapper>
+    <dc-form v-model="ruleForm" :schema="schema" />
+  </dc-page-wrapper>
 </template>
 <script lang="ts" setup>
-import { reactive, watch } from "vue";
-
+import { reactive, watch, watchEffect } from "vue";
 const ruleForm = reactive({});
 const schema = [
   {
@@ -37,4 +36,7 @@ watch(
     console.log(val);
   }
 );
+watchEffect(() => {
+  console.log(ruleForm);
+});
 </script>

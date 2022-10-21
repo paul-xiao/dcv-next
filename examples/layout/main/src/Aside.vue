@@ -4,7 +4,7 @@
       <dc-icon @click="$emit('toggleAside')" icon="ep:expand" />
     </div>
     <div>
-      <Menu :menus="menus" @toggle-child="toggleChild" />
+      <Menu :menus="menus" @toggle-child="toggleChild" class="!border-r-0" />
     </div>
   </div>
 </template>
