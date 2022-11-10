@@ -42,29 +42,27 @@ const asyncRouter: any[] = [
 ];
 
 const generatorDynamicRouter = (data: any[]): void => {
+  console.log(data);
+
   const { setMenu } = useAppStore();
   const routerList: any[] = listToTree(data, 0);
   asyncRouter.forEach((v) => routerList.push(v));
-  const foo = (data: any[], pData: any | null) => {
+  const parseRoute = (data: any[]) => {
     for (let i = 0, len = data.length; i < len; i++) {
       const v: any = data[i];
-      if (typeof v.component === "string")
-        v.component = components[v.component];
-      if (!v.meta.permission || (pData && v.meta.permission.length === 0)) {
-        v.meta.permission =
-          pData && pData.meta && pData.meta.permission
-            ? pData.meta.permission
-            : [];
-      }
+      v.name = v.path.split("/").join("_").replace(/^_*/, "");
+      v.component = components[v.component];
+      v.meta = {
+        title: v.title,
+      };
       if (v.children && v.children.length > 0) {
         // 默认跳转到第一个子菜单
         v.redirect = v.children[0].path;
-        foo(v.children, v);
+        parseRoute(v.children);
       }
     }
   };
-  foo(routerList, null);
-  console.log(routerList);
+  parseRoute(routerList);
 
   setMenu(routerList);
 };

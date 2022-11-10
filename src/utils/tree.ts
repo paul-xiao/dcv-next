@@ -5,14 +5,14 @@ export function listToTree(
 ): Array<any> {
   const d: Array<any> = [];
   const compare = (a: any, b: any) => {
-    if (a.parentId === b.parentId) {
+    if (a.pid === b.pid) {
       return a.order - b.order;
     } else {
-      return a.parentId - b.parentId;
+      return a.pid - b.pid;
     }
   };
   data.sort(compare).forEach((val) => {
-    if (val.parentId == pid) {
+    if (val.pid == pid) {
       const list = listToTree(data, val.id, isChildNull);
       const obj: any = { ...val };
       if (!isChildNull || list.length !== 0) {

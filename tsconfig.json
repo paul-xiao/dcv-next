@@ -19,7 +19,8 @@
     "types": ["element-plus/global"],
     "paths": {
       "@/*": ["./examples/*"],
-      "@assets/*": ["./examples/assets/*"]
+      "@assets/*": ["./examples/assets/*"],
+      "@dcv_next/*": ["./src/*"]
     }
   },
   "include": [

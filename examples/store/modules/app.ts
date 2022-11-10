@@ -1,4 +1,4 @@
-import { getMenuList } from "@/api/app";
+import { getList as getMenuList } from "@/api/menu";
 import { allowRoutes } from "@/router";
 import { generatorDynamicRouter } from "@/router/helpers";
 import { defineStore } from "pinia";
@@ -9,6 +9,7 @@ interface AppState {
     asideExpanded: boolean;
   };
   tab: any;
+  userinfo: any;
 }
 export const useAppStore = defineStore("app", {
   state: (): AppState => ({
@@ -21,6 +22,9 @@ export const useAppStore = defineStore("app", {
       tabList: [],
       curTab: {},
     },
+    userinfo: {
+      token: "",
+    },
   }),
   getters: {
     getMenu(): any {
@@ -31,6 +35,9 @@ export const useAppStore = defineStore("app", {
     },
     getTab(): any {
       return this.tab;
+    },
+    getToken(): any {
+      return this.userinfo?.token;
     },
   },
   actions: {
@@ -55,7 +62,7 @@ export const useAppStore = defineStore("app", {
     setTab(tab: IPath) {
       const isTabExsit = this.tab.tabList.find((t: any) => t.name === tab.name);
       const menu = this.aside.menuList.find(
-        (m) => m.name === tab.matched[0].name
+        (m) => m.name === tab?.matched[0]?.name
       );
       this.setMenuItem({ ...menu, expanded: true });
       if (isTabExsit) return;
@@ -66,10 +73,10 @@ export const useAppStore = defineStore("app", {
         (d: any) => d.name !== tab.name
       );
     },
-    async generateRoutes(router) {
+    async generateRoutes() {
       try {
         const res = await getMenuList();
-        generatorDynamicRouter(res.data, router);
+        generatorDynamicRouter(res.data);
       } catch (error) {
         console.log(error);
       }

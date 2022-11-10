@@ -5,7 +5,7 @@ import md2json from "./examples/plugins/md2json";
 import Vue from "@vitejs/plugin-vue";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import PurgeIcons from "vite-plugin-purge-icons";
-const localEnabled: boolean = process.env.NODE_ENV === "development";
+// const localEnabled: boolean = process.env.NODE_ENV === "development";
 
 module.exports = defineConfig({
   plugins: [
@@ -15,7 +15,7 @@ module.exports = defineConfig({
     viteMockServe({
       // ↓解析根目录下的mock文件夹
       mockPath: "/examples/mock",
-      localEnabled: localEnabled, // 开发打包开关
+      localEnabled: false, // localEnabled, // 开发打包开关
       // prodEnabled: !localEnabled, // 生产打包开关
       supportTs: true, // 打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件。
       watchFiles: true, // 监视文件更改
@@ -34,7 +34,7 @@ module.exports = defineConfig({
     alias: {
       "@": "/examples/", // '@/': new URL('./src/', import.meta.url).pathname
       "@assets": "/examples/assets",
-      "@components": "/src/",
+      "@dcv_next": "/src/",
     },
   },
   build: {
@@ -67,11 +67,12 @@ module.exports = defineConfig({
     },
     proxy: {
       // 选项写法
-      // "/api": {
-      //   target: "http://localhost:3002",
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/api/, ""),
-      // },
+      "/api": {
+        target: "http://localhost:8082",
+        logLevel: "debug",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
     },
   },
 });

@@ -5,8 +5,3 @@ export const login = (data: any = {}) => {
     ...data,
   });
 };
-export const getMenuList = (params: any = {}) => {
-  return http.get("/getMenu", {
-    params,
-  });
-};

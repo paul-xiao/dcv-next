@@ -1,3 +1,4 @@
-import MyUtil from "./MyUtil";
+import * as tree from "./tree";
+import * as string from "./string";
 
-export { MyUtil };
+export default { tree, string };

@@ -15,9 +15,14 @@
   </div>
 </template>
 <script lang="ts" setup>
+interface IPathMeta {
+  breadcrumb?: boolean;
+  title?: string;
+}
 interface IPath {
   name: string;
   path: string;
+  meta?: IPathMeta;
 }
 interface Props {
   paths: IPath[];
