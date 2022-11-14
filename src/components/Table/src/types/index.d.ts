@@ -1,19 +1,40 @@
-interface ITable {
+export type DefaultRow = any;
+export interface ITableOptionProps {
   conf: ITableConf;
-  cloumn: ITableCol[];
+  columns: ITableColumn[];
 }
-interface ITableConf {
-  striped: boolean;
+export interface ITableConf {
+  name: string;
+  addBtn?: boolean;
+  editBtn?: boolean;
+  viewBtn?: boolean;
+  delBtn?: boolean;
+  batchDel?: boolean;
+  stripe?: boolean;
+  border?: boolean;
+  height?: string | number | undefined;
+  fixed?: boolean;
+  size?: "small";
+  optWidth?: string;
 }
-interface ITableCol {
-  label: string;
+export interface ITableColumn {
+  id?: string;
   prop: string;
-  type: string;
-  overHidden: boolean;
-}
-interface IPageProps {
   label: string;
-  prop: string;
-  type: string;
-  overHidden: boolean;
+  width?: string;
+  slot?: boolean;
+  formslot?: boolean;
+  rules?: any[];
+}
+export interface IPageProps {
+  size?: number;
+  current?: number;
+  total?: number;
+}
+
+export interface TableProps<T> {
+  data: T[];
+  option: any;
+  page: IPageProps;
+  modelValue: String | Object;
 }

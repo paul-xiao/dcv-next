@@ -3,11 +3,11 @@
     <div class="search-group"></div>
     <div class="flex items-center justify-between my-2">
       <div>
-        <dc-button v-if="option.config.addBtn" type="primary" @click="handleAdd"
+        <dc-button v-if="option?.conf?.addBtn" type="primary" @click="handleAdd"
           >添加</dc-button
         >
         <dc-button
-          v-if="option.batchDel"
+          v-if="option?.conf?.batchDel"
           type="danger"
           @click="handleBatchDelete"
           >删除</dc-button
@@ -23,11 +23,11 @@
     </div>
     <el-table
       :data="data"
-      :stripe="option.stripe"
-      :border="option.border"
-      :height="option.height"
+      :stripe="option?.conf?.stripe"
+      :border="option?.conf?.border"
+      :height="option?.conf?.height"
       row-key="id"
-      :size="option.size"
+      :size="option?.conf?.size"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       style="width: 100%"
       @selection-change="handleSelectionChange"
@@ -45,13 +45,13 @@
         </template>
       </el-table-column>
       <el-table-column
-        :fixed="option.fixed"
+        :fixed="option?.conf?.fixed"
         label="操作"
-        :min-width="option.optWidth"
+        :min-width="option?.conf?.optWidth"
       >
         <template #default="slotProps">
           <dc-button
-            v-if="option.viewBtn"
+            v-if="option?.conf?.viewBtn"
             type="primary"
             plain
             size="xs"
@@ -60,7 +60,7 @@
             查看
           </dc-button>
           <dc-button
-            v-if="option.editBtn"
+            v-if="option?.conf?.editBtn"
             type="primary"
             plain
             size="xs"
@@ -69,7 +69,7 @@
             编辑
           </dc-button>
           <dc-button
-            v-if="option.delBtn"
+            v-if="option?.conf?.delBtn"
             type="danger"
             plain
             size="xs"
@@ -81,7 +81,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div v-if="page.total" class="py-5">
+    <div v-if="page?.total" class="py-5">
       <el-pagination
         :current-page="page.current"
         :page-sizes="[10, 20, 30, 50]"
@@ -117,18 +117,9 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref, computed } from "vue";
-interface Props {
-  modelValue: object;
-  data: any[];
-  option: ITableOptionProps;
-  page?: IPageProps;
-}
+import tableProps from "./table";
 const dialogFormRef = ref(null);
-const _props = withDefaults(defineProps<Props>(), {
-  page: () => {
-    return { current: 1, size: 10, total: 0 };
-  },
-});
+const _props = defineProps(tableProps);
 const emit = defineEmits([
   "update:modelValue",
   "load",

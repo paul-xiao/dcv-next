@@ -1,6 +1,6 @@
 <template>
   <div class="shadow">
-    <div class="tabs">
+    <div class="bg-gray-50 tabs">
       <div
         v-for="item of tab.tabList"
         class="tab tab-lifted"

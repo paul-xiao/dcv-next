@@ -30,7 +30,7 @@ const state = reactive({
     },
   ],
   tableOption: {
-    config: {
+    conf: {
       stripe: true,
       viewBtn: true,
       addBtn: true,

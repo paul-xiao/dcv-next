@@ -1,7 +1,7 @@
 <template>
   <el-menu
     :default-active="activeMenu"
-    :collapse="!aside.asideExpanded"
+    :collapse="!aside?.asideExpanded"
     class="border-0"
     :unique-opened="true"
     active-text-color="#ffd04b"
