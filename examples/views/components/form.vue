@@ -1,42 +1,48 @@
 <template>
   <dc-page-wrapper>
-    <dc-form v-model="ruleForm" :schema="schema" />
+    <dc-form @register="registerForm" @submit="onSubmit" />
   </dc-page-wrapper>
 </template>
 <script lang="ts" setup>
-import { reactive, watch, watchEffect } from "vue";
-const ruleForm = reactive({});
+import { useForm } from "@dcv_next/components/Form/src/hooks/useForm";
+import { login } from "@/api/app";
+import { useUserStore } from "@/store/modules/user";
+
+const store = useUserStore();
 const schema = [
   {
-    prop: "name",
-    label: "名称",
-    rules: [{ required: true, message: "请输入邮箱地址", trigger: "blur" }],
-  },
-  {
-    prop: "region",
-    label: "区域",
-    type: "select",
-    dicData: [
+    label: "Username",
+    prop: "username",
+    rules: [
       {
-        label: "区域1",
-        value: 1,
+        required: true,
+        message: "please input username",
+        trigger: "blur",
       },
     ],
   },
   {
-    prop: "switch",
-    label: "时间",
-    type: "switch",
+    label: "Password",
+    prop: "password",
+    type: "password",
+    clearable: true,
+    rules: [
+      {
+        required: true,
+        message: "please input password",
+        trigger: "blur",
+      },
+    ],
   },
 ];
-
-watch(
-  () => ruleForm,
-  (val) => {
-    console.log(val);
-  }
-);
-watchEffect(() => {
-  console.log(ruleForm);
+const [registerForm] = useForm({
+  labelWidth: 100,
+  foot: true,
+  schema,
+  api: login,
 });
+
+function onSubmit(form) {
+  store.login(form);
+}
 </script>

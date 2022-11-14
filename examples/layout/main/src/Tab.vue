@@ -10,6 +10,7 @@
       >
         <span>{{ item.meta.title || item.name }}</span>
         <dc-icon
+          v-if="item.name !== 'dashboard'"
           icon="ion:close-outline"
           class="text-xs text-gray-400"
           @click="$emit('tabClose', item)"

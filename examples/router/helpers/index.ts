@@ -1,11 +1,11 @@
-import { useAppStore } from "@/store/modules/app";
 import { listToTree } from "@/utils";
+import _ from "lodash-es";
 
 // 动态路由名称映射表
 const modules = import.meta.glob("../../views/**/**.vue");
 
 const components: any = {
-  Layout: (() => import("@/layout/main/index.vue")) as unknown as () => Promise<
+  LAYOUT: (() => import("@/layout/main/index.vue")) as unknown as () => Promise<
     typeof import("*.vue")
   >,
   Pageview: (() =>
@@ -25,11 +25,11 @@ Object.keys(modules).forEach((key) => {
   components[name] = modules[key] as () => Promise<typeof import("*.vue")>;
 });
 
+// fix: 跳转至某个页面后，刷新404
 const asyncRouter: any[] = [
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    //component: components["ErrorPage_404"],
     meta: {
       title: "NotFound",
       icon: "",
@@ -41,30 +41,47 @@ const asyncRouter: any[] = [
   },
 ];
 
-const generatorDynamicRouter = (data: any[]): void => {
-  console.log(data);
-
-  const { setMenu } = useAppStore();
-  const routerList: any[] = listToTree(data, 0);
+/**
+ * 菜单转换
+ * @param menu 菜单选项
+ */
+const getParsedMenu = (menu: any[]) => {
+  const routerList: any[] = listToTree(menu, 0);
   asyncRouter.forEach((v) => routerList.push(v));
-  const parseRoute = (data: any[]) => {
-    for (let i = 0, len = data.length; i < len; i++) {
-      const v: any = data[i];
-      v.name = v.path.split("/").join("_").replace(/^_*/, "");
-      v.component = components[v.component];
-      v.meta = {
-        title: v.title,
+  const parseMenu = (menu: any[]) => {
+    return menu.map((m) => {
+      m.name = m.path.split("/").join("_").replace(/^_*/, "");
+      m.meta = {
+        ...m.meta,
+        title: m.title || m.meta.title,
       };
-      if (v.children && v.children.length > 0) {
+      if (Array.isArray(m.children) && m.children.length) {
         // 默认跳转到第一个子菜单
-        v.redirect = v.children[0].path;
-        parseRoute(v.children);
+        m.redirect = m.children[0].path;
+        m.children = parseMenu(m.children);
       }
-    }
+      return m;
+    });
   };
-  parseRoute(routerList);
-
-  setMenu(routerList);
+  return parseMenu(routerList);
+};
+/**
+ * 加载动态component
+ * @param tree 菜单选项
+ */
+const getDynamicRoute = (tree: any[]) => {
+  const traverse = (tree) => {
+    return tree.map((t) => {
+      t.component =
+        typeof t.component === "string" ? components[t.component] : t.component;
+      if (Array.isArray(t.children) && t.children.length) {
+        t.children = traverse(t.children);
+      }
+      return t;
+    });
+  };
+  const menuTree = _.cloneDeep(tree);
+  return traverse(menuTree);
 };
 
-export { components, generatorDynamicRouter };
+export { components, getDynamicRoute, getParsedMenu };

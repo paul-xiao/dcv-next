@@ -68,17 +68,16 @@ body {
 </style>
 <style lang="scss">
 .login-wrap {
-  position: relative;
   &-inner {
     position: absolute;
     padding: 50px;
     width: 500px;
     height: 300px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 3px 5px 0 rgba(0, 0, 0, 0.39);
+    box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.5), 0 0px 1px 0 rgba(0, 0, 0, 0.39);
     border-radius: 0.5rem;
-    left: 80%;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate3D(-50%, -50%, 0);
     .title {
       text-align: center;
       margin-bottom: 2rem;

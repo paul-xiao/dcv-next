@@ -4,7 +4,7 @@
       <dc-icon @click="$emit('toggleAside')" icon="ep:expand" />
     </div>
     <div>
-      <Menu :menus="menus" @toggle-child="toggleChild" class="!border-r-0" />
+      <Menu :aside="aside" @toggle-child="toggleChild" class="!border-r-0" />
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
 import Menu from "./Menu.vue";
 const _props = defineProps<{
   value: boolean;
-  menus: any;
+  aside: any;
 }>();
 const emit = defineEmits(["toggleAside", "toggleChild"]);
 const toggleChild = (menu: any) => {

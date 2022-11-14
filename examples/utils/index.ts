@@ -37,10 +37,3 @@ export function sortBy(menu: any[], attr: string) {
 export function traverseSort(menu: any[], attr: string) {
   menu = menu.sort((a, b) => a[attr] - b[attr]);
 }
-export function setStore(key: string, store: object) {
-  sessionStorage.setItem(key, JSON.stringify(store));
-}
-export function getStore(key: string) {
-  const store: string | null = sessionStorage.getItem(key);
-  return store ? JSON.parse(store) : null;
-}

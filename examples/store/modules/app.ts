@@ -1,6 +1,7 @@
 import { getList as getMenuList } from "@/api/menu";
 import { allowRoutes } from "@/router";
-import { generatorDynamicRouter } from "@/router/helpers";
+import { getParsedMenu } from "@/router/helpers";
+import { getStore, setStore } from "@/utils/storage";
 import { defineStore } from "pinia";
 interface AppState {
   aside: {
@@ -8,26 +9,25 @@ interface AppState {
     currentPath: any[];
     asideExpanded: boolean;
   };
-  tab: any;
-  userinfo: any;
+  tab: {
+    tabList: any[];
+    curTab: {};
+  };
 }
 export const useAppStore = defineStore("app", {
   state: (): AppState => ({
-    aside: {
+    aside: getStore("aside") || {
       menuList: [],
       currentPath: [],
       asideExpanded: true,
     },
-    tab: {
+    tab: getStore("tab") || {
       tabList: [],
       curTab: {},
     },
-    userinfo: {
-      token: "",
-    },
   }),
   getters: {
-    getMenu(): any {
+    getAside(): any {
       return this.aside;
     },
     getCurrentPath(): any {
@@ -36,15 +36,11 @@ export const useAppStore = defineStore("app", {
     getTab(): any {
       return this.tab;
     },
-    getToken(): any {
-      return this.userinfo?.token;
-    },
   },
   actions: {
     setMenu(menu: any) {
-      console.log(menu);
-
-      this.aside.menuList = menu;
+      this.aside.menuList = [...menu];
+      setStore("aside", this.aside);
     },
     setMenuItem(menu: any) {
       // 关闭其他
@@ -52,12 +48,15 @@ export const useAppStore = defineStore("app", {
         d = d.name === menu.name ? menu : { ...d, expanded: false };
         return d;
       });
+      setStore("aside", this.aside);
     },
     toggleMenu() {
       this.aside.asideExpanded = !this.aside.asideExpanded;
+      setStore("aside", this.aside);
     },
     setCurrentPath(menu: any) {
       this.aside.currentPath = menu;
+      setStore("aside", this.aside);
     },
     setTab(tab: IPath) {
       const isTabExsit = this.tab.tabList.find((t: any) => t.name === tab.name);
@@ -67,22 +66,32 @@ export const useAppStore = defineStore("app", {
       this.setMenuItem({ ...menu, expanded: true });
       if (isTabExsit) return;
       this.tab.tabList.push(tab);
+      setStore("tab", this.tab);
     },
     removeTab(tab: IPath) {
       this.tab.tabList = this.tab.tabList.filter(
         (d: any) => d.name !== tab.name
       );
+      setStore("tab", this.tab);
     },
-    async generateRoutes() {
+    concatAllowRoutes(): void {
+      allowRoutes.reverse().forEach((v) => this.aside.menuList.unshift(v));
+      setStore("aside", this.aside);
+    },
+    async getMenuList() {
       try {
         const res = await getMenuList();
-        generatorDynamicRouter(res.data);
+        this.setMenu(getParsedMenu(res.data));
       } catch (error) {
         console.log(error);
       }
     },
-    concatAllowRoutes(): void {
-      allowRoutes.reverse().forEach((v) => this.aside.menuList.unshift(v));
+    resetAside() {
+      this.aside = Object.assign(
+        {},
+        { menuList: [], currentPath: [], asideExpanded: true }
+      );
+      setStore("aside", this.aside);
     },
   },
 });

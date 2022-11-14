@@ -5,19 +5,19 @@
         @toggleConfig="isPanelShow = !isPanelShow"
         @toggleAside="toggleMenu"
         :value="value"
-        :asideExpanded="menus.asideExpanded"
-        :currentPath="menus.currentPath"
+        :asideExpanded="aside.asideExpanded"
+        :currentPath="aside.currentPath"
         v-if="value"
       />
       <div class="flex h-screen">
-        <div class="flex flex-col" :class="{ 'w-64': menus.asideExpanded }">
+        <div class="flex flex-col" :class="{ 'w-64': aside.asideExpanded }">
           <Logo
             v-if="!value"
             :value="value"
-            :asideExpanded="menus.asideExpanded"
+            :asideExpanded="aside.asideExpanded"
           />
           <aside-menu
-            :menus="menus"
+            :aside="aside"
             @toggle-aside="toggleMenu"
             @toggle-child="toggleChild"
             :value="value"
@@ -28,8 +28,8 @@
             @toggleConfig="isPanelShow = !isPanelShow"
             @toggleAside="toggleMenu"
             :value="value"
-            :asideExpanded="menus.asideExpanded"
-            :currentPath="menus.currentPath"
+            :asideExpanded="aside.asideExpanded"
+            :currentPath="aside.currentPath"
             v-if="!value"
           />
           <Tab :tab="tab" @tab-click="onTabClick" @tab-close="removeTab" />
@@ -67,13 +67,13 @@ import { useRouter } from "vue-router";
 
 const value = ref(false);
 const isPanelShow = ref(false);
-const { toggleMenu, removeTab, setMenuItem, getMenu, getTab } = useAppStore();
+const { toggleMenu, removeTab, setMenuItem, getAside, getTab } = useAppStore();
 const router = useRouter();
 const tab = computed(() => getTab);
 const onTabClick = (item: IPath) => {
   router.push({ name: item.name });
 };
-const menus = computed(() => getMenu);
+const aside = computed(() => getAside);
 
 const toggleChild = (menu: any) => {
   menu.expanded = !menu.expanded;

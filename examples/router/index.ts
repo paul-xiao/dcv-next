@@ -6,7 +6,23 @@ import { components } from "./helpers";
 export const allowRoutes = [
   {
     path: "/",
+    name: "root",
+    meta: {
+      title: "首页",
+      hidden: true,
+    },
     redirect: "/dashboard",
+    component: components["LAYOUT"],
+    children: [
+      {
+        path: "/dashboard",
+        name: "dashboard",
+        component: () => import("@/views/Dashboard/index.vue"),
+        meta: {
+          title: "仪表盘",
+        },
+      },
+    ],
   },
   {
     path: "/404",

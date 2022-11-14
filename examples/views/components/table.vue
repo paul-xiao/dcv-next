@@ -1,6 +1,5 @@
 <template>
   <dc-page-wrapper>
-    <h1>{{ $route.name }}</h1>
     <dc-table
       v-model="state.form"
       :data="state.tableData"
@@ -31,13 +30,15 @@ const state = reactive({
     },
   ],
   tableOption: {
-    stripe: true,
-    viewBtn: true,
-    addBtn: true,
-    editBtn: true,
-    delBtn: true,
-    border: true,
-    optWidth: 100,
+    config: {
+      stripe: true,
+      viewBtn: true,
+      addBtn: true,
+      editBtn: true,
+      delBtn: true,
+      border: true,
+      optWidth: 100,
+    },
     columns: [
       {
         prop: "title",

@@ -124,7 +124,6 @@ const requestFullScreen = (element: HTMLElement) => {
 };
 // 将方法暴露出
 defineExpose({ ...toRefs(state), setScrollTop });
-console.log(state);
 </script>
 <style lang="scss">
 .editor {

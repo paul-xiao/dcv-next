@@ -1,4 +1,8 @@
 declare interface ITableOptionProps {
+  conf: ITableConf;
+  columns: ITableColumn[];
+}
+declare interface ITableConf {
   name: string;
   addBtn?: boolean;
   editBtn?: boolean;
@@ -11,7 +15,6 @@ declare interface ITableOptionProps {
   fixed?: boolean;
   size?: "small";
   optWidth?: string;
-  columns: ITableColumn[];
 }
 declare interface ITableColumn {
   id?: string;

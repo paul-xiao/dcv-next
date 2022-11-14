@@ -1,7 +1,7 @@
 <template>
   <el-menu
     :default-active="activeMenu"
-    :collapse="!menus.asideExpanded"
+    :collapse="!aside.asideExpanded"
     class="border-0"
     :unique-opened="true"
     active-text-color="#ffd04b"
@@ -9,7 +9,7 @@
     router
     text-color="#fff"
   >
-    <menu-item :menu="menus.menuList" />
+    <menu-item :menu="aside.menuList" />
   </el-menu>
 </template>
 <script lang="ts" setup>
@@ -19,7 +19,7 @@ import MenuItem from "./MenuItem.vue";
 const route = useRoute();
 const activeMenu = ref<string>("");
 const _props = defineProps<{
-  menus: {
+  aside: {
     menuList: any;
     asideExpanded: boolean;
   };

@@ -3,7 +3,7 @@
     <div class="search-group"></div>
     <div class="flex items-center justify-between my-2">
       <div>
-        <dc-button v-if="option.addBtn" type="primary" @click="handleAdd"
+        <dc-button v-if="option.config.addBtn" type="primary" @click="handleAdd"
           >添加</dc-button
         >
         <dc-button
