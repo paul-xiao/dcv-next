@@ -54,6 +54,8 @@ const getParsedMenu = (menu: any[]) => {
       m.meta = {
         ...m.meta,
         title: m.title || m.meta.title,
+        hidden: !!m.hidden || !!m?.meta?.hidden,
+        activeMenu: m.activeMenu, // todo: 如果隐藏 默认选中父级
       };
       if (Array.isArray(m.children) && m.children.length) {
         // 默认跳转到第一个子菜单
@@ -72,8 +74,11 @@ const getParsedMenu = (menu: any[]) => {
 const getDynamicRoute = (tree: any[]) => {
   const traverse = (tree) => {
     return tree.map((t) => {
+      const isSubRoot = t.pid !== 0 && t.component === "LAYOUT"; // 子节点root
       t.component =
-        typeof t.component === "string" ? components[t.component] : t.component;
+        typeof t.component === "string"
+          ? components[isSubRoot ? "Pageview" : t.component]
+          : t.component;
       if (Array.isArray(t.children) && t.children.length) {
         t.children = traverse(t.children);
       }

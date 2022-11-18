@@ -128,6 +128,7 @@ defineExpose({ ...toRefs(state), setScrollTop });
 <style lang="scss">
 .editor {
   background: #fafafa;
+  width: 100%;
   &-main {
     min-height: 600px;
     overflow: hidden;

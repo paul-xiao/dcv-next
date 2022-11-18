@@ -7,7 +7,11 @@
     :size="modelSize"
   >
     <template v-for="item of schema" :key="item.prop">
-      <FormItem v-model="ruleForm[item.prop]" v-bind="item" />
+      <FormItem v-model="ruleForm[item.prop]" v-bind="item">
+        <template v-if="item.slot" #[item.prop]>
+          <slot :name="item.prop" :model="ruleForm"></slot>
+        </template>
+      </FormItem>
     </template>
     <ElFormItem v-if="!slotFoot && !state.conf.foot">
       <slot name="footer"></slot>
@@ -26,9 +30,10 @@ import FormItem from "./components/FormItem.vue";
 import { computed, onMounted, reactive, ref, unref, watch } from "vue";
 import { useSlots } from "vue";
 import { IFormProps } from "./hooks/useForm";
+import { IFormItem } from "./types";
 interface Props {
   modelValue?: object;
-  schema?: any[];
+  schema?: IFormItem[];
   rules?: Element;
   modelSize?: "small" | "default" | "large";
   detailed?: boolean;

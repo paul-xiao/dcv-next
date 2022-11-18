@@ -57,7 +57,8 @@ const setCurType = (type, url) => {
   }
 };
 const onScroll = () => {
-  props?.parent?.setScrollTop(textareaRef?.value?.scrollTop);
+  props?.parent?.setScrollTop &&
+    props?.parent?.setScrollTop(textareaRef?.value?.scrollTop);
 };
 defineExpose({
   setCurType,

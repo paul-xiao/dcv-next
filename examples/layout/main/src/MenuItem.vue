@@ -1,10 +1,7 @@
 <template>
   <template v-for="item of menu" :key="item.id">
     <template v-if="item.meta && !item.meta.hidden">
-      <el-sub-menu
-        :index="item.path"
-        v-if="item.children && item.children.length > 0"
-      >
+      <el-sub-menu :index="item.path" v-if="showSubMenu(item)">
         <template #title>
           <dc-icon :icon="item.meta.icon" />
           <span>{{ item.meta.title || item.name }}</span>
@@ -21,9 +18,20 @@
   </template>
 </template>
 <script lang="ts" setup>
+import { computed } from "vue";
+
 const _props = defineProps<{
   menu: any[];
 }>();
+const showSubMenu = computed(() => {
+  return function (item) {
+    return (
+      item.children &&
+      item.children.length > 0 &&
+      item.children.every((d) => !d.hidden)
+    );
+  };
+});
 </script>
 <style lang="scss" scoped>
 .-offset-top-20 {

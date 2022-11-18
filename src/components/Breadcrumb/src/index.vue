@@ -2,7 +2,9 @@
   <div class="text-sm breadcrumbs">
     <ul>
       <li v-for="(item, index) of paths" :key="item.name">
-        <template v-if="index < paths.length - 1">
+        <template
+          v-if="index < paths.length - 1 && !item.meta?.breadcrumbHidden"
+        >
           <router-link :to="item.path">{{
             item?.meta?.title || item.name
           }}</router-link>
@@ -15,8 +17,10 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { computed } from "vue";
+
 interface IPathMeta {
-  breadcrumb?: boolean;
+  breadcrumbHidden?: boolean;
   title?: string;
 }
 interface IPath {
@@ -28,4 +32,8 @@ interface Props {
   paths: IPath[];
 }
 const _props = defineProps<Props>();
+
+const paths = computed(() => {
+  return _props.paths.filter((p) => !p?.meta?.breadcrumbHidden);
+});
 </script>

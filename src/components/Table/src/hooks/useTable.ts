@@ -1,25 +1,34 @@
 import { AxiosResponse } from "axios";
-import { ITableColumn, ITableConf, IPageProps } from "../types";
-export interface IFormProps {
+import { ref, unref } from "vue";
+import {
+  ITableColumn,
+  ITableConf,
+  IPageProps,
+  UseTableReturnType,
+  TableActionType,
+} from "../types";
+export interface ITableProps {
   conf: ITableConf;
   api?: (params?: any) => Promise<AxiosResponse<any, any>>;
   schema: ITableColumn[];
   page: IPageProps;
 }
 
-export function useTable(props: IFormProps) {
-  const { schema, ...rest } = props;
+export function useTable(props: ITableProps): UseTableReturnType {
+  const tableRef = ref<any>(null);
+
   // 注册
   const register = (instance) => {
-    console.log("registered", instance);
-    instance.setProps(rest);
-    instance.getSchema(schema);
+    instance.setProps(props);
+    tableRef.value = instance;
   };
 
-  function onSubmit() {}
+  function reload() {
+    unref(tableRef)?.onLoad();
+  }
   // methods
-  const methods = {
-    onSubmit,
+  const methods: TableActionType = {
+    reload,
   };
 
   return [register, methods];

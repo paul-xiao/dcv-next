@@ -10,6 +10,7 @@ export const allowRoutes = [
     meta: {
       title: "首页",
       hidden: true,
+      breadcrumbHidden: true,
     },
     redirect: "/dashboard",
     component: components["LAYOUT"],

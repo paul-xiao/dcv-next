@@ -11,38 +11,13 @@
 import { useForm } from "@dcv_next/components/Form/src/hooks/useForm";
 import { login } from "@/api/app";
 import { useUserStore } from "@/store/modules/user";
-
+import { loginSchema } from "./login";
 const store = useUserStore();
-const schema = [
-  {
-    label: "Username",
-    prop: "username",
-    rules: [
-      {
-        required: true,
-        message: "please input username",
-        trigger: "blur",
-      },
-    ],
-  },
-  {
-    label: "Password",
-    prop: "password",
-    type: "password",
-    clearable: true,
-    rules: [
-      {
-        required: true,
-        message: "please input password",
-        trigger: "blur",
-      },
-    ],
-  },
-];
+
 const [registerForm] = useForm({
   labelWidth: 100,
   foot: true,
-  schema,
+  schema: loginSchema,
   api: login,
 });
 

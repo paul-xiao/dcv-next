@@ -17,19 +17,22 @@ import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import MenuItem from "./MenuItem.vue";
 const route = useRoute();
-const activeMenu = ref<string>("");
+const activeMenu = ref<string | unknown>("");
 const _props = defineProps<{
   aside: {
     menuList: any;
     asideExpanded: boolean;
   };
 }>();
-activeMenu.value = route.path;
+setActiveMenu();
 watch(
   () => route.path,
   (val) => {
-    activeMenu.value = val;
+    setActiveMenu(val);
   }
 );
+function setActiveMenu(val = route.path) {
+  activeMenu.value = route.meta?.activeMenu || val;
+}
 defineEmits(["toggleChild"]);
 </script>

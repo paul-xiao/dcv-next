@@ -3,11 +3,11 @@
     <div class="search-group"></div>
     <div class="flex items-center justify-between my-2">
       <div>
-        <dc-button v-if="option?.conf?.addBtn" type="primary" @click="handleAdd"
+        <dc-button v-if="state.conf?.addBtn" type="primary" @click="handleAdd"
           >添加</dc-button
         >
         <dc-button
-          v-if="option?.conf?.batchDel"
+          v-if="state.conf?.batchDel"
           type="danger"
           @click="handleBatchDelete"
           >删除</dc-button
@@ -22,19 +22,19 @@
       </div>
     </div>
     <el-table
-      :data="data"
-      :stripe="option?.conf?.stripe"
-      :border="option?.conf?.border"
-      :height="option?.conf?.height"
+      :data="state.data"
+      :stripe="state.conf?.stripe"
+      :border="state.conf?.border"
+      :height="state.conf?.height"
       row-key="id"
-      :size="option?.conf?.size"
+      :size="state.conf?.size"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       style="width: 100%"
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55" />
       <el-table-column
-        v-for="item of option.columns"
+        v-for="item of state.schema"
         :key="item.id"
         :prop="item.prop"
         :label="item.label"
@@ -45,33 +45,33 @@
         </template>
       </el-table-column>
       <el-table-column
-        :fixed="option?.conf?.fixed"
+        :fixed="state.conf?.fixed"
         label="操作"
-        :min-width="option?.conf?.optWidth"
+        :min-width="state.conf?.optWidth"
       >
         <template #default="slotProps">
           <dc-button
-            v-if="option?.conf?.viewBtn"
+            v-if="state.conf?.viewBtn"
             type="primary"
-            plain
+            text
             size="xs"
             @click="handleView"
           >
             查看
           </dc-button>
           <dc-button
-            v-if="option?.conf?.editBtn"
-            type="primary"
-            plain
+            v-if="state.conf?.editBtn"
+            type="success"
+            text
             size="xs"
             @click="handleEdit"
           >
             编辑
           </dc-button>
           <dc-button
-            v-if="option?.conf?.delBtn"
+            v-if="state.conf?.delBtn"
             type="danger"
-            plain
+            text
             size="xs"
             @click="handleDelete(slotProps.row)"
           >
@@ -81,13 +81,16 @@
         </template>
       </el-table-column>
     </el-table>
-    <div v-if="page?.total" class="py-5">
+    <div v-if="state?.page?.total" class="py-5">
       <el-pagination
-        :current-page="page.current"
+        :current-page="state?.page?.current"
         :page-sizes="[10, 20, 30, 50]"
-        :page-size="page.size"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="page.total"
+        :page-size="state?.page?.size"
+        layout="total, sizes, prev, pager, next"
+        :total="state?.page?.total"
+        small
+        prev-text="上一页"
+        next-text="下一页"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -96,11 +99,11 @@
       <dc-form
         ref="dialogFormRef"
         v-model="form"
-        :schema="option.columns"
+        :schema="state.schema"
         :foot="false"
       >
         <!-- form插槽转移到table -->
-        <template v-for="col of option.columns" :key="col.prop" #[col.prop]>
+        <template v-for="col of state.schema" :key="col.prop" #[col.prop]>
           <slot :name="`${col.prop}Form`"></slot>
         </template>
       </dc-form>
@@ -116,11 +119,13 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, onMounted, watchEffect } from "vue";
 import tableProps from "./table";
+import { IPageProps, ITableColumn, ITableConf } from "./types";
 const dialogFormRef = ref(null);
 const _props = defineProps(tableProps);
 const emit = defineEmits([
+  "register",
   "update:modelValue",
   "load",
   "row-add",
@@ -141,9 +146,21 @@ const form = computed({
 });
 
 const dialogVisible = ref(false);
+
 const state = reactive({
+  data: [],
   multipleSelection: [],
   flag: "add",
+  conf: {
+    addBtn: true,
+    viewBtn: true,
+    delBtn: true,
+    editBtn: true,
+    border: true,
+  } as ITableConf,
+  schema: [] as ITableColumn[],
+  api: (_params?: any) => {},
+  page: {} as IPageProps,
 });
 
 const dialogTitle = computed(() => {
@@ -154,11 +171,6 @@ const dialogTitle = computed(() => {
   };
   return map[state.flag];
 });
-onLoad();
-
-function onLoad() {
-  emit("load");
-}
 
 function handleAdd() {
   emit("update:modelValue", {});
@@ -192,10 +204,6 @@ function handleEdit() {
   dialogVisible.value = true;
   state.flag = "edit";
 }
-// function handleAddChild() {
-//   dialogVisible.value = true;
-//   state.flag = "add";
-// }
 function handleDelete(row: any) {
   emit("row-del", row);
 }
@@ -210,11 +218,41 @@ function onRefeshTable() {
   onLoad();
 }
 function handleSizeChange(val: any) {
-  console.log(val);
-  emit("size-change", val);
+  state.page.size = val;
+  const { current, size } = state.page;
+  onLoad({ current, size });
 }
 function handleCurrentChange(val: any) {
-  console.log(val);
-  emit("current-change", val);
+  state.page.current = val;
+  const { current, size } = state.page;
+  onLoad({ current, size });
 }
+
+function setProps(props) {
+  console.group("Set Props:");
+  const { conf, api, schema, page } = props;
+  state.conf = { ...state.conf, ...conf };
+  state.api = api;
+  state.schema = schema;
+  state.page = { ...state.page, ...page };
+  console.groupEnd();
+}
+async function onLoad(params = {}) {
+  const res: any = await state.api(params);
+  state.data = res?.data?.result;
+  state.page.total = res?.data?.total;
+}
+
+watchEffect(() => {
+  onLoad();
+});
+
+const tableAction = {
+  setProps,
+  onLoad,
+};
+
+onMounted(() => {
+  emit("register", tableAction);
+});
 </script>

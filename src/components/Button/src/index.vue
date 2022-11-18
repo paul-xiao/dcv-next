@@ -18,6 +18,7 @@
 import { computed, useSlots } from "vue";
 interface Props {
   type: string;
+  text: boolean;
   size?: string;
   block?: boolean;
   plain?: boolean;
@@ -36,16 +37,19 @@ const classes = computed(() => {
     size = "sm",
     block,
     plain,
+    text,
     rounded,
     icon,
     disabled,
     loading,
   } = _props;
-  return `dc-btn dc-btn-${size}  dc-btn-${type} ${plain ? "plain" : ""} ${
-    rounded ? "rounded-full" : "rounded-sm"
-  } ${block ? "w-full" : ""} ${
-    disabled || loading ? "cursor-not-allowed" : ""
-  } ${icon && !slots.default ? "dc-btn-single-icon" : ""}`;
+  return `dc-btn dc-btn-${size}  ${
+    text ? "dc-btn-text-" + type : "dc-btn-" + type
+  } ${plain ? "plain" : ""} ${rounded ? "rounded-full" : "rounded-sm"} ${
+    block ? "w-full" : ""
+  } ${disabled || loading ? "cursor-not-allowed" : ""} ${
+    icon && !slots.default ? "dc-btn-single-icon" : ""
+  }`;
 });
 </script>
 <style lang="scss">
@@ -95,6 +99,36 @@ const classes = computed(() => {
   }
   &-danger {
     @apply bg-red-600 hover:bg-red-400 text-white;
+    &.plain {
+      @apply bg-red-100 text-red-400;
+    }
+  }
+  &-text-default {
+    @apply text-gray-400 hover:text-gray-200;
+    &.plain {
+      @apply bg-gray-100 text-gray-400;
+    }
+  }
+  &-text-primary {
+    @apply text-blue-600 hover:text-blue-400;
+    &.plain {
+      @apply bg-blue-100 text-blue-400;
+    }
+  }
+  &-text-success {
+    @apply text-green-600 hover:text-green-400;
+    &.plain {
+      @apply bg-green-100 text-green-400;
+    }
+  }
+  &-text-warning {
+    @apply text-yellow-600 hover:text-yellow-400;
+    &.plain {
+      @apply bg-yellow-100 text-yellow-400;
+    }
+  }
+  &-text-danger {
+    @apply text-red-600 hover:text-red-400;
     &.plain {
       @apply bg-red-100 text-red-400;
     }

@@ -1,66 +1,41 @@
 <template>
   <dc-page-wrapper>
-    <dc-table
-      v-model="state.form"
-      :data="state.tableData"
-      :option="state.tableOption"
-    >
-      <template #imgForm>
-        <div>
-          <h1>111</h1>
-        </div>
-      </template>
-      <template #img>
-        <div>
-          <h1>2222</h1>
-        </div>
+    <dc-table @register="registerTable" @rowDel="onRowDel">
+      <template #batch>
+        <dc-button type="primary" @click="onAdd">添加</dc-button>
       </template>
     </dc-table>
   </dc-page-wrapper>
 </template>
 <script lang="ts" setup>
-import { reactive } from "vue";
-const state = reactive({
-  form: {},
-  tableData: [
+import { getArticleList, remove } from "@/api/article";
+import { useTable } from "@dcv_next/components/Table";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const [registerTable, { reload }] = useTable({
+  api: getArticleList,
+  schema: [
     {
-      title: "test",
-      img: "xxx",
-      description: "22",
+      label: "标题",
+      prop: "title",
+    },
+    {
+      label: "创建时间",
+      prop: "createTime",
     },
   ],
-  tableOption: {
-    conf: {
-      stripe: true,
-      viewBtn: true,
-      addBtn: true,
-      editBtn: true,
-      delBtn: true,
-      border: true,
-      optWidth: 100,
-    },
-    columns: [
-      {
-        prop: "title",
-        label: "标题",
-        type: "text",
-        rules: [{ required: true, message: "请输入标题" }],
-      },
-      {
-        prop: "img",
-        label: "缩略图",
-        type: "text",
-        rules: [{ required: true, message: "请输入缩略图" }],
-        slot: true,
-        formslot: true,
-      },
-      {
-        prop: "description",
-        label: "描述",
-        rules: [],
-        type: "textarea",
-      },
-    ],
+  page: {},
+  conf: {
+    addBtn: false,
+    name: "",
   },
 });
+function onAdd() {
+  router.push("/notes/add");
+}
+
+async function onRowDel(row) {
+  await remove(row.id);
+  reload();
+}
 </script>
