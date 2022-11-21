@@ -1,7 +1,7 @@
 {
   "name": "dcv-next",
   "private": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
@@ -17,7 +17,8 @@
     "lint:pretty": "pretty-quick --staged",
     "lint:prettier": "prettier --write  \"{src,examples}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "prod": "npm run build && yarn version && npm publish"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
