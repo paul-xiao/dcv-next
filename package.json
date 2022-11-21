@@ -92,11 +92,11 @@
     "src",
     "dist"
   ],
-  "types": "./dist/types/index.d.ts",
-  "module": "./dist/my-lib.es.js",
+  "types": "./dist/types/src/index.d.ts",
+  "module": "./dist/dcv.js",
   "exports": {
     ".": {
-      "import": "./dist/my-lib.es.js"
+      "import": "./dist/dcv.js"
     },
     "./dist/style.css": "./dist/style.css"
   }

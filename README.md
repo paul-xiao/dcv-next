@@ -7,3 +7,15 @@
 ```bash
 pnpm add dcv-next
 ```
+
+## useage
+
+### md-viewer
+
+| Name  | Type   | Default | Description         |
+| ----- | ------ | ------- | ------------------- |
+| value | string | null    | contents to preview |
+
+```vue
+<DcEditorViewer :value="contents" />
+```

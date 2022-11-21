@@ -1,3 +1,16 @@
+## [0.0.8](https://gitee.com/paul-xiao/dcv_next/compare/v0.0.7...v0.0.8) (2022-11-21)
+
+### Bug Fixes
+
+- fix dynamic route refresh 404 issue ([35ba9eb](https://gitee.com/paul-xiao/dcv_next/commits/35ba9eb1b5bf09583a44e0752414f631eacda1d8))
+
+### Features
+
+- add table hook ([190a38d](https://gitee.com/paul-xiao/dcv_next/commits/190a38d9065e79f8941070e325584d266dc20bda))
+- table hook update ([e5c8337](https://gitee.com/paul-xiao/dcv_next/commits/e5c83376d77cbbb5d79a09e6da25e0c9ae6c84d1))
+- update layout ([d0082aa](https://gitee.com/paul-xiao/dcv_next/commits/d0082aaf19f409ac6d85e31ae62828cad0570dea))
+- use backend menu api ([7c07c0f](https://gitee.com/paul-xiao/dcv_next/commits/7c07c0f4b59ab17d6b4c316a4d077ce9a6f8d8bd))
+
 ## [0.0.7](http://10.1.192.34/fed/dcv_next/compare/v0.0.6...v0.0.7) (2022-10-17)
 
 ### Bug Fixes
