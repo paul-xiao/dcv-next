@@ -1,7 +1,5 @@
 const path = require("path");
 const { defineConfig } = require("vite");
-import { viteMockServe } from "vite-plugin-mock";
-import md2json from "./examples/plugins/md2json";
 import Vue from "@vitejs/plugin-vue";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import PurgeIcons from "vite-plugin-purge-icons";
@@ -9,17 +7,7 @@ import PurgeIcons from "vite-plugin-purge-icons";
 
 module.exports = defineConfig({
   plugins: [
-    // md2json(vuePlugin),
-    md2json(),
     Vue(),
-    viteMockServe({
-      // ↓解析根目录下的mock文件夹
-      mockPath: "/examples/mock",
-      localEnabled: false, // localEnabled, // 开发打包开关
-      // prodEnabled: !localEnabled, // 生产打包开关
-      supportTs: true, // 打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件。
-      watchFiles: true, // 监视文件更改
-    }),
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
       iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
@@ -29,14 +17,7 @@ module.exports = defineConfig({
     PurgeIcons({
       content: ["**/*.html", "**/*.ts", "**/*.js", "**/*.vue"],
     }),
-  ], // to process SFC
-  resolve: {
-    alias: {
-      "@": "/examples/", // '@/': new URL('./src/', import.meta.url).pathname
-      "@assets": "/examples/assets",
-      "@dcv_next": "/src/",
-    },
-  },
+  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

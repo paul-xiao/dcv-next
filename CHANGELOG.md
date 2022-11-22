@@ -1,3 +1,5 @@
+## [0.0.9](https://gitee.com/paul-xiao/dcv_next/compare/v0.0.8...v0.0.9) (2022-11-21)
+
 ## [0.0.8](https://gitee.com/paul-xiao/dcv_next/compare/v0.0.7...v0.0.8) (2022-11-21)
 
 ### Bug Fixes

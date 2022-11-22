@@ -12,8 +12,8 @@
 import { watch, ref, onMounted } from "vue";
 
 interface ISelectOption {
-  label: String;
-  value: String;
+  label?: String;
+  value?: String;
 }
 
 interface BasicSelectProps {
@@ -23,7 +23,7 @@ interface BasicSelectProps {
   props: ISelectOption;
 }
 const model = ref<string | string[] | undefined>("");
-const myOptions = ref<ISelectOption[]>([]);
+const myOptions = ref<ISelectOption[] | Record<string, any>>([]);
 const _props = defineProps<BasicSelectProps>();
 const emit = defineEmits(["update:modelValue"]);
 const { modelValue, ...rest } = { ..._props };

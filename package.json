@@ -21,15 +21,7 @@
     "prod": "npm run build && yarn version && npm publish"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^1.1.4",
-    "@iconify/iconify": "^2.2.1",
     "@pxfed/dcui": "^1.0.1",
-    "@tailwindcss/typography": "^0.5.7",
-    "css-doodle": "^0.30.3",
-    "highlight.js": "^11.6.0",
-    "lodash-es": "^4.17.21",
-    "markdown-it": "^13.0.1",
-    "markdown-it-toc-and-anchor": "^4.2.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
@@ -87,7 +79,15 @@
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",
     "vue-tsc": "^0.29.8",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "@tailwindcss/typography": "^0.5.7",
+    "css-doodle": "^0.30.3",
+    "highlight.js": "^11.6.0",
+    "lodash-es": "^4.17.21",
+    "markdown-it": "^13.0.1",
+    "markdown-it-toc-and-anchor": "^4.2.0",
+    "@element-plus/icons-vue": "^1.1.4",
+    "@iconify/iconify": "^2.2.1"
   },
   "files": [
     "src",

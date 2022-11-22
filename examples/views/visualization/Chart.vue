@@ -1,5 +1,0 @@
-<template>
-  <dc-page-wrapper>
-    <h1>图表</h1>
-  </dc-page-wrapper>
-</template>
