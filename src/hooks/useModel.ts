@@ -18,7 +18,7 @@ const closeModal = (e: KeyboardEvent) => {
   }
 };
 
-export const useModal = (instance: ModalInstance, visibleRef: Ref<boolean>) => {
+const useModal = (instance: ModalInstance, visibleRef: Ref<boolean>) => {
   watch(visibleRef, (val) => {
     if (val) {
       modalStack.push(instance);
@@ -29,3 +29,5 @@ export const useModal = (instance: ModalInstance, visibleRef: Ref<boolean>) => {
 };
 
 if (isClient) useEventListener(document, "keydown", closeModal);
+
+export default useModal;

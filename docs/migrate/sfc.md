@@ -129,6 +129,7 @@ useSlots 和 useAttrs 是真实的运行时函数，它会返回与 setupContext
 
 ## v-model
 
+```vue
 Usage with v-model#
 Custom events can also be used to create custom inputs that work with v-model. Remember that:
 
@@ -151,6 +152,7 @@ Bind the value attribute to the modelValue prop
 On input, emit an update:modelValue event with the new value
 Here's that in action:
 
+
 <!-- CustomInput.vue -->
 <script>
 export default {
@@ -168,3 +170,5 @@ export default {
 Now v-model should work perfectly with this component:
 
 <CustomInput v-model="searchText" />
+
+```

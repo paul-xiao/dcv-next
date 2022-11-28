@@ -18,18 +18,9 @@
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
-
-interface IPathMeta {
-  breadcrumbHidden?: boolean;
-  title?: string;
-}
-interface IPath {
-  name: string;
-  path: string;
-  meta?: IPathMeta;
-}
+import { IPathProps } from "./index";
 interface Props {
-  paths: IPath[];
+  paths: IPathProps[];
 }
 const _props = defineProps<Props>();
 

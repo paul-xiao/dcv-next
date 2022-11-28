@@ -3,27 +3,31 @@ const path = require("path");
 module.exports = {
   title: "Dcv Next",
   description: "Dcv base on vue3.x",
+  head: [["link", { rel: "icon", href: "logo.png" }]],
   themeConfig: {
     search: true,
     author: "paul",
     repo: "http://10.1.191.15:13480/fed/dcv_next",
+    // outlineTitle: '当前页',
     nav: [
-      { text: "介绍", link: "/guide/" },
+      { text: "起步", link: "/guide/" },
       { text: "组件", link: "/components/" },
       { text: "项目配置", link: "/config/" },
       { text: "迁移指南", link: "/migrate/" },
-      { text: "Todo List", link: "/todo/" },
+      { text: "任务清单", link: "/todo/" },
+      { text: "常见问题", link: "/issues/" },
     ],
     sidebar: {
       "/guide/": [
         {
-          text: "介绍",
+          text: "起步",
+          items: [],
         },
       ],
       "/components/": [
         {
           text: "Components",
-          children: [
+          items: [
             { text: "Component A", link: "/components/component-a" },
             { text: "Component B", link: "/components/component-b" },
           ],
@@ -32,19 +36,25 @@ module.exports = {
       "/config/": [
         {
           text: "项目配置",
-          children: [{ text: "", link: "/config/" }],
+          items: [{ text: "", link: "/config/" }],
         },
       ],
       "/migrate/": [
         {
           text: "迁移指南",
-          children: [{ text: "", link: "/migrate/" }],
+          items: [{ text: "", link: "/migrate/" }],
         },
       ],
       "/todo/": [
         {
-          text: "todo",
-          children: [{ text: "", link: "/todo/" }],
+          text: "任务清单",
+          items: [{ text: "", link: "/todo/" }],
+        },
+      ],
+      "/issues/": [
+        {
+          text: "常见问题",
+          items: [{ text: "", link: "/issues/" }],
         },
       ],
     },

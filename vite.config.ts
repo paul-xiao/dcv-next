@@ -23,7 +23,7 @@ module.exports = defineConfig({
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "dcv",
       formats: ["es"], // adding 'umd' requires globals set to every external module
-      fileName: () => `dcv.js`,
+      fileName: () => `index.js`,
     },
     rollupOptions: {
       // external modules won't be bundled into your library

@@ -1,17 +1,29 @@
 ---
-home: true
-// heroImage: /favicon.ico
-heroAlt: Logo image
-heroText: Dcv Next
-tagline: vue3.x UI framework based on element-plus
-actionText: Get Started
-actionLink: /guide/
+layout: home
+
+hero:
+  name: DCV-NEXT
+  text: Vue3 component lib
+  tagline: next generation vue component lib for dcv
+  image:
+    src: /logo.png
+    alt: VitePress
+  actions:
+    - theme: brand
+      text: Get Started
+      link: /guide/
+    - theme: alt
+      text: View on GitLab
+      link: http://10.1.191.15:13480/fed/dcv_next
+
 features:
-  - title: Easy Setup
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VitePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-footer: MIT Licensed | Copyright © 2022-present DCV
+  - icon: ⚡️
+    title: Vite, The DX that can't be beat
+    details: Lorem ipsum...
+  - icon: 🖖
+    title: Power of Vue meets Markdown
+    details: Lorem ipsum...
+  - icon: 🛠️
+    title: Simple and minimal, always
+    details: Lorem ipsum...
 ---
