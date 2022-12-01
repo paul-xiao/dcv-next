@@ -26,10 +26,6 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "plugins/**/*.d.ts",
-    "examples/**/*.ts",
-    "examples/**/*.d.ts",
-    "examples/**/*.tsx",
-    "examples/**/*.vue",
     "types/**/*.ts",
     "types/**/*.d.ts"
   ]

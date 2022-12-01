@@ -114,24 +114,8 @@ const requestFullScreen = (element: HTMLElement) => {
   const requestMethod = element.requestFullscreen;
   if (requestMethod) {
     requestMethod.call(element);
-  } else if (window.ActiveXObject) {
-    const ActiveXObject = window.ActiveXObject;
-    const wscript = new ActiveXObject("WScript.Shell");
-    if (wscript !== null) {
-      wscript.SendKeys("{F11}");
-    }
   }
 };
 // 将方法暴露出
 defineExpose({ ...toRefs(state), setScrollTop });
 </script>
-<style lang="scss">
-.editor {
-  background: #fafafa;
-  width: 100%;
-  &-main {
-    min-height: 600px;
-    overflow: hidden;
-  }
-}
-</style>

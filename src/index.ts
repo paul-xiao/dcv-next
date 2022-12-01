@@ -1,12 +1,12 @@
 import { App } from "vue";
-import * as components from "./components";
+import components from "./components";
 import "./assets/font/iconfont.css";
-function install(app: App) {
-  for (const key in Object.keys(components)) {
+import "./styles/index.scss";
+export const install: any = (app: App) => {
+  for (const key of Object.keys(components)) {
     app.component(`Dc${key}`, components[key]);
   }
-}
-
+};
 export * from "./components";
 export * from "./hooks";
 export default { install };

@@ -21,7 +21,7 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "dcv",
+      name: "dcv-next",
       formats: ["es"], // adding 'umd' requires globals set to every external module
       fileName: () => `index.js`,
     },

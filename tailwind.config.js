@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./examples/**/*.{vue,js}", "./src/**/*.{vue,js}"],
+  content: ["./src/**/*.{vue,ts}"],
   theme: {
     extend: {
       transitionProperty: {

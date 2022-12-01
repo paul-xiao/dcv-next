@@ -21,7 +21,7 @@
         ></i>
       </div>
     </div>
-    <el-table
+    <ElTable
       :data="state.data"
       :stripe="state.conf?.stripe"
       :border="state.conf?.border"
@@ -32,8 +32,8 @@
       style="width: 100%"
       @selection-change="handleSelectionChange"
     >
-      <el-table-column type="selection" width="55" />
-      <el-table-column
+      <ElTableColumn type="selection" width="55" />
+      <ElTableColumn
         v-for="item of state.schema"
         :key="item.id"
         :prop="item.prop"
@@ -43,8 +43,8 @@
         <template v-if="item.slot" #default="{ row }">
           <slot :name="item.prop" :row="row"></slot>
         </template>
-      </el-table-column>
-      <el-table-column
+      </ElTableColumn>
+      <ElTableColumn
         :fixed="state.conf?.fixed"
         label="操作"
         :min-width="state.conf?.optWidth"
@@ -79,10 +79,10 @@
           </dc-button>
           <slot name="opt" :row="slotProps.row"></slot>
         </template>
-      </el-table-column>
-    </el-table>
+      </ElTableColumn>
+    </ElTable>
     <div v-if="state?.page?.total" class="py-5">
-      <el-pagination
+      <ElPagination
         :current-page="state?.page?.current"
         :page-sizes="[10, 20, 30, 50]"
         :page-size="state?.page?.size"
@@ -120,6 +120,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref, computed, onMounted, watchEffect } from "vue";
+import { ElTable, ElTableColumn, ElPagination } from "element-plus";
 import tableProps from "./table";
 import { IPageProps, ITableColumn, ITableConf } from "./types";
 const dialogFormRef = ref(null);

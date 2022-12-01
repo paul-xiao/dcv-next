@@ -1,20 +1,33 @@
 import { PageWrapper } from "./App";
 import { Icon, SvgIcon } from "./Icon";
 import Breadcrumb from "./Breadcrumb";
-import { Form, useForm } from "./Form";
+import { Form, FormItem, useForm } from "./Form";
 import Button from "./Button";
 import { Table, useTable } from "./Table";
 import { Editor, EditorViewer } from "./Editor";
+export default {
+  PageWrapper,
+  Icon,
+  SvgIcon,
+  Breadcrumb,
+  Form,
+  FormItem,
+  Button,
+  Table,
+  Editor,
+  EditorViewer,
+};
 export {
   PageWrapper,
   Icon,
   SvgIcon,
   Breadcrumb,
   Form,
-  useForm,
+  FormItem,
   Button,
   Table,
-  useTable,
   Editor,
   EditorViewer,
+  useForm,
+  useTable,
 };

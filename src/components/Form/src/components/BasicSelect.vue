@@ -1,15 +1,16 @@
 <template>
-  <el-select v-model="model" v-bind="$attrs" class="w-full">
+  <ElSelect v-model="model" v-bind="$attrs" class="w-full">
     <el-option
       v-for="item in myOptions"
       :key="item.value"
       :label="item.label"
       :value="item.value"
     />
-  </el-select>
+  </ElSelect>
 </template>
 <script lang="ts" setup>
 import { watch, ref, onMounted } from "vue";
+import { ElSelect } from "element-plus";
 
 interface ISelectOption {
   label?: String;

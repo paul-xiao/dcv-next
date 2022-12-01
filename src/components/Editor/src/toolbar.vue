@@ -147,13 +147,3 @@ const onFileChange = (e: any) => {
   xhr.send(formData);
 };
 </script>
-<style lang="scss">
-.toolbar {
-  background: #fafafa;
-  &-item {
-    margin-right: 10px;
-    cursor: pointer;
-    display: inline-block;
-  }
-}
-</style>
