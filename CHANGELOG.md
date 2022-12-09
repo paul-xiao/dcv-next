@@ -1,3 +1,10 @@
+## [0.0.10](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.9...v0.0.10) (2022-12-01)
+
+### Features
+
+- use common styles ([54be66c](http://10.1.191.15:13480/fed/dcv_next/commits/54be66ce89a2bf3ae33c973624c1497cf6871111))
+- 更新文档 ([4c6b436](http://10.1.191.15:13480/fed/dcv_next/commits/4c6b436bc34ddd750d99c3beb763f4b61f680b27))
+
 ## [0.0.9](https://gitee.com/paul-xiao/dcv_next/compare/v0.0.8...v0.0.9) (2022-11-21)
 
 ## [0.0.8](https://gitee.com/paul-xiao/dcv_next/compare/v0.0.7...v0.0.8) (2022-11-21)

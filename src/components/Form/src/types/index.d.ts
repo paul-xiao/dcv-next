@@ -8,3 +8,8 @@ export interface IFormItem {
   rules?: any[];
   componentProps?: any;
 }
+
+export interface ISelectOption {
+  label?: String;
+  value?: String;
+}

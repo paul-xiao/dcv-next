@@ -1,11 +1,11 @@
 {
   "name": "dcv-next",
   "private": false,
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
-    "build": "yarn tailwind && rimraf dist && vue-tsc && vite build",
+    "build": "rimraf dist && vue-tsc && vite build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "@pxfed/dcui": "^1.0.1",
+    "dcv-next": "^0.0.11",
+    "element-plus": "^2.2.25",
     "vue": "^3.2.25"
   },
   "devDependencies": {
@@ -97,9 +99,6 @@
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "element-plus": "^2.2.25"
-  },
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "module": "./src/index.ts",

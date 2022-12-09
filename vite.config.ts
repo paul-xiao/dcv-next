@@ -18,6 +18,11 @@ module.exports = defineConfig({
       content: ["**/*.html", "**/*.ts", "**/*.js", "**/*.vue"],
     }),
   ],
+  resolve: {
+    alias: {
+      "@": "/examples/",
+    },
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

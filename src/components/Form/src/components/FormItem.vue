@@ -1,5 +1,5 @@
 <template>
-  <ElFormItem :label="label" :prop="prop" :labelWidth="labelWidth">
+  <ElFormItem v-bind="$attrs">
     <template v-if="slot">
       <slot :name="prop"></slot>
     </template>
@@ -44,7 +44,7 @@ export default defineComponent({
       const isInput = ["password", "input"].includes(type);
       switch (type) {
         case "select":
-          return "BasicSelect";
+          return "DcBasicSelect";
         default:
           return `El${capitalize(isInput ? "input" : type)}`;
       }

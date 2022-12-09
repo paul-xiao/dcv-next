@@ -9,13 +9,9 @@
   </ElSelect>
 </template>
 <script lang="ts" setup>
-import { watch, ref, onMounted } from "vue";
+import { watch, ref, onMounted, computed } from "vue";
 import { ElSelect } from "element-plus";
-
-interface ISelectOption {
-  label?: String;
-  value?: String;
-}
+import { ISelectOption } from "../types";
 
 interface BasicSelectProps {
   api?: Function;
@@ -23,35 +19,38 @@ interface BasicSelectProps {
   modelValue?: string | string[];
   props: ISelectOption;
 }
-const model = ref<string | string[] | undefined>("");
+const model = ref<any>("");
 const myOptions = ref<ISelectOption[] | Record<string, any>>([]);
 const _props = defineProps<BasicSelectProps>();
 const emit = defineEmits(["update:modelValue"]);
-const { modelValue, ...rest } = { ..._props };
 // set default
-model.value = modelValue;
-myOptions.value = rest.options || [];
-// function onSelectChange(val) {
-//   console.log(val)
-//   emit('update:modelValue', val)
-// }
+model.value = computed(() => _props.modelValue);
+myOptions.value = _props.options || [];
+
 function getMatched(data, filter: ISelectOption) {
   if (!filter) return data;
-  return data.map((d) => {
-    d.label = d[`${filter.label}`];
-    d.value = d[`${filter.value}`];
-    const hasChild = Array.isArray(d.children) && d.children.length;
-    if (hasChild) {
-      d.children = getMatched(d.children, filter);
-    }
-    return d;
-  });
+  return data.reduce((res, cur) => {
+    const result = {};
+    Object.keys(filter).forEach((f) => {
+      const filterKey = filter[f];
+      if (f === "children") {
+        result[f] = getMatched(cur[filterKey], filter);
+      } else {
+        result[f] = cur[filterKey];
+      }
+    });
+    res.push(result);
+    return res;
+  }, []);
 }
 
 async function loadDataFromApi(api: Function) {
   const res = await api();
-  myOptions.value = getMatched(res.data, rest.props);
-  console.log(res.data);
+  myOptions.value = getMatched(res.data, _props.props);
+  model.value = _props.modelValue;
+  console.log(myOptions.value);
+  console.log(_props.modelValue);
+  console.log(model.value);
 }
 watch(
   () => model.value,
@@ -61,8 +60,8 @@ watch(
   }
 );
 onMounted(() => {
-  if (typeof rest.api === "function") {
-    loadDataFromApi(rest.api);
+  if (typeof _props.api === "function") {
+    loadDataFromApi(_props.api);
   }
 });
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import Basic from './demo/ComponentA/Basic.vue'
+import Basic from './demo/button/Basic.vue'
 </script>
 
 # Component A
@@ -14,7 +14,7 @@ You may show demo below with the code snippet.
   <Basic/>
 </DemoContainer>
 
-<<< @/components/demo/ComponentA/Basic.vue
+<<< @/components/demo/button/Basic.vue
 
 ## Reference
 

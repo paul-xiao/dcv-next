@@ -1,15 +1,15 @@
 <template>
   <ElForm
     ref="formRef"
-    :model="ruleForm"
+    :model="state.ruleForm"
     status-icon
     :label-width="state?.conf?.labelWidth"
     :size="modelSize"
   >
     <template v-for="item of schema" :key="item.prop">
-      <FormItem v-model="ruleForm[item.prop]" v-bind="item">
+      <FormItem v-model="state.ruleForm[item.prop]" v-bind="item">
         <template v-if="item.slot" #[item.prop]>
-          <slot :name="item.prop" :model="ruleForm"></slot>
+          <slot :name="item.prop" :model="state.ruleForm"></slot>
         </template>
       </FormItem>
     </template>
@@ -46,8 +46,8 @@ const formRef = ref<FormInstance>();
 const schema = ref<any[]>([]);
 const state = reactive({
   conf: {} as IFormProps,
+  ruleForm: {} as any,
 });
-const ruleForm = reactive({});
 const _emits = defineEmits(["update:modelValue", "register", "submit"]);
 watch(
   () => _props.modelValue,
@@ -68,9 +68,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#non-null-assertion-operator-postfix-
       // await state?.conf?.api!({ ...unref(ruleForm) })
-      _emits("submit", { ...unref(ruleForm) });
+      _emits("submit", { ...unref(state.ruleForm) });
     } else {
-      console.warn("valid fail!", ruleForm);
+      console.warn("valid fail!", state.ruleForm);
     }
   });
 };
@@ -83,11 +83,10 @@ const resetForm = (formEl: FormInstance | undefined) => {
 };
 
 function setProps(props) {
-  console.group("Set Props:");
   state.conf = { ...props };
-  console.log(state);
-
-  console.groupEnd();
+}
+function setDefautValues(values) {
+  state.ruleForm = { ...values };
 }
 
 function getSchema(data) {
@@ -98,6 +97,7 @@ function getSchema(data) {
 const formActions = {
   setProps,
   getSchema,
+  setDefautValues,
 };
 
 onMounted(() => {

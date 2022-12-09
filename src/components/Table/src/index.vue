@@ -49,7 +49,7 @@
         label="操作"
         :min-width="state.conf?.optWidth"
       >
-        <template #default="slotProps">
+        <template #default="{ row }">
           <dc-button
             v-if="state.conf?.viewBtn"
             type="primary"
@@ -64,7 +64,7 @@
             type="success"
             text
             size="xs"
-            @click="handleEdit"
+            @click="handleEdit(row)"
           >
             编辑
           </dc-button>
@@ -73,11 +73,11 @@
             type="danger"
             text
             size="xs"
-            @click="handleDelete(slotProps.row)"
+            @click="handleDelete(row)"
           >
             删除
           </dc-button>
-          <slot name="opt" :row="slotProps.row"></slot>
+          <slot name="opt" :row="row"></slot>
         </template>
       </ElTableColumn>
     </ElTable>

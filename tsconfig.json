@@ -23,6 +23,8 @@
     }
   },
   "include": [
+    "docs/**/*.ts",
+    "examples/**/*.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "plugins/**/*.d.ts",

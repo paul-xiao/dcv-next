@@ -1,13 +1,14 @@
-const path = require("path");
+import path from "path";
+import { defineConfig } from "vitepress";
 
-module.exports = {
+export default defineConfig({
   title: "Dcv Next",
   description: "Dcv base on vue3.x",
   head: [["link", { rel: "icon", href: "logo.png" }]],
   themeConfig: {
-    search: true,
-    author: "paul",
-    repo: "http://10.1.191.15:13480/fed/dcv_next",
+    // search: true,
+    // author: 'paul',
+    // repo: 'http://10.1.191.15:13480/fed/dcv_next',
     // outlineTitle: '当前页',
     nav: [
       { text: "起步", link: "/guide/" },
@@ -28,8 +29,8 @@ module.exports = {
         {
           text: "Components",
           items: [
-            { text: "Component A", link: "/components/component-a" },
-            { text: "Component B", link: "/components/component-b" },
+            { text: "Button", link: "/components/button" },
+            { text: "Editor", link: "/components/editor" },
           ],
         },
       ],
@@ -64,7 +65,7 @@ module.exports = {
       alias: {
         dcv: path.resolve(__dirname, "../../src"),
       },
-      dedupe: ["vue", /primevue\/.+/], // avoid error when using dependencies that also use Vue
+      dedupe: ["vue"], // avoid error when using dependencies that also use Vue
     },
   },
-};
+});
