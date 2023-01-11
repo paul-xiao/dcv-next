@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
-  <div class="p-5 prose prose-slate" v-html="result"></div>
+  <div class="p-5 prose prose-slate !max-w-none" v-html="result"></div>
 </template>
 <script lang="ts" setup>
 import MarkdownIt from "markdown-it";

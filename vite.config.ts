@@ -28,7 +28,7 @@ module.exports = defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "dcv-next",
-      formats: ["es"], // adding 'umd' requires globals set to every external module
+      // formats: ["es", "umd"], // 默认支持es/umd两种格式
       fileName: () => `index.js`,
     },
     rollupOptions: {

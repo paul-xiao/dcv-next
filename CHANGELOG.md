@@ -1,3 +1,14 @@
+## [0.0.12](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.10...v0.0.12) (2023-01-11)
+
+### Bug Fixes
+
+- code previwer component update ([3e45852](http://10.1.191.15:13480/fed/dcv_next/commits/3e45852f8db391523ecebfbad9a44885d7f413e9))
+- code previwer component update ([9cdcbb8](http://10.1.191.15:13480/fed/dcv_next/commits/9cdcbb8a94762448f2d4f2ee1720877fa6bab9b1))
+
+### Features
+
+- tailwindcss 打包优化 ([7ea429b](http://10.1.191.15:13480/fed/dcv_next/commits/7ea429b7d7dd07ade5b6efc7751ae386fafd872f))
+
 ## [0.0.10](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.9...v0.0.10) (2022-12-01)
 
 ### Features
