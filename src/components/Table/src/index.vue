@@ -64,7 +64,7 @@
             type="success"
             text
             size="xs"
-            @click="handleEdit(row)"
+            @click="handleEdit()"
           >
             编辑
           </dc-button>

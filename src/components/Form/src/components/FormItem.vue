@@ -1,5 +1,5 @@
 <template>
-  <ElFormItem v-bind="$attrs">
+  <ElFormItem :label="label" :label-width="labelWidth">
     <template v-if="slot">
       <slot :name="prop"></slot>
     </template>
@@ -7,6 +7,7 @@
       :is="getComponent(type)"
       v-model="myValue"
       v-bind="componentProps"
+      @change="onChange"
       v-else
     />
   </ElFormItem>
@@ -27,7 +28,7 @@ export default defineComponent({
     componentProps: { type: Object, default: () => {} },
     modelValue: [String, Array],
   },
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "change"],
   setup(_props, { emit }) {
     const myValue = computed({
       get: () => {
@@ -40,17 +41,23 @@ export default defineComponent({
     function capitalize(str) {
       return str && str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
     }
+    function onChange(val) {
+      emit("change", val);
+    }
     const getComponent = (type = "input") => {
       const isInput = ["password", "input"].includes(type);
       switch (type) {
         case "select":
-          return "DcBasicSelect";
+          return "DcSelect";
+        case "upload":
+          return "DcUpload";
         default:
           return `El${capitalize(isInput ? "input" : type)}`;
       }
     };
     return {
       getComponent,
+      onChange,
       myValue,
     };
   },

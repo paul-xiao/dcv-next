@@ -7,6 +7,7 @@ export interface IFormItem {
   slot?: boolean;
   rules?: any[];
   componentProps?: any;
+  change?: Function;
 }
 
 export interface ISelectOption {

@@ -1,6 +1,6 @@
 <template>
   <ElSelect v-model="model" v-bind="$attrs" class="w-full">
-    <el-option
+    <ElOption
       v-for="item in myOptions"
       :key="item.value"
       :label="item.label"
@@ -9,22 +9,23 @@
   </ElSelect>
 </template>
 <script lang="ts" setup>
-import { watch, ref, onMounted, computed } from "vue";
-import { ElSelect } from "element-plus";
+import { watch, ref, onMounted, toRefs } from "vue";
+import { ElSelect, ElOption } from "element-plus";
 import { ISelectOption } from "../types";
 
 interface BasicSelectProps {
   api?: Function;
   options?: ISelectOption[];
   modelValue?: string | string[];
-  props: ISelectOption;
+  props?: ISelectOption;
 }
 const model = ref<any>("");
 const myOptions = ref<ISelectOption[] | Record<string, any>>([]);
 const _props = defineProps<BasicSelectProps>();
 const emit = defineEmits(["update:modelValue"]);
 // set default
-model.value = computed(() => _props.modelValue);
+// toRefs :将响应式对象转换为普通对象，其中结果对象的每个 property 都是指向原始对象相应 property 的 ref。
+model.value = toRefs(_props).modelValue;
 myOptions.value = _props.options || [];
 
 function getMatched(data, filter: ISelectOption) {
@@ -46,11 +47,11 @@ function getMatched(data, filter: ISelectOption) {
 
 async function loadDataFromApi(api: Function) {
   const res = await api();
-  myOptions.value = getMatched(res.data, _props.props);
-  model.value = _props.modelValue;
-  console.log(myOptions.value);
-  console.log(_props.modelValue);
-  console.log(model.value);
+  myOptions.value = getMatched(
+    res.data,
+    _props.props || { label: "label", value: "value" }
+  );
+  model.value = toRefs(_props).modelValue;
 }
 watch(
   () => model.value,

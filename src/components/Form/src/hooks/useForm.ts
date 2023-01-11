@@ -28,7 +28,6 @@ export function useForm(props: IFormProps) {
     instance.setProps(rest);
     instance.getSchema(schema);
     formRef.value = instance;
-    console.log(instance);
   };
 
   function onSubmit() {}

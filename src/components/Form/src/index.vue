@@ -7,9 +7,13 @@
     :size="modelSize"
   >
     <template v-for="item of schema" :key="item.prop">
-      <FormItem v-model="state.ruleForm[item.prop]" v-bind="item">
+      <FormItem
+        v-model="state.ruleForm[item.prop]"
+        @change="(val) => handleChange(item, val)"
+        v-bind="item"
+      >
         <template v-if="item.slot" #[item.prop]>
-          <slot :name="item.prop" :model="state.ruleForm"></slot>
+          <slot :name="item.prop" :row="item" :model="state.ruleForm"></slot>
         </template>
       </FormItem>
     </template>
@@ -84,9 +88,16 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 function setProps(props) {
   state.conf = { ...props };
+  console.log(state.conf);
 }
 function setDefautValues(values) {
   state.ruleForm = { ...values };
+}
+function setFormItem(key, val) {
+  state.ruleForm[key] = val;
+  state.ruleForm = { ...state.ruleForm };
+
+  console.log(state.ruleForm);
 }
 
 function getSchema(data) {
@@ -94,10 +105,15 @@ function getSchema(data) {
   console.log(schema.value);
 }
 
+function handleChange(item, props) {
+  item.change && item.change(formActions, props);
+}
+
 const formActions = {
   setProps,
   getSchema,
   setDefautValues,
+  setFormItem,
 };
 
 onMounted(() => {

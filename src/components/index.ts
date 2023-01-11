@@ -1,18 +1,19 @@
 import { PageWrapper } from "./App";
 import { Icon, SvgIcon } from "./Icon";
 import Breadcrumb from "./Breadcrumb";
-import { Form, FormItem, BasicSelect, useForm } from "./Form";
+import { Form, FormItem, Select, Upload, useForm } from "./Form";
 import Button from "./Button";
 import { Table, useTable } from "./Table";
 import { Editor, EditorViewer } from "./Editor";
-export default {
+const components = {
   PageWrapper,
   Icon,
   SvgIcon,
   Breadcrumb,
   Form,
   FormItem,
-  BasicSelect,
+  Select,
+  Upload,
   Button,
   Table,
   Editor,
@@ -25,7 +26,8 @@ export {
   Breadcrumb,
   Form,
   FormItem,
-  BasicSelect,
+  Select,
+  Upload,
   Button,
   Table,
   Editor,
@@ -33,3 +35,4 @@ export {
   useForm,
   useTable,
 };
+export default components;
