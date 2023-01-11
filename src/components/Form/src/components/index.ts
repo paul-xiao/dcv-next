@@ -1,3 +1,3 @@
-import Select from "./BasicSelect.vue";
+import Select from "./Select.vue";
 import Upload from "./Upload.vue";
 export { Select, Upload };

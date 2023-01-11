@@ -9,24 +9,25 @@
   </ElSelect>
 </template>
 <script lang="ts" setup>
-import { watch, ref, onMounted, toRefs } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { ElSelect, ElOption } from "element-plus";
 import { ISelectOption } from "../types";
 
-interface BasicSelectProps {
+interface SelectProps {
   api?: Function;
   options?: ISelectOption[];
   modelValue?: string | string[];
   props?: ISelectOption;
 }
-const model = ref<any>("");
 const myOptions = ref<ISelectOption[] | Record<string, any>>([]);
-const _props = defineProps<BasicSelectProps>();
+const _props = defineProps<SelectProps>();
 const emit = defineEmits(["update:modelValue"]);
 // set default
-// toRefs :将响应式对象转换为普通对象，其中结果对象的每个 property 都是指向原始对象相应 property 的 ref。
-model.value = toRefs(_props).modelValue;
 myOptions.value = _props.options || [];
+const model = computed({
+  get: () => _props.modelValue,
+  set: (val) => emit("update:modelValue", val),
+});
 
 function getMatched(data, filter: ISelectOption) {
   if (!filter) return data;
@@ -51,15 +52,7 @@ async function loadDataFromApi(api: Function) {
     res.data,
     _props.props || { label: "label", value: "value" }
   );
-  model.value = toRefs(_props).modelValue;
 }
-watch(
-  () => model.value,
-  (val) => {
-    console.log(val);
-    emit("update:modelValue", val);
-  }
-);
 onMounted(() => {
   if (typeof _props.api === "function") {
     loadDataFromApi(_props.api);
