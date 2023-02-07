@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .square1,
+    .square2 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+    .square1 {
+      top: 40px;
+      background: red;
+    }
+    .square2 {
+      top: 150px;
+      background: blue;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="square1"></div>
+      <div class="square2"></div>
+      <button class="btn">开始！</button>
+    </div>
+    <script>
+      const square1El = document.querySelector(".square1");
+      const square2El = document.querySelector(".square2");
+      // 定时器版
+      function squareMove() {
+        let timer = null;
+        square1El.style.left = "0px";
+        timer = setInterval(() => {
+          const squareLeft = parseInt(square1El.style.left);
+          if (squareLeft >= 500) return clearInterval(timer);
+          square1El.style.left = squareLeft + 1 + "px";
+        }, 17);
+      }
+
+      // requestAnimationFrame 版
+      function squareMove2() {
+        let timer = null;
+        square2El.style.left = "0px";
+
+        function updateAnimation() {
+          const squareLeft = parseInt(square2El.style.left);
+          if (squareLeft >= 500) return cancelAnimationFrame(timer);
+          square2El.style.left = squareLeft + 1 + "px";
+          window.requestAnimationFrame(updateAnimation);
+        }
+
+        window.requestAnimationFrame(updateAnimation);
+      }
+
+      document.querySelector(".btn").addEventListener("click", () => {
+        squareMove();
+        squareMove2();
+      });
+    </script>
+  </body>
+</html>

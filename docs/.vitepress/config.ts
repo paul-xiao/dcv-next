@@ -17,6 +17,7 @@ export default defineConfig({
       { text: "迁移指南", link: "/migrate/" },
       { text: "任务清单", link: "/todo/" },
       { text: "常见问题", link: "/issues/" },
+      { text: "常用API", link: "/api/" },
     ],
     sidebar: {
       "/guide/": [
@@ -56,6 +57,16 @@ export default defineConfig({
         {
           text: "常见问题",
           items: [{ text: "", link: "/issues/" }],
+        },
+      ],
+      "/api/": [
+        {
+          text: "ThreeJS",
+          collapsible: true,
+          items: [
+            { text: "介绍", link: "/api/threejs/" },
+            { text: "基础图元", link: "/api/threejs/primitives" },
+          ],
         },
       ],
     },

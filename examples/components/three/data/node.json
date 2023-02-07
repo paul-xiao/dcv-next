@@ -1,0 +1,17 @@
+[
+  {
+    "name": "四川",
+    "coordinates": ["102", "23"],
+    "params": {}
+  },
+  {
+    "name": "福建",
+    "coordinates": ["102", "23"],
+    "params": {}
+  },
+  {
+    "name": "海南",
+    "coordinates": ["102", "23"],
+    "params": {}
+  }
+]

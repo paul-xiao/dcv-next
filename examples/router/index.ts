@@ -43,6 +43,7 @@ export const allowRoutes = [
   {
     path: "/components",
     name: "components",
+    redirect: "/components/button",
     meta: {
       title: "components",
       hidden: true,
@@ -52,8 +53,6 @@ export const allowRoutes = [
     children: componentsRoutes,
   },
 ];
-
-console.log(allowRoutes);
 
 // 3. 创建路由实例并传递 `routes` 配置
 // 你可以在这里输入更多的配置，但我们在这里
