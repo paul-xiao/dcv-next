@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 /**
  * 3d 地图功能点
  * 1、geojson绘制地图，边界线
@@ -48,7 +49,7 @@ export default class MyGeoMap {
     this.setPoint();
     this.setLines();
     // this.addHelper()
-    this.render();
+    this.animate();
   }
   setStage() {
     const canvas: HTMLElement | null = document.querySelector("#c");
@@ -58,6 +59,7 @@ export default class MyGeoMap {
     }
     this.renderer = new THREE.WebGLRenderer({ canvas });
     this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color("black");
   }
   setCamera() {
     const fov = 75;
@@ -65,13 +67,55 @@ export default class MyGeoMap {
     const near = 0.1;
     const far = 10000;
     this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    this.camera.position.set(0, 0, 120);
+    this.camera.position.set(0, 0, 150);
     this.camera.lookAt(this.scene?.position);
+    // helper
+    const helper = new THREE.CameraHelper(this.camera);
+    this.scene.add(helper);
   }
   setLights() {
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(1, 2, 4);
+    const color = 0xffffff;
+    const intensity = 2;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(0, 50, 10);
+    light.target.position.set(-5, 10, 5);
     this.scene.add(light);
+    this.scene.add(light.target);
+    // DirectionalLightHelper
+    const helper = new THREE.DirectionalLightHelper(light, 5);
+    this.scene.add(helper);
+    class ColorGUIHelper {
+      object;
+      prop;
+      constructor(object, prop) {
+        this.object = object;
+        this.prop = prop;
+      }
+      get value() {
+        return `#${this.object[this.prop].getHexString()}`;
+      }
+      set value(hexString) {
+        this.object[this.prop].set(hexString);
+      }
+    }
+    const gui = new GUI();
+    gui.addColor(new ColorGUIHelper(light, "color"), "value").name("color");
+    gui.add(light, "intensity", 0, 2, 0.01);
+    gui.add(light.target.position, "x", -10, 10);
+    gui.add(light.target.position, "z", -10, 10);
+    gui.add(light.target.position, "y", 0, 10);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2); // 创建环境光
+    this.scene.add(ambientLight); // 将环境光添加到场景
+
+    // const spotLight = new THREE.SpotLight(0xffffff) // 创建聚光灯
+    // spotLight.position.set(0, 20, 50)
+    // spotLight.castShadow = true
+    // this.scene.add(spotLight)
+    // // PointLightHelper
+    // const sphereSize = 5
+    // const pointLightHelper = new THREE.PointLightHelper(spotLight, sphereSize, 'red')
+    // this.scene.add(pointLightHelper)
   }
   setControls() {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -82,7 +126,7 @@ export default class MyGeoMap {
     });
   }
   setGroundPlane() {
-    const groundGeometry = new THREE.PlaneGeometry(5500, 5500);
+    const groundGeometry = new THREE.PlaneGeometry(5000, 5000);
     const groundMaterial = new THREE.MeshPhongMaterial({ color: 0x777777 });
     this.ground = new THREE.Mesh(groundGeometry, groundMaterial);
     this.ground.receiveShadow = true;
@@ -131,8 +175,8 @@ export default class MyGeoMap {
   setPoint() {
     this.option.geojson.features.forEach((elem) => {
       const properties: any = elem.properties;
-      if (!Array.isArray(properties.center)) return;
-      const [x, y] = this.projection(properties.center);
+      if (!Array.isArray(properties.centroid)) return;
+      const [x, y] = this.projection(properties.centroid);
       this.setText(properties.name, [x, y]);
       {
         const radiusTop = 1; // ui: radiusTop
@@ -175,73 +219,68 @@ export default class MyGeoMap {
   setLines() {
     const data = [
       {
-        label: "北京-天津",
+        label: "北京-四川",
         coordinates: [
-          [116.405285, 39.904989],
-          [117.190182, 39.125596],
+          [116.41995, 40.18994],
+          [102.693453, 30.674545],
+        ],
+      },
+      {
+        label: "海南-四川",
+        coordinates: [
+          [109.754859, 19.189767],
+          [102.693453, 30.674545],
         ],
       },
     ];
+
     data.forEach((d) => {
-      const [x0, y0] = this.projection(d.coordinates[0]);
-      const [x1, y1] = this.projection(d.coordinates[1]);
-      console.log(x0, y0);
-      console.log(x1, y1);
+      const coordinates0 = d.coordinates[0];
+      const coordinates1 = d.coordinates[1];
+      // const startLon = (Math.PI / 180) * coordinates0[0];
+      // const startLan = (Math.PI / 180) * coordinates0[1];
+      // const endLon = (Math.PI / 180) * coordinates1[0];
+      // const endtLan = (Math.PI / 180) * coordinates1[1];
+      // const earthR = 6378;
+      // const distance =
+      //   Math.acos(
+      //     Math.sin(startLan) * Math.sin(endtLan) +
+      //       Math.cos(startLan) * Math.cos(endtLan) * Math.cos(endLon - startLon)
+      //   ) * earthR;
+      const partCount = 10;
+
+      const [x0, y0] = this.projection(coordinates0);
+      const [x1, y1] = this.projection(coordinates1);
+      const pointsArr: any = [];
+      for (let i = 0; i <= partCount; i++) {
+        const x = (x0 * (partCount - i)) / partCount + (x1 * i) / partCount;
+        const y = (y0 * (partCount - i)) / partCount + (y1 * i) / partCount;
+        const z = (partCount - i) * i + 50 / partCount; // 基于z轴的平滑曲线
+
+        pointsArr.push(new THREE.Vector3(x, -y, z));
+      }
+
       /**
        * 创建线条模型
        */
       const geometry = new THREE.BufferGeometry(); //创建一个缓冲类型几何体
+      console.log(pointsArr);
+
       // 三维样条曲线
-      const curve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(x0, y0, 25),
-        new THREE.Vector3(x1, y1, 50),
-      ]);
+      const curve = new THREE.CatmullRomCurve3(pointsArr);
       //曲线上等间距返回多个顶点坐标
-      const points = curve.getSpacedPoints(100); //分段数100，返回101个顶点
+      const points = curve.getSpacedPoints(partCount); //分段数100，返回101个顶点
       // setFromPoints方法从points中提取数据赋值给attributes.position
       geometry.setFromPoints(points);
       const material = new THREE.LineBasicMaterial({
-        color: 0x006666, //轨迹颜色
+        color: 0xff0000, //轨迹颜色
+        linewidth: 2,
+        linecap: "round", //ignored by WebGLRenderer
+        linejoin: "round", //ignored by WebGLRenderer
       });
       //线条模型对象
       const line = new THREE.Line(geometry, material);
-      this.scene.add(line);
-
-      const index = 20; //取点索引位置
-      const num = 10; //从曲线上获取点数量
-      const points2 = points.slice(index, index + num); //从曲线上获取一段
-      const geometry2 = new THREE.BufferGeometry();
-      geometry2.setFromPoints(points2);
-
-      // 批量计算所有顶点颜色数据
-      const posNum = points2.length - 2; //分界点黄色，两端和轨迹线一个颜色青色
-      const colorArr = [];
-      for (let i = 0; i < points2.length; i++) {
-        const color1 = new THREE.Color(0x006666); //轨迹线颜色 青色
-        const color2 = new THREE.Color(0xffff00); //黄色
-        let color;
-        // 飞线段里面颜色设置为黄色，两侧设置为青色，也就是说中间某个位置向两侧颜色渐变
-        if (i < posNum) {
-          color = color1.lerp(color2, i / posNum);
-        } else {
-          color = color2.lerp(color1, (i - posNum) / (points2.length - posNum));
-        }
-        colorArr.push(color.r, color.g, color.b);
-      }
-      // 设置几何体顶点颜色数据
-      geometry2.attributes.color = new THREE.BufferAttribute(
-        new Float32Array(colorArr),
-        3
-      );
-
-      const material2 = new THREE.LineBasicMaterial({
-        // color: 0xffff00, //轨迹颜色
-        vertexColors: THREE.VertexColors, //使用顶点颜色，不用设置color
-        linewidth: 3.0, // 设置线宽
-      });
-      //线条模型对象
-      const line2 = new THREE.Line(geometry2, material2);
-      this.scene.add(line2);
+      this.map.add(line);
     });
   }
   addHelper() {
@@ -290,7 +329,7 @@ export default class MyGeoMap {
     let timeOut: any = null;
     //设置为可渲染状态
     this.renderEnabled = true;
-    this.render();
+    this.animate();
 
     //清除上次的延迟器
     if (timeOut) {
@@ -302,6 +341,7 @@ export default class MyGeoMap {
   }
   resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
+    if (!canvas) return;
     const pixelRatio = window.devicePixelRatio;
     const width = (canvas.clientWidth * pixelRatio) | 0;
     const height = (canvas.clientHeight * pixelRatio) | 0;
@@ -311,14 +351,20 @@ export default class MyGeoMap {
     }
     return needResize;
   }
-  render() {
-    if (this.resizeRendererToDisplaySize(this.renderer)) {
-      const canvas = this.renderer.domElement;
-      this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      this.camera.updateProjectionMatrix();
-    }
-    if (this.renderEnabled) {
-      this.renderer.render(this.scene, this.camera);
-    }
+  animate() {
+    const render = () => {
+      if (this.resizeRendererToDisplaySize(this.renderer)) {
+        const canvas = this.renderer.domElement;
+        this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        this.camera.updateProjectionMatrix();
+      }
+      if (this.renderEnabled) {
+        this.renderer.render(this.scene, this.camera);
+      }
+      // requestAnimationFrame(render)
+    };
+    // todo: 地图开启requestAnimationFrame cpu 100%
+    // requestAnimationFrame(render)
+    render();
   }
 }
