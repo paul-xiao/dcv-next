@@ -2,6 +2,7 @@
   <ElUpload
     ref="upload"
     class="avatar-uploader"
+    :api="api"
     :show-file-list="false"
     :on-success="handleAvatarSuccess"
     :before-upload="beforeAvatarUpload"

@@ -5,6 +5,11 @@
     min-height: 600px;
     overflow: hidden;
   }
+  .toolbar {
+    .dropdown-content {
+      display: none;
+    }
+  }
 }
 // 添加行号样式
 pre code.hljs {

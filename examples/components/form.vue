@@ -24,7 +24,20 @@ const schema = [
     ],
   },
   {
-    label: "基础下拉",
+    label: "正文",
+    prop: "content",
+    slot: true,
+    span: 12,
+    rules: [
+      {
+        required: true,
+        message: "请输入标题",
+        trigger: "blur",
+      },
+    ],
+  },
+  {
+    label: "标签",
     prop: "tags",
     type: "select",
     span: 12,
