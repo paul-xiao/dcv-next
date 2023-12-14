@@ -1,33 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-// 动态路由名称映射表
-const modules = import.meta.glob("../components/**/**.vue");
-console.log(modules);
-
-const components: any = {
-  LAYOUT: (() => import("@/components/index.vue")) as unknown as () => Promise<
-    typeof import("*.vue")
-  >,
-};
-export const componentsRoutes: any[] = [];
-Object.keys(modules).forEach((key) => {
-  const route = {} as any;
-  const nameMatch = key.match(/^\.\.\/components\/(.+)\.vue/);
-  if (!nameMatch) return;
-  // 排除_Components文件夹下的文件
-  // if(nameMatch[1].includes('_Components')) return
-  // 如果页面以Index命名，则使用父文件夹作为name
-  const indexMatch = nameMatch[1].match(/(.*)\/index$/i);
-  let name = indexMatch ? indexMatch[1] : nameMatch[1];
-  name = route.name = name.replace("/", "_");
-  if (name === "index") return;
-  components[name] = modules[key] as () => Promise<typeof import("*.vue")>;
-  route.path = `/components/${name}`;
-  route.component = components[name];
-  componentsRoutes.push(route);
-});
-
-console.log(components);
-console.log(componentsRoutes);
 
 export const allowRoutes = [
   {
@@ -38,19 +9,56 @@ export const allowRoutes = [
       hidden: true,
       breadcrumbHidden: true,
     },
-    redirect: "/components",
+    redirect: "/guide",
+  },
+  {
+    path: "/guide",
+    name: "guide",
+    component: () => import("@/views/guide.vue"),
+    meta: {
+      title: "指南",
+      hidden: true,
+    },
   },
   {
     path: "/components",
     name: "components",
     redirect: "/components/button",
     meta: {
-      title: "components",
+      title: "组件",
       hidden: true,
       breadcrumbHidden: true,
     },
-    component: components["LAYOUT"],
-    children: componentsRoutes,
+    component: () => import("@/views/components/index.vue"),
+    children: [
+      {
+        path: "/components/button",
+        name: "button",
+        component: () => import("@/views/components/button.vue"),
+        meta: {
+          title: "按钮",
+          hidden: true,
+        },
+      },
+      {
+        path: "/components/form",
+        name: "form",
+        component: () => import("@/views/components/form.vue"),
+        meta: {
+          title: "表单",
+          hidden: true,
+        },
+      },
+      {
+        path: "/components/table",
+        name: "table",
+        component: () => import("@/views/components/table.vue"),
+        meta: {
+          title: "表格",
+          hidden: true,
+        },
+      },
+    ],
   },
 ];
 

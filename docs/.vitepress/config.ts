@@ -74,7 +74,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        dcv: path.resolve(__dirname, "../../src"),
+        dcv: path.resolve(__dirname, "../../packages"),
       },
       dedupe: ["vue"], // avoid error when using dependencies that also use Vue
     },

@@ -17,6 +17,7 @@
     "declarationDir": "./dist/types",
     "isolatedModules": true,
     "skipLibCheck": true,
+    "types": ["element-plus/global", "types/*.d.ts"],
     "paths": {
       "@/*": ["./examples/*"],
       "@assets/*": ["./examples/assets/*"],

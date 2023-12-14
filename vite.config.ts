@@ -10,7 +10,7 @@ module.exports = defineConfig({
     Vue(),
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
-      iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
+      iconDirs: [path.resolve(process.cwd(), "src/packages/icons")],
       // 指定symbolId格式
       symbolId: "icon-[dir]-[name]",
     }),
@@ -21,12 +21,12 @@ module.exports = defineConfig({
   resolve: {
     alias: {
       "@": "/examples/",
-      "~": "/src/",
+      "~dcv": "/packages/",
     },
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: path.resolve(__dirname, "packages/index.ts"),
       name: "dcv-next",
       // formats: ["es", "umd"], // 默认支持es/umd两种格式
       fileName: () => `index.js`,

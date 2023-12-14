@@ -1,6 +1,6 @@
 import DefaultTheme from "vitepress/theme";
 
-import DcvNext from "../../../src";
+import DcvNext from "../../../packages";
 import DemoContainer from "../components/DemoContainer.vue";
 import "./custom.css";
 

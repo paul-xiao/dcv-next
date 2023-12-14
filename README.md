@@ -1,6 +1,12 @@
 # dcv-next
 
-> vue3 based component lib
+> 整合 Element Plus 用于日常 B 端系统开发
+
+## todos
+
+- 基础组件
+  - 表单
+  - 表格
 
 ## build lib
 
