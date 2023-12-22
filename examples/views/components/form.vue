@@ -1,12 +1,13 @@
 <template>
-  <div class="p-5">
+  <dc-page>
     <dc-form @register="registerForm" @submit="onSubmit">
-      <template #content="{ model }"> 自定义 {{ model }} </template>
+      <template #content="{ model }"> 自定义 {{ model.content }} </template>
     </dc-form>
-  </div>
+  </dc-page>
 </template>
 <script lang="ts" setup>
-import { useForm } from "~dcv";
+import { useForm, Form as DcForm, Page as DcPage } from "#dcv_next";
+import { onMounted } from "vue";
 
 const schema = [
   {
@@ -78,8 +79,14 @@ const [registerForm, { setValues }]: any = useForm({
   schema,
 });
 
+onMounted(() => {
+  setValues({
+    content: "11",
+    title: "测试标题",
+  });
+});
+
 function onSubmit(form) {
   console.log(form);
-  setValues();
 }
 </script>

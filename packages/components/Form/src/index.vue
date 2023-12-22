@@ -5,6 +5,7 @@
     status-icon
     :label-width="state?.conf?.labelWidth"
     :size="modelSize"
+    v-bind="$attrs"
   >
     <template v-for="item of schema" :key="item.prop">
       <FormItem
@@ -68,7 +69,11 @@ const slotFoot = !!useSlots().footer;
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
+  console.log(formEl);
+
   await formEl.validate(async (valid) => {
+    console.log(valid);
+
     if (valid) {
       // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#non-null-assertion-operator-postfix-
       // await state?.conf?.api!({ ...unref(ruleForm) })
@@ -79,7 +84,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   });
 };
 
-const validate = (cb: any) => formRef.value && formRef.value.validate(cb);
+function validate(cb: any) {
+  return formRef.value && formRef.value.validate(cb);
+}
 
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;

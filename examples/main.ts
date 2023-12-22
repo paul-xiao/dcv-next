@@ -2,12 +2,13 @@ import { createApp } from "vue";
 import router from "./router";
 
 import App from "./App.vue";
-import DcvNext from "../packages";
-import ElementPlus from "element-plus";
+// import DcvNext from "#dcv_next";
+// import ElementPlus from "element-plus";
+import "#dcv_next/styles/index.scss";
 import "./styles/index.scss";
 import "element-plus/theme-chalk/dark/css-vars.css";
 const app = createApp(App);
-app.use(ElementPlus);
-app.use(DcvNext);
+// app.use(ElementPlus);
+// app.use(DcvNext);
 app.use(router);
 app.mount("#app");

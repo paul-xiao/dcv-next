@@ -1,10 +1,14 @@
 <template>
-  <div class="p-5">
+  <dc-page>
     <el-button type="primary">primary</el-button>
     <el-button type="success">success</el-button>
     <el-button type="warning">warning</el-button>
     <el-button type="danger">danger</el-button>
     <el-button type="info">info</el-button>
     <el-button>default</el-button>
-  </div>
+  </dc-page>
 </template>
+<script setup>
+import { Page as DcPage } from "#dcv_next";
+import { ElButton } from "element-plus";
+</script>

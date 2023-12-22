@@ -33,5 +33,9 @@ const componentRoutes = [
     name: "表格",
     path: "/components/table",
   },
+  {
+    name: "CRUD",
+    path: "/components/crud",
+  },
 ];
 </script>

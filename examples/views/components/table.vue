@@ -1,85 +1,63 @@
 <template>
-  <div class="p-5">
-    <dc-form @register="registerForm" @submit="onSubmit">
-      <template #content="{ model }"> 自定义 {{ model }} </template>
-    </dc-form>
-  </div>
+  <dc-page>
+    <dc-table @register="registerTable">
+      <template #opt>
+        <el-button>详情</el-button>
+      </template>
+    </dc-table>
+  </dc-page>
 </template>
 <script lang="ts" setup>
-import { useForm } from "../../../packages";
-
+import { useTable, Page as DcPage, Table as DcTable } from "#dcv_next";
+import { ElButton } from "element-plus";
 const schema = [
   {
     label: "标题",
     prop: "title",
-    span: 12,
-    rules: [
-      {
-        required: true,
-        message: "请输入标题",
-        trigger: "blur",
-      },
-    ],
   },
   {
     label: "正文",
     prop: "content",
-    slot: true,
-    span: 12,
-    rules: [
-      {
-        required: true,
-        message: "请输入标题",
-        trigger: "blur",
-      },
-    ],
   },
   {
     label: "标签",
     prop: "tags",
-    type: "select",
-    span: 12,
-    componentProps: {
-      options: [
-        {
-          label: "JS",
-          value: "JS",
-        },
-      ],
-    },
-    rules: [
-      {
-        required: true,
-        message: "请输入标题",
-        trigger: "blur",
-      },
-    ],
   },
   {
     label: "API下拉",
-    prop: "tags",
-    type: "select",
-    span: 12,
-    componentProps: {
-      api: () => Promise.resolve({ data: [{ label: "value", value: "222" }] }),
-    },
-    rules: [
-      {
-        required: true,
-        message: "请输入标题",
-        trigger: "blur",
-      },
-    ],
+    prop: "tags1",
   },
 ];
-const [registerForm, { setValues }]: any = useForm({
+const [registerTable]: any = useTable({
   labelWidth: 100,
   foot: true,
   schema,
+  api: () =>
+    new Promise((res) => {
+      res({
+        data: {
+          result: [
+            {
+              title: "111",
+              content: "222",
+              tags: "122",
+              tags1: "22222",
+            },
+            {
+              title: "111",
+              content: "222",
+              tags: "122",
+              tags1: "22222",
+            },
+            {
+              title: "111",
+              content: "222",
+              tags: "122",
+              tags1: "22222",
+            },
+          ],
+        },
+      });
+    }),
 });
-
-function onSubmit(form) {
-  console.log(form);
-  setValues();
-}
 </script>

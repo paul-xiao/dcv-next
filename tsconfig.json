@@ -5,8 +5,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "allowJs": true,
-    "noImplicitAny": false,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -17,20 +15,28 @@
     "declarationDir": "./dist/types",
     "isolatedModules": true,
     "skipLibCheck": true,
-    "types": ["element-plus/global", "types/*.d.ts"],
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "types": ["element-plus/global"],
     "paths": {
-      "@/*": ["./examples/*"],
-      "@assets/*": ["./examples/assets/*"],
-      "@dcv_next/*": ["./src/*"]
+      "@/*": ["examples/*"],
+      "@assets/*": ["examples/assets/*"],
+      "#dcv_next/*": ["packages/*"]
     }
   },
   "include": [
     "docs/**/*.ts",
-    "examples/**/*.ts",
-    "src/**/*.ts",
-    "src/**/*.d.ts",
+    "examples/**/*.{ts,vue}",
+    "packages/**/*.{ts,vue}",
+    "packages/**/*.d.ts",
     "plugins/**/*.d.ts",
     "types/**/*.ts",
     "types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }

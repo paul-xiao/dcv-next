@@ -33,6 +33,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ElMenu, ElMenuItem, ElSubMenu } from "element-plus";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();

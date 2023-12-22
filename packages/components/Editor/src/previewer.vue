@@ -81,10 +81,10 @@ function render() {
 }
 </script>
 <style lang="scss" scoped>
-::v-deep pre code.hljs ol {
+:deep(pre code.hljs ol) {
   padding-left: 1.625rem;
 }
-::v-deep pre code.hljs ol li {
+:deep(pre code.hljs ol li) {
   white-space: pre-wrap;
   word-break: break-word;
 }

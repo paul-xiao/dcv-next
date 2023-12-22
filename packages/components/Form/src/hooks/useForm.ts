@@ -33,10 +33,13 @@ export function useForm(props: IFormProps) {
   function onSubmit() {
     console.log(111);
   }
+  /**
+   * @description: 设置默认值
+   * @param {*} values
+   * @return {*}
+   */
   async function setValues(values) {
     const form = await getForm();
-    console.log(form);
-
     form.setDefautValues(values);
   }
   // methods

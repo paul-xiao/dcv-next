@@ -1,8 +1,9 @@
 <template>
-  <ElFormItem :label="label" :label-width="labelWidth">
-    <template v-if="slot">
+  <ElFormItem v-bind="$attrs" :prop="prop">
+    <template v-if="!!$slots[prop]">
       <slot :name="prop"></slot>
     </template>
+
     <component
       :is="getComponent(type)"
       v-model="myValue"
@@ -16,15 +17,16 @@
 // 动态组件处理方式有两种： component 或者 jsx
 import { defineComponent } from "vue";
 import { ElFormItem, ElInput } from "element-plus";
+import ISelect from "./Select.vue";
 import { computed } from "vue";
 export default defineComponent({
-  components: { ElFormItem, ElInput },
+  components: { ElFormItem, ElInput, ISelect },
   props: {
-    label: { type: String, default: "" },
-    labelWidth: { type: String, default: "" },
-    prop: { type: String, default: "" },
+    prop: {
+      type: String,
+      required: true,
+    },
     type: String,
-    slot: { type: Boolean, default: false },
     componentProps: { type: Object, default: () => {} },
     modelValue: [String, Array],
   },
@@ -48,9 +50,9 @@ export default defineComponent({
       const isInput = ["password", "input"].includes(type);
       switch (type) {
         case "select":
-          return "DcSelect";
+          return "ISelect";
         case "upload":
-          return "DcUpload";
+          return "ElUpload";
         default:
           return `El${capitalize(isInput ? "input" : type)}`;
       }

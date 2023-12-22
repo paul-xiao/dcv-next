@@ -1,5 +1,5 @@
 <template>
-  <ElSelect v-model="model" v-bind="$attrs" class="w-full">
+  <ElSelect v-model="model" v-bind="$attrs" style="width: 100%">
     <ElOption
       v-for="item in myOptions"
       :key="item.value"

@@ -1,5 +1,5 @@
 const path = require("path");
-const { defineConfig } = require("vite");
+import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import PurgeIcons from "vite-plugin-purge-icons";
@@ -21,7 +21,7 @@ module.exports = defineConfig({
   resolve: {
     alias: {
       "@": "/examples/",
-      "~dcv": "/packages/",
+      "#dcv_next": "/packages/", // tsconfig.json中也需要配置
     },
   },
   build: {
@@ -33,7 +33,7 @@ module.exports = defineConfig({
     },
     rollupOptions: {
       // external modules won't be bundled into your library
-      external: ["vue", /primevue\/.+/, /examples\/.+/], // not every external has a global
+      external: ["vue", /examples\/.+/, /public\/.+/], // not every external has a global
       output: {
         // disable warning on src/index.ts using both default and named export
         exports: "named",
@@ -56,7 +56,6 @@ module.exports = defineConfig({
       // 选项写法
       "/api": {
         target: "http://localhost:8082",
-        logLevel: "debug",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

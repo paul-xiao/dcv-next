@@ -1,7 +1,6 @@
 import { App } from "vue";
-import components from "./components";
-import "./assets/font/iconfont.css";
 import "./styles/index.scss";
+import * as components from "./components";
 export const install: any = (app: App) => {
   for (const key of Object.keys(components)) {
     app.component(`Dc${key}`, components[key]);

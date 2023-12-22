@@ -1,26 +1,5 @@
 <template>
   <div class="dc-table">
-    <div class="search-group"></div>
-    <div class="flex items-center justify-between my-2">
-      <div>
-        <dc-button v-if="state.conf?.addBtn" type="primary" @click="handleAdd"
-          >添加</dc-button
-        >
-        <dc-button
-          v-if="state.conf?.batchDel"
-          type="danger"
-          @click="handleBatchDelete"
-          >删除</dc-button
-        >
-        <slot name="batch" :selections="state.multipleSelection"></slot>
-      </div>
-      <div>
-        <i
-          class="cursor-pointer el-icon el-icon-refresh"
-          @click="onRefeshTable"
-        ></i>
-      </div>
-    </div>
     <ElTable
       :data="state.data"
       :stripe="state.conf?.stripe"
@@ -46,42 +25,16 @@
       </ElTableColumn>
       <ElTableColumn
         :fixed="state.conf?.fixed"
+        v-if="Object.keys($slots).length"
         label="操作"
         :min-width="state.conf?.optWidth"
       >
         <template #default="{ row }">
-          <dc-button
-            v-if="state.conf?.viewBtn"
-            type="primary"
-            text
-            size="xs"
-            @click="handleView"
-          >
-            查看
-          </dc-button>
-          <dc-button
-            v-if="state.conf?.editBtn"
-            type="success"
-            text
-            size="xs"
-            @click="handleEdit()"
-          >
-            编辑
-          </dc-button>
-          <dc-button
-            v-if="state.conf?.delBtn"
-            type="danger"
-            text
-            size="xs"
-            @click="handleDelete(row)"
-          >
-            删除
-          </dc-button>
           <slot name="opt" :row="row"></slot>
         </template>
       </ElTableColumn>
     </ElTable>
-    <div v-if="state?.page?.total" class="py-5">
+    <div v-if="state?.page?.total" class="dc-table-pagination">
       <ElPagination
         :current-page="state?.page?.current"
         :page-sizes="[10, 20, 30, 50]"
@@ -95,27 +48,6 @@
         @current-change="handleCurrentChange"
       />
     </div>
-    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="30%">
-      <dc-form
-        ref="dialogFormRef"
-        v-model="form"
-        :schema="state.schema"
-        :foot="false"
-      >
-        <!-- form插槽转移到table -->
-        <template v-for="col of state.schema" :key="col.prop" #[col.prop]>
-          <slot :name="`${col.prop}Form`"></slot>
-        </template>
-      </dc-form>
-      <template #footer>
-        <span class="dialog-footer">
-          <dc-button @click="handleCancel">取消</dc-button>
-          <dc-button type="primary" @click="handleSubmit(dialogFormRef)"
-            >确认</dc-button
-          >
-        </span>
-      </template>
-    </el-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -123,7 +55,6 @@ import { reactive, ref, computed, onMounted, watchEffect } from "vue";
 import { ElTable, ElTableColumn, ElPagination } from "element-plus";
 import tableProps from "./table";
 import { IPageProps, ITableColumn, ITableConf } from "./types";
-const dialogFormRef = ref(null);
 const _props = defineProps(tableProps);
 const emit = defineEmits([
   "register",
@@ -164,7 +95,7 @@ const state = reactive({
   page: {} as IPageProps,
 });
 
-const dialogTitle = computed(() => {
+const _dialogTitle = computed(() => {
   const map: any = {
     add: "新增",
     view: "查看",
@@ -173,12 +104,12 @@ const dialogTitle = computed(() => {
   return map[state.flag];
 });
 
-function handleAdd() {
+function _handleAdd() {
   emit("update:modelValue", {});
   dialogVisible.value = true;
   state.flag = "add";
 }
-async function handleSubmit(formRef: any) {
+async function _handleSubmit(formRef: any) {
   if (!formRef) return;
 
   await formRef.validate((valid: any, fields: any) => {
@@ -193,29 +124,29 @@ async function handleSubmit(formRef: any) {
   });
 }
 
-function handleCancel() {
+function _handleCancel() {
   dialogVisible.value = false;
 }
 
-function handleView() {
+function _handleView() {
   dialogVisible.value = true;
   state.flag = "view";
 }
-function handleEdit() {
+function _handleEdit() {
   dialogVisible.value = true;
   state.flag = "edit";
 }
-function handleDelete(row: any) {
+function _handleDelete(row: any) {
   emit("row-del", row);
 }
 
-function handleBatchDelete() {
+function _handleBatchDelete() {
   emit("batch-del", state.multipleSelection);
 }
 function handleSelectionChange(val: any) {
   state.multipleSelection = val;
 }
-function onRefeshTable() {
+function _onRefeshTable() {
   onLoad();
 }
 function handleSizeChange(val: any) {
@@ -240,6 +171,8 @@ function setProps(props) {
 }
 async function onLoad(params = {}) {
   const res: any = await state.api(params);
+  console.log(res);
+
   state.data = res?.data?.result;
   state.page.total = res?.data?.total;
 }
@@ -257,3 +190,10 @@ onMounted(() => {
   emit("register", tableAction);
 });
 </script>
+<style lang="scss" scoped>
+.dc-table {
+  &-pagination {
+    margin-top: 15px;
+  }
+}
+</style>

@@ -58,6 +58,15 @@ export const allowRoutes = [
           hidden: true,
         },
       },
+      {
+        path: "/components/crud",
+        name: "crud",
+        component: () => import("@/views/components/crud.vue"),
+        meta: {
+          title: "CRUD",
+          hidden: true,
+        },
+      },
     ],
   },
 ];
