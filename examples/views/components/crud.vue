@@ -21,7 +21,7 @@ import {
   Page as DcPage,
   Form as DcForm,
   Table as DcTable,
-} from "#dcv_next";
+} from "#";
 import { ElButton } from "element-plus";
 
 const searchSchema = [

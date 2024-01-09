@@ -22,6 +22,10 @@ import BaseLayout from "@/layout/index.vue";
 
 const componentRoutes = [
   {
+    name: "色彩",
+    path: "/components/color",
+  },
+  {
     name: "按钮",
     path: "/components/button",
   },

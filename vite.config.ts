@@ -20,8 +20,8 @@ module.exports = defineConfig({
   ],
   resolve: {
     alias: {
-      "@": "/examples/",
-      "#dcv_next": "/packages/", // tsconfig.json中也需要配置
+      "@": path.resolve(__dirname, "./examples"),
+      "#": path.resolve(__dirname, "./packages"),
     },
   },
   build: {

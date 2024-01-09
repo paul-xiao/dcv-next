@@ -8,7 +8,7 @@
   </dc-page>
 </template>
 <script lang="ts" setup>
-import { useTable, Page as DcPage, Table as DcTable } from "#dcv_next";
+import { useTable, Page as DcPage, Table as DcTable } from "#";
 import { ElButton } from "element-plus";
 const schema = [
   {

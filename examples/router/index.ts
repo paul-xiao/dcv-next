@@ -32,6 +32,15 @@ export const allowRoutes = [
     component: () => import("@/views/components/index.vue"),
     children: [
       {
+        path: "/components/color",
+        name: "color",
+        component: () => import("@/views/components/color.vue"),
+        meta: {
+          title: "色彩",
+          hidden: true,
+        },
+      },
+      {
         path: "/components/button",
         name: "button",
         component: () => import("@/views/components/button.vue"),

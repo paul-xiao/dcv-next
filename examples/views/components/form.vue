@@ -6,7 +6,7 @@
   </dc-page>
 </template>
 <script lang="ts" setup>
-import { useForm, Form as DcForm, Page as DcPage } from "#dcv_next";
+import { useForm, Form as DcForm, Page as DcPage } from "#";
 import { onMounted } from "vue";
 
 const schema = [
@@ -86,7 +86,7 @@ onMounted(() => {
   });
 });
 
-function onSubmit(form) {
+function onSubmit(form: any) {
   console.log(form);
 }
 </script>

@@ -9,6 +9,6 @@
   </dc-page>
 </template>
 <script setup>
-import { Page as DcPage } from "#dcv_next";
+import { Page as DcPage } from "#";
 import { ElButton } from "element-plus";
 </script>

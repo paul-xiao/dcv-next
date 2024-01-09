@@ -1,42 +1,31 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2020",
     "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationDir": "./dist/types",
-    "isolatedModules": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
-    "types": ["element-plus/global"],
+
+    /* Bundler mode */
+    "moduleResolution": "bundler", // 让打包工具（如Webpack）来决定如何解析模块。这意味着TypeScript将遵循Webpack的模块解析规则，而不是使用TypeScript自己的默认解析机制。
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path */
     "paths": {
-      "@/*": ["examples/*"],
-      "@assets/*": ["examples/assets/*"],
-      "#dcv_next/*": ["packages/*"]
+      "@/*": ["./examples/*"],
+      "#": ["./packages"]
     }
   },
-  "include": [
-    "docs/**/*.ts",
-    "examples/**/*.{ts,vue}",
-    "packages/**/*.{ts,vue}",
-    "packages/**/*.d.ts",
-    "plugins/**/*.d.ts",
-    "types/**/*.ts",
-    "types/**/*.d.ts"
-  ],
-  "exclude": ["node_modules", "tests/server/**/*.ts", "dist", "**/*.js"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
