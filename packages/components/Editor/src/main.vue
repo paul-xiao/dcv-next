@@ -48,8 +48,8 @@ const text: any = computed({
 //   }
 // )
 
-const setCurType = (type, url) => {
-  if (typeof tpls[type] === "function") {
+const setCurType = (type: string | number, url: any) => {
+  if (tpls && typeof tpls[type] === "function") {
     text.value += `\n${tpls[type](url)}`;
   } else {
     text.value += `\n${tpls[type]}`;

@@ -6,7 +6,7 @@
   </dc-page>
 </template>
 <script lang="ts" setup>
-import { useForm, Form as DcForm, Page as DcPage } from "#";
+import { useForm, Form as DcForm, Page as DcPage } from "@dcv-next/components";
 import { onMounted } from "vue";
 
 const schema = [

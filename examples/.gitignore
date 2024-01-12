@@ -14,8 +14,6 @@ dist-ssr
 
 # Editor directories and files
 .vscode/*
-.storybook/*
-.husky/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -24,7 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-*.zip
-
-.husky/*
-.npmrc

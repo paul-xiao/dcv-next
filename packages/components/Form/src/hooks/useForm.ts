@@ -24,7 +24,7 @@ export function useForm(props: IFormProps) {
     return form as any;
   }
   // 注册
-  const register = (instance) => {
+  const register = (instance: any) => {
     instance.setProps(rest);
     instance.getSchema(schema);
     formRef.value = instance;
@@ -38,7 +38,7 @@ export function useForm(props: IFormProps) {
    * @param {*} values
    * @return {*}
    */
-  async function setValues(values) {
+  async function setValues(values: any) {
     const form = await getForm();
     form.setDefautValues(values);
   }

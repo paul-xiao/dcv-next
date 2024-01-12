@@ -10,7 +10,7 @@
       >
         <el-menu-item index="0">
           <img
-            style="width: 100px"
+            style="height: 40px"
             src="/images/element-plus-logo.svg"
             alt="Element logo"
           />

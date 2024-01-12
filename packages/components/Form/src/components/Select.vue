@@ -29,10 +29,10 @@ const model = computed({
   set: (val) => emit("update:modelValue", val),
 });
 
-function getMatched(data, filter: ISelectOption) {
+function getMatched(data: any[], filter: any) {
   if (!filter) return data;
-  return data.reduce((res, cur) => {
-    const result = {};
+  return data.reduce((res: {}[], cur: { [x: string]: any }) => {
+    const result = {} as any;
     Object.keys(filter).forEach((f) => {
       const filterKey = filter[f];
       if (f === "children") {

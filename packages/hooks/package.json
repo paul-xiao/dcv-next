@@ -1,5 +1,5 @@
 {
-  "name": "@dcv-next/utils",
+  "name": "@dcv-next/hooks",
   "version": "0.1.0",
   "main": "index.ts",
   "scripts": {

@@ -40,10 +40,10 @@ export default defineComponent({
         emit("update:modelValue", val);
       },
     });
-    function capitalize(str) {
+    function capitalize(str: string) {
       return str && str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
     }
-    function onChange(val) {
+    function onChange(val: any) {
       emit("change", val);
     }
     const getComponent = (type = "input") => {

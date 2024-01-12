@@ -160,7 +160,7 @@ function handleCurrentChange(val: any) {
   onLoad({ current, size });
 }
 
-function setProps(props) {
+function setProps(props: any) {
   console.group("Set Props:");
   const { conf, api, schema, page } = props;
   state.conf = { ...state.conf, ...conf };

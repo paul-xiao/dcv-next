@@ -11,21 +11,18 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "dist/types",
     "jsx": "preserve",
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-
-    /* Path */
-    "paths": {
-      "@/*": ["./examples/*"],
-      "#": ["./packages"]
-    }
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue"],
+  "include": ["packages/**/*.vue", "packages/**/*.d.ts"],
+  "exclude": ["node_modules/**"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

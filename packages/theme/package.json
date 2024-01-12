@@ -1,7 +1,7 @@
 {
-  "name": "@dcv-next/utils",
-  "version": "0.1.0",
-  "main": "index.ts",
+  "name": "@dcv-next/theme",
+  "version": "1.0.0",
+  "main": "index.scss",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

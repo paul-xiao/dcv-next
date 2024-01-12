@@ -8,7 +8,7 @@
     <el-button>default</el-button>
   </dc-page>
 </template>
-<script setup>
-import { Page as DcPage } from "#";
+<script lang="ts" setup>
+import { Page as DcPage } from "@dcv-next/components";
 import { ElButton } from "element-plus";
 </script>

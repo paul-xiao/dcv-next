@@ -4,7 +4,7 @@
       v-for="item of paths"
       :key="item.path"
       :to="{ path: item.path }"
-      >{{ item.meta.title }}</el-breadcrumb-item
+      >{{ item?.meta?.title }}</el-breadcrumb-item
     >
   </el-breadcrumb>
 </template>

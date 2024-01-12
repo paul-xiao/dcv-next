@@ -93,26 +93,26 @@ const resetForm = (formEl: FormInstance | undefined) => {
   formEl.resetFields();
 };
 
-function setProps(props) {
+function setProps(props: any) {
   state.conf = { ...props };
   console.log(state.conf);
 }
-function setDefautValues(values) {
+function setDefautValues(values: any) {
   state.ruleForm = { ...values };
 }
-function setFormItem(key, val) {
+function setFormItem(key: string, val: any) {
   state.ruleForm[key] = val;
   state.ruleForm = { ...state.ruleForm };
 
   console.log(state.ruleForm);
 }
 
-function getSchema(data) {
+function getSchema(data: any[]) {
   schema.value = data;
   console.log(schema.value);
 }
 
-function handleChange(item, props) {
+function handleChange(item: any, props: any) {
   item.change && item.change(formActions, props);
 }
 

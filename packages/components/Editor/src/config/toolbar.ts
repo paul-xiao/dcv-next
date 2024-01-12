@@ -1,4 +1,4 @@
-export const tpls = {
+export const tpls: any = {
   bold: "**粗体**",
   italic: "*斜体*",
   h1: "# 一级标题",

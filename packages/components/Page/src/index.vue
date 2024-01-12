@@ -24,7 +24,7 @@ export default defineComponent({
   components: { DcBreadcrumb },
   setup() {
     const route = useRoute();
-    const breadcrumb = ref([]);
+    const breadcrumb = ref<any>([]);
     breadcrumb.value = route.matched;
     return {
       breadcrumb,
