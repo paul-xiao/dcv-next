@@ -22,7 +22,7 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["packages/**/*.vue", "packages/**/*.d.ts"],
+  "include": ["packages/**/*.vue", "packages/**/*.ts", "packages/**/*.d.ts"],
   "exclude": ["node_modules/**"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

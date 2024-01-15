@@ -1,7 +1,7 @@
 {
   "name": "dcv-next",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "workspaces": [
     "packages/*",
@@ -121,7 +121,7 @@
     "CHANGELOG.md"
   ],
   "main": "./dist/index.js",
-  "types": "./dist/types/src/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "module": "./src/index.ts",
   "exports": {
     ".": {

@@ -18,7 +18,7 @@ export function useTable(props: ITableProps): UseTableReturnType {
   const tableRef = ref<any>(null);
 
   // 注册
-  const register = (instance) => {
+  const register = (instance: any) => {
     instance.setProps(props);
     tableRef.value = instance;
   };
