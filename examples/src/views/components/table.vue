@@ -33,35 +33,40 @@ const schema = [
   },
 ];
 const [registerTable]: any = useTable({
-  labelWidth: 100,
-  foot: true,
+  conf: {
+    name: "xxx",
+  },
   schema,
   api: () =>
     new Promise((res) => {
       res({
-        data: {
-          result: [
-            {
-              title: "111",
-              content: "222",
-              tags: "122",
-              tags1: "22222",
-            },
-            {
-              title: "111",
-              content: "222",
-              tags: "122",
-              tags1: "22222",
-            },
-            {
-              title: "111",
-              content: "222",
-              tags: "122",
-              tags1: "22222",
-            },
-          ],
-        },
+        code: 200,
+        message: "sucess",
+        result: [
+          {
+            title: "111",
+            content: "222",
+            tags: "122",
+            tags1: "22222",
+          },
+          {
+            title: "111",
+            content: "222",
+            tags: "122",
+            tags1: "22222",
+          },
+          {
+            title: "111",
+            content: "222",
+            tags: "122",
+            tags1: "22222",
+          },
+        ],
       });
     }),
+  page: {
+    size: 10,
+    current: 1,
+  },
 });
 </script>

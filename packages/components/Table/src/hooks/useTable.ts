@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { ref, unref } from "vue";
 import {
   ITableColumn,
@@ -7,11 +6,20 @@ import {
   UseTableReturnType,
   TableActionType,
 } from "../types";
+export interface PageResult<T> {
+  data: T;
+  total: number;
+}
+export interface HttpResponse<T> {
+  code: number;
+  message: string;
+  result: T;
+}
 export interface ITableProps {
-  conf: ITableConf;
-  api?: (params?: any) => Promise<AxiosResponse<any, any>>;
+  conf?: ITableConf;
+  api: (params?: any) => Promise<HttpResponse<PageResult<any> | any>>;
   schema: ITableColumn[];
-  page: IPageProps;
+  page?: IPageProps;
 }
 
 export function useTable(props: ITableProps): UseTableReturnType {

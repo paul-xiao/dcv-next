@@ -169,12 +169,24 @@ function setProps(props: any) {
   state.page = { ...state.page, ...page };
   console.groupEnd();
 }
+/**
+ * @description 加载表格数据
+ * @param params object
+ */
 async function onLoad(params = {}) {
-  const res: any = await state.api(params);
-  console.log(res);
-
-  state.data = res?.data?.result;
-  state.page.total = res?.data?.total;
+  try {
+    const res: any = await state.api(params);
+    // 分页
+    if (res?.result?.total) {
+      state.data = res?.result?.data;
+      state.page.total = res?.result?.total;
+    } else {
+      // 不分页
+      state.data = res?.result;
+    }
+  } catch (error) {
+    console.warn("表格数据加载错误！", error);
+  }
 }
 
 watchEffect(() => {
