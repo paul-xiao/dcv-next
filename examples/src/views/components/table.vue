@@ -20,53 +20,24 @@ const schema = [
     prop: "title",
   },
   {
-    label: "正文",
-    prop: "content",
-  },
-  {
-    label: "标签",
-    prop: "tags",
-  },
-  {
-    label: "API下拉",
-    prop: "tags1",
+    label: "更新时间",
+    prop: "updateTime",
   },
 ];
+
+const getArticleList = async (params: any) => {
+  console.log(params);
+
+  return await fetch(
+    `/api/article/list?current=${params?.current}&size=${params?.size}`
+  ).then((res) => res.json());
+};
+
 const [registerTable]: any = useTable({
   conf: {
     name: "xxx",
   },
   schema,
-  api: () =>
-    new Promise((res) => {
-      res({
-        code: 200,
-        message: "sucess",
-        result: [
-          {
-            title: "111",
-            content: "222",
-            tags: "122",
-            tags1: "22222",
-          },
-          {
-            title: "111",
-            content: "222",
-            tags: "122",
-            tags1: "22222",
-          },
-          {
-            title: "111",
-            content: "222",
-            tags: "122",
-            tags1: "22222",
-          },
-        ],
-      });
-    }),
-  page: {
-    size: 10,
-    current: 1,
-  },
+  api: getArticleList,
 });
 </script>

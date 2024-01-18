@@ -1,4 +1,4 @@
-## [0.1.1](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.14...v0.1.1) (2024-01-15)
+## [0.1.3](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.14...v0.1.3) (2024-01-18)
 
 ### Bug Fixes
 
@@ -11,6 +11,22 @@
 - three-map: add splines ([568b9e2](http://10.1.191.15:13480/fed/dcv_next/commits/568b9e25ce1d9c8a72ff1c7fd9a9817e5e8e6b9b))
 - update demo layout ([1039d72](http://10.1.191.15:13480/fed/dcv_next/commits/1039d72de73074922904b68bbf2e20ea5ff92352))
 - update peerDependencies ([6e9aa24](http://10.1.191.15:13480/fed/dcv_next/commits/6e9aa2442988eac1c6ce7785c79f6bc41f7e4508))
+- 表格分页参数调整 ([bfcb72d](http://10.1.191.15:13480/fed/dcv_next/commits/bfcb72d0905488121d99a0f2a555df5ca088e258))
+
+## [0.1.2](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.14...v0.1.2) (2024-01-18)
+
+### Bug Fixes
+
+- fix type issue ([6371024](http://10.1.191.15:13480/fed/dcv_next/commits/6371024b0f04b0471d35219e75b96a81df483d39))
+
+### Features
+
+- add storybook ([b468e98](http://10.1.191.15:13480/fed/dcv_next/commits/b468e98c8572b4a4f12eee95b13690151c318b0b))
+- three-map: add font and cylinder ([85631cb](http://10.1.191.15:13480/fed/dcv_next/commits/85631cbe242fd0ab142d3b19effe170d2a82f16b))
+- three-map: add splines ([568b9e2](http://10.1.191.15:13480/fed/dcv_next/commits/568b9e25ce1d9c8a72ff1c7fd9a9817e5e8e6b9b))
+- update demo layout ([1039d72](http://10.1.191.15:13480/fed/dcv_next/commits/1039d72de73074922904b68bbf2e20ea5ff92352))
+- update peerDependencies ([6e9aa24](http://10.1.191.15:13480/fed/dcv_next/commits/6e9aa2442988eac1c6ce7785c79f6bc41f7e4508))
+- 表格分页参数调整 ([bfcb72d](http://10.1.191.15:13480/fed/dcv_next/commits/bfcb72d0905488121d99a0f2a555df5ca088e258))
 
 ## [0.0.14](http://10.1.191.15:13480/fed/dcv_next/compare/v0.0.12...v0.0.14) (2023-01-11)
 

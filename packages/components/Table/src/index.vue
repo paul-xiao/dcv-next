@@ -51,7 +51,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, computed, onMounted, watchEffect } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
 import { ElTable, ElTableColumn, ElPagination } from "element-plus";
 import tableProps from "./table";
 import { IPageProps, ITableColumn, ITableConf } from "./types";
@@ -171,10 +171,12 @@ function setProps(props: any) {
 }
 /**
  * @description 加载表格数据
- * @param params object
+ * @param query object 查询条件
  */
-async function onLoad(params = {}) {
+async function onLoad(query = {}) {
   try {
+    const { current, size } = state.page;
+    const params = current && size ? { ...query, current, size } : query;
     const res: any = await state.api(params);
     // 分页
     if (res?.result?.total) {
@@ -189,9 +191,10 @@ async function onLoad(params = {}) {
   }
 }
 
-watchEffect(() => {
-  onLoad();
-});
+// watchEffect(() => {
+//   const { current, size } = state.page
+//   onLoad({ current, size })
+// })
 
 const tableAction = {
   setProps,
@@ -200,6 +203,7 @@ const tableAction = {
 
 onMounted(() => {
   emit("register", tableAction);
+  onLoad();
 });
 </script>
 <style lang="scss" scoped>
