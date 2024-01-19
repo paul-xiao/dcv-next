@@ -1,49 +1,42 @@
-# Getting Started
+## build lib
 
-You may add the usage of the library here.
+```sh
 
-> If you remove Component B and the [PrimeFaces](https://www.primefaces.org/) (PrimeVue, PrimeIcons and PrimeFlex) dependencies from your library, the setup related to PrimeFaces won't be needed from the guide below.
+pnpm install && pnpm build
 
-## Setup
-
-This setup assumes your client app is created with Vite and vue-ts template, and you use 'npm link' to link to `dcv` locally.
-
-In your `package.json`, you shall have the dependencies compatible with the following:
-
-```json
-"dependencies": {
-  "primeflex": "^3.1.2",
-  "primeicons": "^5.0.0",
-  "primevue": "^3.11.1",
-  "vue": "^3.2.25"
-}
 ```
 
-In your `vite.config.ts`, you shall configure to dedupe `vue`:
+## 本地测试
 
-```ts
-export default defineConfig({
-  resolve: {
-    dedupe: ['vue'],
-  },
-});
+```sh
+# 将当前工作目录或通过 --dir 参数指定的目录下的软件包链接到全局环境下的 node_modules 目录下
+pnpm link --global
+
+
+# 将全局环境下的 node_modules 目录中的指定的软件包（<pkg>）链接到当前工作目录下（或通过 --dir 参数指定的目录下）的 node_nodules 目录下。
+cd project-path
+
+pnpm link --global dcv
+
+# 删除link
+
+pnpm unlink dcv
 ```
 
-In your `main.ts`, you shall import the libraries and CSS:
+## 生产发布
 
-```ts
-import 'primevue/resources/themes/saga-blue/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
+```sh
+# 将lib推送到release分支
+# notes: lib目录必须先commit，否则无法push
+# commits: git commit -m 'build:version'
+git subtree push -P lib origin release
 
-import 'dcv/dist/style.css';
+# 项目使用
+pnpm add git+http://10.1.191.15:13480/fed/dcv#release
 ```
 
-Import components from this library in your own component:
+## get started
 
-```html
-<script setup lang="ts">
-  import { ComponentA, ComponentB } from 'dcv';
-</script>
+```bash
+pnpm add dcv-next
 ```

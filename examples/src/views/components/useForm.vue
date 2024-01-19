@@ -1,25 +1,14 @@
 <template>
   <dc-page>
-    <dc-form
-      v-model="form"
-      :schema="schema"
-      v-bind="{ ...componentProps }"
-      @submit="onSubmit"
-    />
+    <dc-form @register="registerForm" @submit="onSubmit">
+      <template #content="{ model }"> 自定义 {{ model.content }} </template>
+    </dc-form>
   </dc-page>
 </template>
 <script lang="ts" setup>
-import { Form as DcForm, Page as DcPage } from "@dcv-next/components";
-const form = {
-  title: 111,
-};
-// const rules = {
-//   name: [{
-//     required: true,
-//     message: 'please input name',
-//     trigger: 'blur'
-//   }]
-// }
+import { useForm, Form as DcForm, Page as DcPage } from "@dcv-next/components";
+import { onMounted } from "vue";
+
 const schema = [
   {
     label: "标题",
@@ -84,12 +73,18 @@ const schema = [
     ],
   },
 ];
+const [registerForm, { setValues }]: any = useForm({
+  labelWidth: 100,
+  foot: true,
+  schema,
+});
 
-// el-form attrs
-const componentProps = {
-  labelWidth: "120px",
-  statusIcon: false,
-};
+onMounted(() => {
+  setValues({
+    content: "11",
+    title: "测试标题",
+  });
+});
 
 function onSubmit(form: any) {
   console.log(form);

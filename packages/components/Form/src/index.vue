@@ -3,7 +3,6 @@
     ref="formRef"
     :model="state.ruleForm"
     status-icon
-    :label-width="state?.conf?.labelWidth"
     :size="modelSize"
     v-bind="$attrs"
   >
@@ -36,19 +35,19 @@ import { computed, onMounted, reactive, ref, unref, watch } from "vue";
 import { useSlots } from "vue";
 import { IFormProps } from "./hooks/useForm";
 import { IFormItem } from "./types";
-interface Props {
+interface FormProps {
   modelValue?: object;
-  schema?: IFormItem[];
+  schema?: IFormItem[] | undefined;
   rules?: Element;
   modelSize?: "small" | "default" | "large";
   detailed?: boolean;
   foot?: boolean;
 }
-const _props = withDefaults(defineProps<Props>(), {
+const _props = withDefaults(defineProps<FormProps>(), {
   foot: true,
 });
 const formRef = ref<FormInstance>();
-const schema = ref<any[]>([]);
+const schema = ref<IFormItem[]>([]);
 const state = reactive({
   conf: {} as IFormProps,
   ruleForm: {} as any,
@@ -106,8 +105,8 @@ function setFormItem(key: string, val: any) {
 
   console.log(state.ruleForm);
 }
-
-function getSchema(data: any[]) {
+// set schema
+function getSchema(data: IFormItem[]) {
   schema.value = data;
   console.log(schema.value);
 }
@@ -116,6 +115,10 @@ function handleChange(item: any, props: any) {
   item.change && item.change(formActions, props);
 }
 
+// init props
+_props.schema && getSchema(_props.schema);
+_props.modelValue && setDefautValues(_props.modelValue);
+// useForm  register hooks
 const formActions = {
   setProps,
   getSchema,

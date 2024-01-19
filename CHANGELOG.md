@@ -3,6 +3,7 @@
 ### Bug Fixes
 
 - fix type issue ([6371024](http://10.1.191.15:13480/fed/dcv_next/commits/6371024b0f04b0471d35219e75b96a81df483d39))
+- 表格分页优化 ([1f52458](http://10.1.191.15:13480/fed/dcv_next/commits/1f524587b8a91924042dac63b35fa1a60c78889e))
 
 ### Features
 

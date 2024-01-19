@@ -1,64 +1,118 @@
-# dcv-next
+# Dcv-Next
 
-> 整合 Element Plus 用于日常 B 端系统开发
+> a toolkit for Business end system
 
-## todos
+## Todos
 
-- 基础组件
-  - 表单
-  - 表格
+- Basic
+  - [x] Form
+  - [ ] Table
+    - [x] init data
+    - [x] pagination
+    - [x] row data format
+    - [x] column custom slot
+    - [x] operation column set width and fixed
 
-## build lib
-
-```sh
-
-pnpm install && pnpm build
-
-```
-
-## 本地测试
+## Install
 
 ```sh
-# 将当前工作目录或通过 --dir 参数指定的目录下的软件包链接到全局环境下的 node_modules 目录下
-pnpm link --global
-
-
-# 将全局环境下的 node_modules 目录中的指定的软件包（<pkg>）链接到当前工作目录下（或通过 --dir 参数指定的目录下）的 node_nodules 目录下。
-cd project-path
-
-pnpm link --global dcv
-
-# 删除link
-
-pnpm unlink dcv
-```
-
-## 生产发布
-
-```sh
-# 将lib推送到release分支
-# notes: lib目录必须先commit，否则无法push
-# commits: git commit -m 'build:version'
-git subtree push -P lib origin release
-
-# 项目使用
-pnpm add git+http://10.1.191.15:13480/fed/dcv#release
-```
-
-## get started
-
-```bash
 pnpm add dcv-next
 ```
 
-## useage
+## Useage
 
-### md-viewer
+### Form
 
-| Name  | Type   | Default | Description         |
-| ----- | ------ | ------- | ------------------- |
-| value | string | null    | contents to preview |
+#### Basic
 
-```vue
-<DcEditorViewer :value="contents" />
+```jsx
+<dc-form
+    v-model="form"
+    :schema="schema"
+    :rules="rules"
+    @submit="onSubmit">
+</dc-form>
+...
+import { Form as DcForm } from 'dcv-next'
+
+const form = {}
+// form schema
+const schema = [
+  {
+    label: 'label',
+    prop: 'name'
+  }
+  ...
+]
+//  form validation rules
+const rules = {
+  name: [{
+    required: true,
+    message: 'please input name',
+    trigger: 'blur'
+  }]
+}
+
+function onSubmit(model) {
+  console.log(model)
+  // your submit opts
+}
 ```
+
+### UseForm hook
+
+```jsx
+<dc-form
+    v-model="form"
+    :schema="schema"
+    :rules="rules"
+    @submit="onSumit">
+</dc-form>
+...
+import { Form as DcForm } from 'dcv-next'
+// form schema
+const schema = [
+  {
+    label: 'label',
+    prop: 'name'
+  }
+  ...
+]
+//  form validation rules
+const rules = {
+  name: [{
+    required: true,
+    message: 'please input name',
+    trigger: 'blur'
+  }]
+}
+
+function onSumit(model) {
+  console.log(model)
+  // your submit opts
+}
+```
+
+### Form Attrs
+
+| Name       | Type    | Default | Description           |
+| ---------- | ------- | ------- | --------------------- |
+| modelValue | object  | null    | form value            |
+| schema     | array   | null    | form schema           |
+| rules      | array   | null    | form validation rules |
+| detailed   | boolean | false   | is detail mode        |
+| foot       | boolean | false   | show foot             |
+
+### FormItem Attrs
+
+| Name           | Type     | Default | Description                                |
+| -------------- | -------- | ------- | ------------------------------------------ |
+| label          | object   | null    | label                                      |
+| labelWidth     | array    | null    | label width                                |
+| prop           | array    | null    | validate rules                             |
+| type           | boolean  | false   | component type                             |
+| span           | boolean  | false   | The number of columns occupied by the grid |
+| slot           | boolean  | false   | is slot                                    |
+| rules          | boolean  | false   | validate rules                             |
+| componentProps | object   | null    | component props                            |
+| change         | function | null    | show foot                                  |

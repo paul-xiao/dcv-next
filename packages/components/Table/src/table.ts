@@ -1,7 +1,13 @@
 import { PropType } from "vue";
-import { DefaultRow, IPageProps, ITableOptionProps, TableProps } from "./types";
+import {
+  DefaultRow,
+  IPageProps,
+  ITableConf,
+  ITableOptionProps,
+  TableProps,
+} from "./types";
 
-export default {
+const tableProps = {
   data: {
     type: Array as PropType<DefaultRow[]>,
     default: () => {
@@ -21,3 +27,11 @@ export default {
     default: () => {},
   },
 };
+
+const defaultTableConf: ITableConf = {
+  border: true,
+  stripe: true,
+  optWidth: "150px",
+  optFixed: false,
+};
+export { tableProps, defaultTableConf };

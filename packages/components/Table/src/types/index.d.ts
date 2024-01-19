@@ -3,28 +3,23 @@ export interface ITableOptionProps {
   conf: ITableConf;
   columns: ITableColumn[];
 }
+
+/**
+ * @description 表格默认配置
+ */
 export interface ITableConf {
-  name: string;
-  addBtn?: boolean;
-  editBtn?: boolean;
-  viewBtn?: boolean;
-  delBtn?: boolean;
-  batchDel?: boolean;
   stripe?: boolean;
   border?: boolean;
   height?: string | number | undefined;
-  fixed?: boolean;
-  size?: "small";
-  optWidth?: string;
+  size?: "" | "default" | "small" | "large";
+  optWidth?: string; // 操作栏宽度
+  optFixed?: boolean; // 操作栏是否固定
 }
 export interface ITableColumn {
   id?: string;
   prop: string;
   label: string;
-  width?: string;
-  slot?: boolean;
-  formslot?: boolean;
-  rules?: any[];
+  componentProps?: TableColumnCtx;
 }
 export interface IPageProps {
   size?: number;

@@ -2,11 +2,8 @@
   <div class="dc-table">
     <ElTable
       :data="state.data"
-      :stripe="state.conf?.stripe"
-      :border="state.conf?.border"
-      :height="state.conf?.height"
+      v-bind="elTableConf"
       row-key="id"
-      :size="state.conf?.size"
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       style="width: 100%"
       @selection-change="handleSelectionChange"
@@ -17,9 +14,9 @@
         :key="item.id"
         :prop="item.prop"
         :label="item.label"
-        :width="item.width"
+        v-bind="item.componentProps"
       >
-        <template v-if="item.slot" #default="{ row }">
+        <template v-if="isSlot(item)" #default="{ row }">
           <slot :name="item.prop" :row="row"></slot>
         </template>
       </ElTableColumn>
@@ -27,7 +24,7 @@
         :fixed="state.conf?.fixed"
         v-if="Object.keys($slots).length"
         label="操作"
-        :min-width="state.conf?.optWidth"
+        :width="state.conf?.optWidth"
       >
         <template #default="{ row }">
           <slot name="opt" :row="row"></slot>
@@ -51,11 +48,28 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, computed, onMounted } from "vue";
+import { reactive, ref, computed, onMounted, useSlots } from "vue";
 import { ElTable, ElTableColumn, ElPagination } from "element-plus";
-import tableProps from "./table";
-import { IPageProps, ITableColumn, ITableConf } from "./types";
+import { tableProps, defaultTableConf } from "./table";
+import { IPageProps, ITableColumn } from "./types";
+
+const slots = useSlots();
+
 const _props = defineProps(tableProps);
+
+const dialogVisible = ref(false);
+
+//
+const state = reactive({
+  data: [],
+  multipleSelection: [],
+  flag: "add",
+  conf: {} as any,
+  schema: [] as ITableColumn[],
+  api: (_params?: any) => {},
+  page: {} as IPageProps,
+});
+
 const emit = defineEmits([
   "register",
   "update:modelValue",
@@ -77,24 +91,6 @@ const form = computed({
   },
 });
 
-const dialogVisible = ref(false);
-
-const state = reactive({
-  data: [],
-  multipleSelection: [],
-  flag: "add",
-  conf: {
-    addBtn: true,
-    viewBtn: true,
-    delBtn: true,
-    editBtn: true,
-    border: true,
-  } as ITableConf,
-  schema: [] as ITableColumn[],
-  api: (_params?: any) => {},
-  page: {} as IPageProps,
-});
-
 const _dialogTitle = computed(() => {
   const map: any = {
     add: "新增",
@@ -103,6 +99,14 @@ const _dialogTitle = computed(() => {
   };
   return map[state.flag];
 });
+const elTableConf = computed(() => {
+  const { optWidth: _a, ...rest } = state.conf;
+  return rest;
+});
+
+function isSlot(item: { prop: PropertyKey }) {
+  return slots.hasOwnProperty(item.prop);
+}
 
 function _handleAdd() {
   emit("update:modelValue", {});
@@ -163,7 +167,7 @@ function handleCurrentChange(val: any) {
 function setProps(props: any) {
   console.group("Set Props:");
   const { conf, api, schema, page } = props;
-  state.conf = { ...state.conf, ...conf };
+  state.conf = { ...defaultTableConf, ...state.conf, ...conf };
   state.api = api;
   state.schema = schema;
   state.page = { ...state.page, ...page };
@@ -191,18 +195,14 @@ async function onLoad(query = {}) {
   }
 }
 
-// watchEffect(() => {
-//   const { current, size } = state.page
-//   onLoad({ current, size })
-// })
-
-const tableAction = {
+// table hooks
+const tableHooks = {
   setProps,
   onLoad,
 };
 
 onMounted(() => {
-  emit("register", tableAction);
+  emit("register", tableHooks);
   onLoad();
 });
 </script>
@@ -211,5 +211,12 @@ onMounted(() => {
   &-pagination {
     margin-top: 15px;
   }
+}
+::v-deep .el-table--border th.el-table__cell {
+  background-color: #f2f2f2;
+  font-size: 14px;
+  color: #999;
+  font-family: system-ui;
+  border-color: #e2e2e2;
 }
 </style>
