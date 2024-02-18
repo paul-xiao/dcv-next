@@ -100,7 +100,7 @@ const _dialogTitle = computed(() => {
   return map[state.flag];
 });
 const elTableConf = computed(() => {
-  const { optWidth: _a, ...rest } = state.conf;
+  const { optWidth: _optWidth, ...rest } = state.conf;
   return rest;
 });
 

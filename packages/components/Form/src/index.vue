@@ -28,13 +28,32 @@
     </ElFormItem>
   </ElForm>
 </template>
-<script setup lang="ts">
-import { FormInstance, ElForm, ElFormItem, ElButton } from "element-plus";
+<script lang="ts" setup>
+import {
+  computed,
+  onMounted,
+  reactive,
+  ref,
+  unref,
+  watch,
+  inject,
+  useSlots,
+} from "vue";
+import {
+  FormInstance,
+  ElForm,
+  ElFormItem,
+  ElButton,
+  ID_INJECTION_KEY,
+} from "element-plus";
 import FormItem from "./components/FormItem.vue";
-import { computed, onMounted, reactive, ref, unref, watch } from "vue";
-import { useSlots } from "vue";
 import { IFormProps } from "./hooks/useForm";
 import { IFormItem } from "./types";
+
+const idInjection = inject(ID_INJECTION_KEY);
+
+console.log(ID_INJECTION_KEY);
+console.log(idInjection);
 interface FormProps {
   modelValue?: object;
   schema?: IFormItem[] | undefined;
