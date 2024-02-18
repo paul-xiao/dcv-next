@@ -5,7 +5,11 @@
       :schema="schema"
       v-bind="{ ...componentProps }"
       @submit="onSubmit"
-    />
+    >
+      <template #content>
+        <h1>content</h1>
+      </template>
+    </dc-form>
   </dc-page>
 </template>
 <script lang="ts" setup>
@@ -89,6 +93,7 @@ const schema = [
 const componentProps = {
   labelWidth: "120px",
   statusIcon: false,
+  footer: true,
 };
 
 function onSubmit(form: any) {

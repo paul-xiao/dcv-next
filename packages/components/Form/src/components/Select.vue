@@ -10,7 +10,6 @@
 </template>
 <script lang="ts" setup>
 import { ref, onMounted, computed } from "vue";
-import { ElSelect, ElOption } from "element-plus";
 import { ISelectOption } from "../types";
 
 interface SelectProps {

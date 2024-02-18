@@ -16,11 +16,10 @@
 <script lang="ts">
 // 动态组件处理方式有两种： component 或者 jsx
 import { defineComponent } from "vue";
-import { ElFormItem, ElInput } from "element-plus";
 import ISelect from "./Select.vue";
 import { computed } from "vue";
 export default defineComponent({
-  components: { ElFormItem, ElInput, ISelect },
+  components: { ISelect },
   props: {
     prop: {
       type: String,

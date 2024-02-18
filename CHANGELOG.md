@@ -1,3 +1,9 @@
+## [0.1.6](https://gitee.com/paul-xiao/dcv_next/compare/v0.1.5...v0.1.6) (2024-02-18)
+
+### Features
+
+- update form props ([0b4af82](https://gitee.com/paul-xiao/dcv_next/commits/0b4af824bf31134c9048e426611903b1d219bc32))
+
 ## [0.1.5](https://gitee.com/paul-xiao/dcv_next/compare/v0.1.4...v0.1.5) (2024-02-18)
 
 ### Features

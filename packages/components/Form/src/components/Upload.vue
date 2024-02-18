@@ -13,18 +13,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
 import {
   ElMessage,
-  ElUpload,
-  ElIcon,
   UploadInstance,
+  UploadProps,
   UploadRawFile,
   genFileId,
 } from "element-plus";
-import { Plus } from "@element-plus/icons-vue";
-
-import type { UploadProps } from "element-plus";
+import { ref, watch } from "vue";
 interface Props {
   modelValue?: string;
   api?: any;

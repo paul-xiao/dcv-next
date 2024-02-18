@@ -18,10 +18,10 @@
         </template>
       </FormItem>
     </template>
-    <ElFormItem v-if="!slotFoot && !state.conf.foot">
+    <ElFormItem v-if="slotFoot">
       <slot name="footer"></slot>
     </ElFormItem>
-    <ElFormItem v-else>
+    <ElFormItem v-else-if="$attrs.footer || state.conf.foot">
       <ElButton type="primary" :size="modelSize" @click="submitForm(formRef)"
         >确认</ElButton
       >
@@ -40,13 +40,7 @@ import {
   inject,
   useSlots,
 } from "vue";
-import {
-  FormInstance,
-  ElForm,
-  ElFormItem,
-  ElButton,
-  ID_INJECTION_KEY,
-} from "element-plus";
+import { FormInstance, ID_INJECTION_KEY } from "element-plus";
 import FormItem from "./components/FormItem.vue";
 import { IFormProps } from "./hooks/useForm";
 import { IFormItem } from "./types";
