@@ -1,3 +1,9 @@
+## [0.1.5](https://gitee.com/paul-xiao/dcv_next/compare/v0.1.4...v0.1.5) (2024-02-18)
+
+### Features
+
+- ID_INJECTION_KEY test ([271f3ba](https://gitee.com/paul-xiao/dcv_next/commits/271f3ba1210af13d679ef77256fbad52ea1ed30b))
+
 ## [0.1.4](https://gitee.com/paul-xiao/dcv_next/compare/v0.0.14...v0.1.4) (2024-01-19)
 
 ### Features

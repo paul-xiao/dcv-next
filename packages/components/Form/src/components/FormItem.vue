@@ -28,7 +28,7 @@ export default defineComponent({
     },
     type: String,
     componentProps: { type: Object, default: () => {} },
-    modelValue: [String, Array],
+    modelValue: [String, Number, Array],
   },
   emits: ["update:modelValue", "change"],
   setup(_props, { emit }) {
