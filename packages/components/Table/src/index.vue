@@ -49,7 +49,6 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref, computed, onMounted, useSlots } from "vue";
-import { ElTable, ElTableColumn, ElPagination } from "element-plus";
 import { tableProps, defaultTableConf } from "./table";
 import { IPageProps, ITableColumn } from "./types";
 

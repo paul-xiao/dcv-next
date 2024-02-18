@@ -6,7 +6,6 @@
     :size="modelSize"
     v-bind="$attrs"
   >
-    <span v-show="false"> {{ idInjection }}</span>
     <template v-for="item of schema" :key="item.prop">
       <FormItem
         v-model="state.ruleForm[item.prop]"
@@ -37,15 +36,13 @@ import {
   ref,
   unref,
   watch,
-  inject,
   useSlots,
 } from "vue";
-import { FormInstance, ID_INJECTION_KEY } from "element-plus";
+import { FormInstance } from "element-plus";
 import FormItem from "./components/FormItem.vue";
 import { IFormProps } from "./hooks/useForm";
 import { IFormItem } from "./types";
 
-const idInjection = inject(ID_INJECTION_KEY);
 interface FormProps {
   modelValue?: object;
   schema?: IFormItem[] | undefined;
