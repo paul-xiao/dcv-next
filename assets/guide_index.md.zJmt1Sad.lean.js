@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as i,aP as n}from"./chunks/framework.1WYuimUT.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/index.md","filePath":"guide/index.md"}'),e={name:"guide/index.md"},l=n("",9),p=[l];function t(h,d,k,c,o,r){return i(),a("div",null,p)}const F=s(e,[["render",t]]);export{u as __pageData,F as default};

@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,aP as n}from"./chunks/framework.1WYuimUT.js";const u=JSON.parse('{"title":"常见问题","description":"","frontmatter":{},"headers":[],"relativePath":"issues/index.md","filePath":"issues/index.md"}'),t={name:"issues/index.md"},e=n("",31),p=[e];function l(h,o,d,k,r,c){return a(),i("div",null,p)}const g=s(t,[["render",l]]);export{u as __pageData,g as default};

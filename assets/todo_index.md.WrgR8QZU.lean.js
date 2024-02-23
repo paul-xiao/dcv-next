@@ -1,0 +1,1 @@
+import{_ as e,c as t,o,aP as a}from"./chunks/framework.1WYuimUT.js";const m=JSON.parse('{"title":"Todo List","description":"","frontmatter":{},"headers":[],"relativePath":"todo/index.md","filePath":"todo/index.md"}'),i={name:"todo/index.md"},s=a("",3),l=[s];function n(r,d,_,c,h,p){return o(),t("div",null,l)}const x=e(i,[["render",n]]);export{m as __pageData,x as default};

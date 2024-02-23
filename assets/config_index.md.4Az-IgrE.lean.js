@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,aP as n}from"./chunks/framework.1WYuimUT.js";const F=JSON.parse('{"title":"项目配置","description":"","frontmatter":{},"headers":[],"relativePath":"config/index.md","filePath":"config/index.md"}'),t={name:"config/index.md"},l=n("",38),p=[l];function h(k,e,E,r,d,o){return a(),i("div",null,p)}const y=s(t,[["render",h]]);export{F as __pageData,y as default};
