@@ -2,7 +2,7 @@
   <dc-form @register="registerForm" @submit="onSubmit" />
 </template>
 <script lang="ts" setup>
-import { useForm } from "../../../../packages";
+import { useForm } from "dcv-next";
 // custom form schema
 const schema = [
   {
