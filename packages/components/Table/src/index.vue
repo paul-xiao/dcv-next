@@ -211,7 +211,7 @@ onMounted(() => {
     margin-top: 15px;
   }
 }
-::v-deep .el-table--border th.el-table__cell {
+:deep(.el-table--border th.el-table__cell) {
   background-color: #f2f2f2;
   font-size: 14px;
   color: #999;

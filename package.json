@@ -2,6 +2,7 @@
   "name": "dcv-next",
   "version": "0.1.9",
   "license": "MIT",
+  "description": "https://paul-xiao.github.io/dcv-next/",
   "workspaces": [
     "packages/*",
     "docs"
@@ -11,8 +12,7 @@
     "dev": "cross-env NODE_ENV=development vite",
     "build": "rimraf dist && vue-tsc && vite build",
     "docs:dev": "pnpm -C docs dev",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
+    "docs:build": "pnpm -C docs build",
     "prepare": "husky install",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,examples}/**/*.{vue,ts,tsx}\" --fix",
     "lint:css": "stylelint --cache --fix \"{src,examples}/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",

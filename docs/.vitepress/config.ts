@@ -2,6 +2,7 @@ import path from "path";
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
+  base: "/dcv-next/",
   title: "Dcv Next",
   description: "Dcv base on vue3.x",
   head: [["link", { rel: "icon", href: "logo.png" }]],
