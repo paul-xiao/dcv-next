@@ -2,7 +2,7 @@
   <ElUpload
     ref="upload"
     class="avatar-uploader"
-    :api="api"
+    :action="action"
     :show-file-list="false"
     :on-success="handleAvatarSuccess"
     :before-upload="beforeAvatarUpload"
@@ -20,18 +20,18 @@ import {
   UploadRawFile,
   genFileId,
 } from "element-plus";
+import { Plus } from "@element-plus/icons-vue";
 import { ref, watch } from "vue";
 interface Props {
   modelValue?: string;
-  api?: any;
+  action: string;
 }
 
 const _props = defineProps<Props>();
 const _emit = defineEmits(["update:modelValue", "change"]);
 
+console.log(_props.action);
 const imageUrl = ref<string | undefined>("");
-// const httpRequest = ref<any>();
-
 watch(
   () => _props.modelValue,
   (val) => {
@@ -49,10 +49,10 @@ const handleAvatarSuccess: UploadProps["onSuccess"] = (response) => {
 
 const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
   if (!["image/jpeg", "image/png"].includes(rawFile.type)) {
-    ElMessage.error("Avatar picture must be JPG or PNG format!");
+    ElMessage.warning("Avatar picture must be JPG or PNG format!");
     return false;
   } else if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error("Avatar picture size can not exceed 2MB!");
+    ElMessage.warning("Avatar picture size can not exceed 2MB!");
     return false;
   }
   return true;

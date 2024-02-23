@@ -1,3 +1,9 @@
+## [0.1.8](https://gitee.com/paul-xiao/dcv_next/compare/v0.1.7...v0.1.8) (2024-02-18)
+
+### Bug Fixes
+
+- fix SSR ID_INJECTION_KEY warning ([f5a5013](https://gitee.com/paul-xiao/dcv_next/commits/f5a50139d0f669f2a65446fe125dd82e455914c5))
+
 ## [0.1.7](https://gitee.com/paul-xiao/dcv_next/compare/v0.1.6...v0.1.7) (2024-02-18)
 
 ## [0.1.6](https://gitee.com/paul-xiao/dcv_next/compare/v0.1.5...v0.1.6) (2024-02-18)

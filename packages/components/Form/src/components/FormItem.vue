@@ -17,9 +17,10 @@
 // 动态组件处理方式有两种： component 或者 jsx
 import { defineComponent } from "vue";
 import ISelect from "./Select.vue";
+import IUpload from "./Upload.vue";
 import { computed } from "vue";
 export default defineComponent({
-  components: { ISelect },
+  components: { ISelect, IUpload },
   props: {
     prop: {
       type: String,
@@ -51,7 +52,7 @@ export default defineComponent({
         case "select":
           return "ISelect";
         case "upload":
-          return "ElUpload";
+          return "IUpload";
         default:
           return `El${capitalize(isInput ? "input" : type)}`;
       }

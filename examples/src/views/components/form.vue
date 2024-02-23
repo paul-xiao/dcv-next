@@ -1,29 +1,48 @@
 <template>
   <dc-page>
-    <dc-form
-      v-model="form"
-      :schema="schema"
-      v-bind="{ ...componentProps }"
-      @submit="onSubmit"
-    >
-      <template #content>
-        <h1>content</h1>
-      </template>
-    </dc-form>
+    <section>
+      <h1>基础表单 Form</h1>
+      <dc-form
+        class="py-5"
+        v-model="form"
+        :schema="schema"
+        v-bind="{ ...componentProps }"
+        @submit="onSubmit"
+      >
+        <template #content>
+          <h1>content</h1>
+        </template>
+      </dc-form>
+    </section>
+    <section>
+      <h1>useForm Hook</h1>
+      <p class="font-light leading-10">
+        使用useForm钩子可支持所有参数在注册时完成配置
+      </p>
+      <pre>
+        <code>
+         const [registerForm, { validateForm }] = useForm({
+          labelWidth: '120px',
+          schema: schema,
+          api: () => Promise.resolve('')
+        })
+        </code>
+      </pre>
+      <dc-form class="py-5" @register="registerForm" @submit="onSubmit">
+        <template #footer>
+          <el-button type="primary" @click="onCustomSubmit">111</el-button>
+        </template>
+      </dc-form>
+    </section>
   </dc-page>
 </template>
 <script lang="ts" setup>
-import { Form as DcForm, Page as DcPage } from "@dcv-next/components";
+// import { codeToHtml } from 'shiki'
+
+import { Form as DcForm, Page as DcPage, useForm } from "@dcv-next/components";
 const form = {
   title: 111,
 };
-// const rules = {
-//   name: [{
-//     required: true,
-//     message: 'please input name',
-//     trigger: 'blur'
-//   }]
-// }
 const schema = [
   {
     label: "标题",
@@ -40,11 +59,10 @@ const schema = [
   {
     label: "正文",
     prop: "content",
-    slot: true,
     span: 12,
     rules: [
       {
-        required: true,
+        required: false,
         message: "请输入标题",
         trigger: "blur",
       },
@@ -67,7 +85,7 @@ const schema = [
       {
         required: true,
         message: "请输入标题",
-        trigger: "blur",
+        trigger: "change",
       },
     ],
   },
@@ -83,7 +101,7 @@ const schema = [
       {
         required: true,
         message: "请输入标题",
-        trigger: "blur",
+        trigger: "change",
       },
     ],
   },
@@ -96,7 +114,32 @@ const componentProps = {
   footer: true,
 };
 
+const [registerForm, { validateForm, getModel }] = useForm({
+  schema: schema,
+  componentProps: {
+    labelWidth: 100,
+    size: "small",
+  },
+});
 function onSubmit(form: any) {
   console.log(form);
 }
+
+async function onCustomSubmit() {
+  validateForm(async (valid: any) => {
+    if (valid) {
+      // todo 获取到表单数据
+      const form = await getModel();
+      console.log(form);
+    }
+  });
+}
+
+// const code = 'const a = 1' // input code
+// const html = await codeToHtml(code, {
+//   lang: 'javascript',
+//   theme: 'vitesse-dark'
+// })
+
+// console.log(html) // highlighted html string
 </script>

@@ -30,7 +30,8 @@ export default defineConfig({
         {
           text: "Components",
           items: [
-            { text: "Button", link: "/components/button" },
+            { text: "表单 Form", link: "/components/form" },
+            { text: "按钮 Button", link: "/components/button" },
             { text: "Editor", link: "/components/editor" },
           ],
         },
@@ -62,7 +63,7 @@ export default defineConfig({
       "/api/": [
         {
           text: "ThreeJS",
-          collapsible: true,
+          collapsed: true,
           items: [
             { text: "介绍", link: "/api/threejs/" },
             { text: "基础图元", link: "/api/threejs/primitives" },

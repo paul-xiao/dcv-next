@@ -1,8 +1,8 @@
 <template>
   <div class="p-5 bg-red-300">
-    <dc-button type="primary">primary</dc-button>
-    <dc-button type="success">success</dc-button>
-    <dc-button type="warning">warning</dc-button>
-    <dc-button type="danger">danger</dc-button>
+    <el-button type="primary">primary</el-button>
+    <el-button type="success">success</el-button>
+    <el-button type="warning">warning</el-button>
+    <el-button type="danger">danger</el-button>
   </div>
 </template>

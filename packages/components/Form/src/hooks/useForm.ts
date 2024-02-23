@@ -1,15 +1,29 @@
-import { AxiosResponse } from "axios";
 import { nextTick, ref, unref } from "vue";
 import { IFormItem } from "../types";
 
-export interface IFormProps {
-  labelWidth?: number;
-  api?: (params?: any) => Promise<AxiosResponse<any, any>>;
-  foot?: boolean;
-  schema: IFormItem[];
-}
+// 区分自定义配置和ElForm默认配置， Form默认配置直接由$attrs或者useForm的conf参数传人
+// 支持的ElForm参数
 
-export function useForm(props: IFormProps) {
+type Data = Record<string, unknown>;
+
+// useForm 钩子配置
+export interface HookConfig {
+  schema?: IFormItem[] | undefined; // 表单schema
+  detailed?: boolean; // 是否为详情模式
+  footer?: boolean; // 是否显示footer
+  componentProps?: Data;
+}
+/**
+ * @description 通用函数
+ */
+type GenericFunction = (args?: any) => void;
+
+type FormHooks = {
+  validateForm: GenericFunction;
+  setValues: GenericFunction;
+  getModel: GenericFunction;
+};
+export function useForm(props: HookConfig): [GenericFunction, FormHooks] {
   const { schema, ...rest } = props;
   const formRef = ref<any>();
 
@@ -30,8 +44,15 @@ export function useForm(props: IFormProps) {
     formRef.value = instance;
   };
 
-  function onSubmit() {
-    console.log(111);
+  // 表单验证
+  async function validateForm(cb: any) {
+    const form = await getForm();
+    return form.validate(cb);
+  }
+  // 获取表单数据
+  async function getModel() {
+    const form = await getForm();
+    return form.model;
   }
   /**
    * @description: 设置默认值
@@ -44,8 +65,9 @@ export function useForm(props: IFormProps) {
   }
   // methods
   const methods = {
-    onSubmit,
+    validateForm,
     setValues,
+    getModel,
   };
 
   return [register, methods];

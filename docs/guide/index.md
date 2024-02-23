@@ -1,4 +1,4 @@
-## build lib
+## 打包
 
 ```sh
 
@@ -23,6 +23,8 @@ pnpm link --global dcv
 pnpm unlink dcv
 ```
 
+> pnpm link 链接后可能存在 type 无法识别问题, 慎用！！！
+
 ## 生产发布
 
 ```sh
@@ -35,7 +37,7 @@ git subtree push -P lib origin release
 pnpm add git+http://10.1.191.15:13480/fed/dcv#release
 ```
 
-## get started
+## 安装
 
 ```bash
 pnpm add dcv-next

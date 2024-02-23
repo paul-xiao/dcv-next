@@ -3,8 +3,7 @@
     ref="formRef"
     :model="state.ruleForm"
     status-icon
-    :size="modelSize"
-    v-bind="$attrs"
+    v-bind="{ ...$attrs, ...state.conf.componentProps }"
   >
     <template v-for="item of schema" :key="item.prop">
       <FormItem
@@ -12,7 +11,7 @@
         @change="(val) => handleChange(item, val)"
         v-bind="item"
       >
-        <template v-if="item.slot" #[item.prop]>
+        <template v-if="$slots[item.prop]" #[item.prop]>
           <slot :name="item.prop" :row="item" :model="state.ruleForm"></slot>
         </template>
       </FormItem>
@@ -20,10 +19,8 @@
     <ElFormItem v-if="slotFoot">
       <slot name="footer"></slot>
     </ElFormItem>
-    <ElFormItem v-else-if="$attrs.footer || state.conf.foot">
-      <ElButton type="primary" :size="modelSize" @click="submitForm(formRef)"
-        >确认</ElButton
-      >
+    <ElFormItem v-else-if="state.conf.footer || $props.footer">
+      <ElButton type="primary" @click="submitForm(formRef)">确认</ElButton>
       <ElButton @click="resetForm(formRef)">重置</ElButton>
     </ElFormItem>
   </ElForm>
@@ -38,26 +35,23 @@ import {
   watch,
   useSlots,
 } from "vue";
-import { FormInstance } from "element-plus";
+import { FormInstance, ElForm } from "element-plus";
 import FormItem from "./components/FormItem.vue";
-import { IFormProps } from "./hooks/useForm";
 import { IFormItem } from "./types";
-
-interface FormProps {
+import { HookConfig } from "./hooks/useForm";
+// 组件Props配置
+interface IFormProps extends HookConfig {
   modelValue?: object;
-  schema?: IFormItem[] | undefined;
-  rules?: Element;
-  modelSize?: "small" | "default" | "large";
-  detailed?: boolean;
-  foot?: boolean;
 }
-const _props = withDefaults(defineProps<FormProps>(), {
-  foot: true,
+// defineProps
+const _props = withDefaults(defineProps<IFormProps>(), {
+  footer: true,
 });
+
 const formRef = ref<FormInstance>();
 const schema = ref<IFormItem[]>([]);
 const state = reactive({
-  conf: {} as IFormProps,
+  conf: {} as HookConfig,
   ruleForm: {} as any,
 });
 const _emits = defineEmits(["update:modelValue", "register", "submit"]);
@@ -74,19 +68,13 @@ const _isRequired = computed(() => {
 });
 const slotFoot = !!useSlots().footer;
 
-const submitForm = async (formEl: FormInstance | undefined) => {
+const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  console.log(formEl);
-
-  await formEl.validate(async (valid) => {
-    console.log(valid);
-
+  formEl.validate((valid: boolean) => {
     if (valid) {
-      // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#non-null-assertion-operator-postfix-
-      // await state?.conf?.api!({ ...unref(ruleForm) })
       _emits("submit", { ...unref(state.ruleForm) });
     } else {
-      console.warn("valid fail!", state.ruleForm);
+      console.warn("form validate failed!");
     }
   });
 };
@@ -116,7 +104,6 @@ function setFormItem(key: string, val: any) {
 // set schema
 function getSchema(data: IFormItem[]) {
   schema.value = data;
-  console.log(schema.value);
 }
 
 function handleChange(item: any, props: any) {
@@ -132,6 +119,8 @@ const formActions = {
   getSchema,
   setDefautValues,
   setFormItem,
+  validate,
+  model: state.ruleForm,
 };
 
 onMounted(() => {
